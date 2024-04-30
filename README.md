@@ -40,6 +40,14 @@ The requirements to follow the exercises in this repository are:
 >> 
 </details>
 
+## System access (workshops provided by SAP)
+
+In a workshop that is conducted by SAP we a SAP S/4HANA 2023 preconfigured appliance system will be provided to the workshop participants.  
+
+The system details will be provided by the trainers. With the system details you can connect via ADT to the system as described in the following how-to-guide.   
+
+[How to connect with ADT to a preconfigured appliance system](https://github.com/SAP-samples/abap-platform-rap-workshops/blob/main/how_to_connect_with_adt_to_preconfigure_appliance.md)
+
 ## 🔎Overview
 [^Top of page](#)
 
