@@ -1,4 +1,4 @@
-# SAP-samples/repository-template
+# Implement a Tier2 Wrapper for the "Create Purchase Requisition" (BAPI_PR_CREATE) function module
 This default template for SAP Samples repositories includes files for README, LICENSE, and .reuse/dep5. All repositories on github.com/SAP-samples will be created based on this template.
 
 # Containing Files
