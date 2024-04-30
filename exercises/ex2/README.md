@@ -15,7 +15,7 @@
 -->
 
 ## Introduction
-Now that you have implemented the wrapper for the unreleased SAP API **`BAPI_PR_CREATE`** and released it for the cloud development in [exercise 2](../ex2/README.md), you will now create your Shopping Cart RAP business object and a UI service on top it.
+Now that you have implemented the wrapper for the unreleased SAP API **`BAPI_PR_CREATE`** and released it for the cloud development in [exercise 1](../ex1/README.md), you will now create your Shopping Cart RAP business object and a UI service on top it.
 
 
 - [You will learn](#you-will-learn)
