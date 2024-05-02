@@ -21,7 +21,7 @@ Now that you've created your Shopping Cart RAP business object and a UI service 
 
 ---
 
-# Step 1: Enhance behavior definition of data model
+## Step 1: Enhance behavior definition of data model
 
 > **In this tutorial example a SAP S/4HANA Cloud, ABAP environment system was used. The mode therefore is `strict (2)`.**
 
@@ -119,7 +119,7 @@ Now that you've created your Shopping Cart RAP business object and a UI service 
    4. Save and activate. 
 
 
-# Step 2: Create data definition for products
+## Step 2: Create data definition for products
 
 This data definition is needed to create a value help for products.
 
@@ -198,7 +198,7 @@ This data definition is needed to create a value help for products.
  5. Save and activate.
 
 
-# Step 3: Enhance metadata extension
+## Step 3: Enhance metadata extension
 
  1. In your metadata extension **`ZC_SHOPCARTTP_###`** replace your code with following:
 
@@ -385,7 +385,7 @@ This data definition is needed to create a value help for products.
     
  2. Save and activate.
    
-# Step 4: Enhance behavior implementation
+## Step 4: Enhance behavior implementation
 
   > **Hint:** Please replace **`###`** with your ID. 
 
@@ -607,7 +607,7 @@ This data definition is needed to create a value help for products.
    3. Go back to your behavior definition `ZR_SHOPCARTTP_###` and activate it again, if needed. 
 
 
-# Step 5: Run SAP Fiori elements app preview and create first order
+## Step 5: Run SAP Fiori elements app preview and create first order
 
  1. Select **`ShoppingCart`** in your service binding and click **Preview** to open SAP Fiori Elements preview.
 
@@ -630,7 +630,7 @@ This data definition is needed to create a value help for products.
      <img alt="preview" src="images/order3.png" width="70%">
 
 
-# Summary & Next Exercise
+## Summary & Next Exercise
 [^Top of page](#)
 
 Now that you've... 
