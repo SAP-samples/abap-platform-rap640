@@ -1,7 +1,7 @@
 # Exercise 4: Integrate the Wrapper into the Shopping Cart Business Object
 <!-- description --> Learn how to integrate your wrapper in a RAP BO, implement a new action to call the wrapper during the save sequence phase and expose it via service binding
 
-# Introduction
+## Introduction
 
 Now that you've enhanced the RAP BO data model, behavior definition, and behavior implementation in [exercise 3](../ex3/README.md), you will learn in the present exercise how to integrate a custom wrapper into a RAP BO and implement a new action to call the custom wrapper during the save sequence phase of the RAP BO. You will also learn how to expose an action via the service binding. 
 
@@ -33,7 +33,7 @@ In this tutorial you will take the wrapper that you created and you will integra
 > You can use the ADT function **Replace All** (**Ctrl+F**) for the purpose.   
 > If you don't have a group number, choose a 3-digit suffix and use it for all exercises.
 
-# Step 1: Switch to strict (1) mode
+## Step 1: Switch to strict (1) mode
 
 Later in this tutorial we will implement a `save_modified` method in the RAP Business Object, which will invoke authorization checks during the save sequence. If the RAP behavior definition is implemented in ABAP for Cloud Development and the `strict(2)` mode is applied, this would lead to runtime errors. For this reason, we will switch to `strict(1)` mode. For more information, see [The RAP Transactional Model and the SAP LUW](https://help.sap.com/docs/abap-cloud/abap-rap/rap-transactional-model-and-sap-luw).
 
@@ -49,7 +49,7 @@ Open the behavior definition `ZC_SHOPCARTTP_###` and change to `strict(1)` mode 
 
 Save and activate it.
 
-# Step 2: Implement new action `createPurchRqnBAPISave`
+## Step 2: Implement new action `createPurchRqnBAPISave`
 
 You will now create a whole new action in the RAP BO, called `createPurchRqnBAPISave`. Open the behavior definition `ZR_SHOPCARTTP_###` and define a new action with the following code snippet:
 
@@ -115,7 +115,7 @@ So the method implementation now looks as follows:
 
 Save and activate it.
 
-# Step 3: Implement on save validation using the BAPI test mode
+## Step 3: Implement on save validation using the BAPI test mode
 
 As seen in the previous tutorial of this series, certain BAPI have a test mode that can be used to validate the input data. Depending on the type of BAPI, how you plan to integrate it in your RAP BO and your specific use case, it is recommended to use this test mode as a validation in your RAP BO. So, after the action `createPurchRqnBAPISave` is called, this validation can be used to check the input data (before the logic moves on to the `save_modified` step, where the entity is modified and the purchase requisition is created).
 
@@ -200,7 +200,7 @@ Save it and activate it.
 
 >For the scope of this tutorial, we will use the material `ZPRINTER01`, which is automatically available in any [Fully-Activated Appliance](https://blogs.sap.com/2018/12/12/sap-s4hana-fully-activated-appliance-create-your-sap-s4hana-1809-system-in-a-fraction-of-the-usual-setup-time/) in SAP Cloud Appliance Library. If you are using a different system, you might have to create a material to use in the tutorial (see [Creating Materials](https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/f7fddfe4caca43dd967ac4c9ce6a70e4/23d6b8535c39b44ce10000000a174cb4.html?version=2022.000)).
 
-# Step 4: Implement `unmanaged_save`
+## Step 4: Implement `unmanaged_save`
 
 In our scenario, we want to call the wrapper during the save sequence and therefore we need to switch to a RAP BO with unmanaged save, so that we can implement and adapt the `save_modified` method and call the wrapper therein.
 
@@ -250,7 +250,7 @@ Save and activate it.
 
 >We use the unmanaged save option for our scenario, rather than the additional save option. This is because the additional save should only be used in case data needs to be saved in addition to BO data in a persistence outside the BO, as stated in the [Additional Save documentation](https://help.sap.com/docs/SAP_S4HANA_CLOUD/e5522a8a7b174979913c99268bc03f1a/ca7097c8ea404b11b1f1334fd54cdd15.html). Since this is not our use case (the purchase requisition is created and saved in the persistency of the shopping cart BO), we rely on the unmanaged save option.
 
-# Step 5: Call wrapper class in unmanaged save implementation `save_modified`
+## Step 5: Call wrapper class in unmanaged save implementation `save_modified`
 
 As a final step, you now need to modify the `save_modified` method of the saver class, so that it calls the wrapper class (which creates the purchase requisition).
 
@@ -371,7 +371,7 @@ The logic is now fully implemented: when the new action is used, shopping cart o
 
 >Given our implementation, there is no way to handle errors at this phase, so the `ASSERT` statement is used as a contingency: it catches any error that was not caught during the validation phase and leads to a runtime error.
 
-# Step 6: Expose the new action
+## Step 6: Expose the new action
 
 You will now expose the newly created action. To do this, you will modify the Metadata Extension and the Behavior Definition to expose the action.
 
@@ -407,7 +407,7 @@ The Behavior Definition should now look as follows:
 
 Save and activate it.
 
-# Step 7: Run SAP Fiori Elements Preview to test action
+## Step 7: Run SAP Fiori Elements Preview to test action
 
 In ADT, open the Service Binding `ZUI_SHOPCART_O4_###` and click on the **Preview** button to start a preview of the UI of your RAP BO. You will be prompted to login. Create a new entry and then click on the button `Create PR via BAPI in SAVE` to create the purchase requisition:
 
@@ -419,7 +419,7 @@ The purchase requisition will be created:
 
 ![Create PR - result](images/create_pr_3.png)
 
-# Summary & Next Exercise
+## Summary & Next Exercise
 [^Top of page](#)
 
 Now that you've... 
