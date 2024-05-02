@@ -6,7 +6,7 @@ Now that you have implemented a custom wrapper for the unreleased SAP API `BAPI_
 
 
 - [You will learn](#you-will-learn)
-- [Summary & Next Exercise](#summary)  
+- [Summary & Next Exercise](#summary--next-exercise) 
 
 
 ## You will learn  
@@ -326,7 +326,7 @@ Choose between the tabs **Cloud** and **On-premise** and follow the publishing p
 [OPTION END]
 </details>
 
-# Summary 
+# Summary & Next Exercise
 [^Top of page](#)
 
 Now that you've... 
