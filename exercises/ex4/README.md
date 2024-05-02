@@ -20,7 +20,7 @@ In this tutorial you will take the wrapper that you created and you will integra
 
 
 - [You will learn](#you-will-learn)
-- [Summary & Next Exercise](#summary)  
+- [Summary & Next Exercise](#summary--next-exercise)  
 
 
 ## You will learn
@@ -419,7 +419,7 @@ The purchase requisition will be created:
 
 ![Create PR - result](images/create_pr_3.png)
 
-# Summary 
+# Summary & Next Exercise
 [^Top of page](#)
 
 Now that you've... 
