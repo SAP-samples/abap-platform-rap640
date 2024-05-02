@@ -186,8 +186,8 @@ Now that you have implemented a custom wrapper for the unreleased SAP API `BAPI_
     DeliveryDate;
    ```
    
-    <!-- ![projection](images/bdef3x.png) -->
-    <img alt="projection" src="images/bdef3x.png" width="70%">
+   <!-- ![projection](images/bdef3x.png) -->
+   <img alt="projection" src="images/bdef3x.png" width="70%">
 
   2. Check your behavior definition:
 
