@@ -42,7 +42,7 @@ In the **Tools** section you can click on the **Function Builder** and then clic
 
 >The `BAPI_PR_CREATE` has a `TESTRUN` parameter that can be used to call the BAPI in validation mode. Some BAPI have a similar test mode that can be used to validate input data. It is best practice to make use of this test mode, if available, as we will address in more details in a later [tutorial](/exercises/ex5/Readme.md) of this group.
 
-# Create a development package
+# Step 2: Create a development package
 
 You will develop the wrapper in a dedicated package under the package `$TMP` in your SAP S/4HANA system.
 
@@ -53,7 +53,7 @@ In ADT, open your SAP S/4HANA system project folder, right click on it and selec
 
 Select **Add to favorite packages** for easy access later on. Keep the Package Type as **Development** and click on **Next**. Do not change anything in the following wizard window, and click on **Next**, then click on **Finish**. The package will be created.
 
-# Step 2: Create a wrapper interface
+# Step 3: Create a wrapper interface
 
 You now want to wrap the API `BAPI_PR_CREATE`. Depending on your specific use-case, you normally would need to access only certain specific functionalities and methods of the BAPI you want to expose. An ABAP Interface is the perfect development object for this purpose: the interface simplifies and restricts the usage of the underlying BAPI for the specific use-case, by exposing only the parameters that are needed. As a consequence, non-wrapped functionalities are forbidden.
 
