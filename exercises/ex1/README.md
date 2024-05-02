@@ -595,7 +595,11 @@ Repeat the same steps to release the factory class you created:
 
 You will now need to run ATC checks on the objects you created and request exemptions to use unreleased API.
 
-To run the ATC checks right click on the `$Z_PURCHASE_REQ_TIER2_###` package and select **Run As** > **ABAP Test Cockpit With...** and select your ATC check variant. Confirm by clicking on **OK**. The result of the ATC check will appear in the ATC Problems tab. As expected, you will get ATC check errors because you are using an unreleased API:
+To run the ATC checks right click on the `$Z_PURCHASE_REQ_TIER2_###` package and select **Run As** > **ABAP Test Cockpit With...** and select your ATC check variant. Confirm by clicking on **OK**.   
+
+<!-- ![ATC checks - interface error](images/select_atc_check_variant.png) -->
+
+The result of the ATC check will appear in the ATC Problems tab. As expected, you will get ATC check errors because you are using an unreleased API:
 
 <!-- ![ATC checks - interface error](images/interface_atc_checks.png) -->
 <img alt="ATC checks - interface error" src="images/interface_atc_checks.png" width="70%">
