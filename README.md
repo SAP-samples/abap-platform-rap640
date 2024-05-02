@@ -116,7 +116,7 @@ _ _
 ## 🔁Recordings
 [^Top of page](#)
 
-Watch the replay of the webcast on ABAP Cloud API enablement held during SAP's Devtoberfest in 2023. 
+Watch the replay of a webcast on cloud API enablement for the 3-tier extensibility model held during SAP's Devtoberfest in 2023. 
 
 📹 <a href="http://www.youtube.com/watch?feature=player_embedded&v=MThRxtNEHS0" target="_blank">Cloud API Enablement on SAP S/4HANA and SAP S/4HANA Cloud Private editions</a> 
 
