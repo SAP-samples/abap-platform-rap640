@@ -106,8 +106,8 @@ Learn more: [Understand the sample scenario how to mitigate a missing released S
  
 > You can import the solution package **`ZRAP640_SOL`** into your system* - i.e. at least the release 2022 of SAP S/4HANA Cloud Private Edition and SAP S/4HANA.
 
-🚧 _More details coming soon_
-_..._
+🚧 _More details coming soon_  
+_ _
 
 >> ℹ️ **Regarding SAP-led events such as "ABAP Developer Day" and "SAP CodeJam"**:     
 >> The solution package **`ZRAP640_SOL`** is already imported into your dedicated system used during these events.
