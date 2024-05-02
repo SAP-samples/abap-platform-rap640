@@ -23,7 +23,7 @@ In a later exercise you will then create a Shopping Cart RAP business object for
 > If you don't have a group number, choose a 3-digit suffix and use it for all exercises.
 
 
-# Get to know the BAPI_PR_CREATE via the BAPI Explorer
+# Step 1: Get to know the BAPI_PR_CREATE via the BAPI Explorer
 
 The first step is to look for a suitable unreleased API to create purchase requisitions. You can use the BAPI Explorer for this purpose. Connect to the backend of your SAP S/4HANA system and start transaction `BAPI`. For the purpose of this tutorial, we will use the unreleased BAPI `BAPI_PR_CREATE`: switch to the **Alphabetical** view (1), look for the Business Object `PurchaseRequisition` (2), find and click on the method `CreateFromData1` (3). You can see that its function module is the `BAPI_PR_CREATE` (4).
 
@@ -53,7 +53,7 @@ In ADT, open your SAP S/4HANA system project folder, right click on it and selec
 
 Select **Add to favorite packages** for easy access later on. Keep the Package Type as **Development** and click on **Next**. Do not change anything in the following wizard window, and click on **Next**, then click on **Finish**. The package will be created.
 
-# Create a wrapper interface
+# Step 2: Create a wrapper interface
 
 You now want to wrap the API `BAPI_PR_CREATE`. Depending on your specific use-case, you normally would need to access only certain specific functionalities and methods of the BAPI you want to expose. An ABAP Interface is the perfect development object for this purpose: the interface simplifies and restricts the usage of the underlying BAPI for the specific use-case, by exposing only the parameters that are needed. As a consequence, non-wrapped functionalities are forbidden.
 
@@ -165,7 +165,7 @@ Save and activate it.
 
 >As already said, you will expose only the parameters that are needed in your specific use-case. In this case you want to create a purchase requisition item (for which you expose the parameter `pr_item`) and given the underlying BAPI signature, the `pr_item` always requires an header, which is why you are also exposing the parameter `pr_header`.
 
-# Create a wrapper class
+# Step 4: Create a wrapper class
 
 You now need to create a class to wrap the BAPI (implementing the interface you created in the previous step) and implement its methods.
 
@@ -416,7 +416,7 @@ Save and activate it.
 
 >In this tutorial we follow the [clean code best practices](https://blogs.sap.com/2022/05/05/how-to-enable-clean-code-checks-for-abap/) for ABAP development. For example: the wrapper class is ready for ABAP Unit Tests and [ABAP Doc](https://blogs.sap.com/2013/04/29/abap-doc/) is implemented.
 
-# Create a wrapper factory class
+# Step 5: Create a wrapper factory class
 
 In the scope of this tutorial group, our recommended approach is to create a factory class to control the instantiation of the wrapper class. This factory class will then be released for consumption in tier 1. This approach has the advantage of a clear control of when and where an instance of the wrapper class is created, and in the event in which several wrapper classes are needed all their instantiations could be handled inside one single factory class. Also, in case of wrapper classes this has the advantage that in case the wrapper class is changed throughout it's software lifecycle, at a later point in time a different class could be initialized, without changes to the consumer implementation.
 
@@ -469,7 +469,7 @@ ENDCLASS.
 
 Save and activate it.
 
-# Test unreleased wrapper with console application in tier 1
+# Step 6: Test unreleased wrapper with console application in tier 1
 
 The wrapper you just created is currently not released for consumption in tier 1. You can test this by creating a console application in tier 1 to call the (unreleased) wrapper. We suggest to create a dedicated package under the tier 1 `ZLOCAL` package in your SAP S/4HANA System for this test.
 
@@ -554,7 +554,7 @@ The class calls the wrapper factory class and, given some input parameter values
 
 >The class calls the method `create` of the BAPI, which will create an instance of the Shopping Cart Business Object and the relative purchase requisition. In the context of this tutorial group, this is of course done for educational purposes, to show the creation of a purchase requsition and test the wrapper via console application. If for any reason you do not wish to create an instance of the Shopping Cart Business Object at this point, you can instead make use of the BAPI method `check`.
 
-### Release the wrapper interface and factory class
+# Step 7: Release the wrapper interface and factory class
 
 Now you need to release the wrapper interface and wrapper factory class for consumption in tier 1. To do this, you need to add a Release Contract (C1) to both objects for use system-internally and use in Cloud Development.
 
@@ -589,7 +589,9 @@ Repeat the same steps to release the factory class you created:
 
 >You will not release the wrapper class.
 
-# Run ATC checks and request exemptions
+# Step 8: Run ATC checks and request exemptions \[OPTIONAL\]
+
+> **Note**: This exercise is optional. 
 
 You will now need to run ATC checks on the objects you created and request exemptions to use unreleased API.
 
@@ -614,7 +616,7 @@ Proceed in the same way to request an exemption for the whole wrapper class.
 
 >How to maintain approvers and how to approve exemptions is beyond the scope of this tutorial. After a maintained approver has approved the exemptions, you can verify it by running ATC checks again in ADT: no issue should arise.
 
-### Test released wrapper with console application in tier 1
+# Step 9: Test released wrapper with console application in tier 1
 
 You can test that the wrapper was correctly released for consumption in tier 1 by running the console application class `ZCL_BAPI_WRAP_TEST_###`. First, the errors in the class should have disappeared now that you released the wrapper, so you can save and activate the class. Now you can run it: right click on the class and select **Run As** > **ABAP Application (Console)**. The class should now run without errors and the purchase requisition will be created and displayed in the console:
 
