@@ -37,7 +37,7 @@ The requirements to follow the exercises in this repository are:
 >> ℹ️ **Regarding SAP-led events such as "ABAP Developer Day" and "SAP CodeJam"**:   
 >> → A dedicated ABAP system for the hands-on workshop participants will be provided.   
 >> → Access to the system details for the workshop will be provided by the instructors during the session.
->> 
+
 </details>
 
 ## System access (workshops provided by SAP)
@@ -103,15 +103,28 @@ Learn more: [Understand the sample scenario how to mitigate a missing released S
 
 ## 📤Solution Package
 [^Top of page](#)
-
+ 
 > You can import the solution package **`ZRAP640_SOL`** into your system* - i.e. at least the release 2022 of SAP S/4HANA Cloud Private Edition and SAP S/4HANA.
 
-⚠️ _More details coming soon_
+🚧 _More details coming soon_
+
+>> ℹ️ **Regarding SAP-led events such as "ABAP Developer Day" and "SAP CodeJam"**:     
+>> The solution package **`ZRAP640_SOL`** is already imported into your dedicated system used during these events.
+
+
+## 🔁Recordings
+[^Top of page](#)
+
+Watch the replay of the webcast on ABAP Cloud API enablement held during SAP's Devtoberfest in 2023. 
+
+📹 <a href="http://www.youtube.com/watch?feature=player_embedded&v=MThRxtNEHS0" target="_blank">Cloud API Enablement on SAP S/4HANA and SAP S/4HANA Cloud Private editions</a> 
+
 
 ## ⚠Known Issues
 [^Top of page](#)
 
 No known issues. 
+
 
 
 ## 🆘How to obtain support
