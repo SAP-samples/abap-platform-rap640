@@ -10,7 +10,7 @@ The [ABAP Cloud API Enablement Guidelines for SAP S/4HANA Cloud Private Edition 
 In a later exercise you will then create a Shopping Cart RAP business object for a Fiori elements online shopping app and integrate this wrapper to create purchase requisitions.
 
 - [You will learn](#you-will-learn)
-- [Summary & Next Exercise](#summary)  
+- [Summary & Next Exercise](#summary--and-next-exercise)  
 
 
 ## You will learn
@@ -626,7 +626,7 @@ You can test that the wrapper was correctly released for consumption in tier 1 b
 >The console application is a quick and simple way to check if the BAPI was correctly wrapped and released and if the wrapper works as intended. In the next tutorials of this group you will create a Shopping Cart Business Object and you will integrate the wrapper to create purchase requisitions for the shopping cart entries.
 
 
-# Summary 
+# Summary & Next Exercise
 [^Top of page](#)
 
 Now that you've... 
