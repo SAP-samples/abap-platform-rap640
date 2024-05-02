@@ -10,7 +10,7 @@ The [ABAP Cloud API Enablement Guidelines for SAP S/4HANA Cloud Private Edition 
 In a later exercise you will then create a Shopping Cart RAP business object for a Fiori elements online shopping app and integrate this wrapper to create purchase requisitions.
 
 - [You will learn](#you-will-learn)
-- [Summary & Next Exercise](#summary--and-next-exercise)  
+- [Summary & Next Exercise](#summary--next-exercise)  
 
 
 ## You will learn
