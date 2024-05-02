@@ -1,16 +1,12 @@
 # Exercise 3: Create Value Help, Enhance the Behavior Definition and Behavior Implementation of the Shopping Cart Business Object
 <!-- description --> Create your first order in the shopping cart.
 
-In the shopping cart, customers can order various items. Once an item is ordered, a new purchase requisition is created via purchase requisitions API.
+# Introduction
 
- 
-## Prerequisites  
-- This tutorial can be used in both SAP S/4HANA Cloud, private edition system and SAP S/4HANA on-premise system with release 2022 FPS01. We suggest using a [Fully-Activated Appliance] (https://blogs.sap.com/2018/12/12/sap-s4hana-fully-activated-appliance-create-your-sap-s4hana-1809-system-in-a-fraction-of-the-usual-setup-time/) in SAP Cloud Appliance Library for an easy start without the need for system setup.
-- For SAP S/4HANA on-premise, create developer user with full development authorization 
-- You have installed the latest [Eclipse with ADT](abap-install-adt).
-- Business role `SAP_BR_PURCHASER` needs to be assigned to your business user
-- Use Starter Development Tenant in S/4HANA Cloud for the tutorial to have necessary sample data in place. See [3-System Landscape and Transport Management](https://help.sap.com/docs/SAP_S4HANA_CLOUD/a630d57fc5004c6383e7a81efee7a8bb/e022623ec1fc4d61abb398e411670200.html?state=DRAFT&version=2208.503).
+Now that you've created your Shopping Cart RAP business object and a UI service on top in [exercise 2](../ex2/README.md), you will now enhance the BO data model, behavior definition, and behavior implementation. 
 
+- [You will learn](#you-will-learn)
+- [Summary & Next Exercise](#summary)  
 
 ## You will learn  
 - How to enhance a behavior definition
@@ -608,4 +604,15 @@ This data definition is needed to create a value help for products.
      <img alt="preview" src="images/order3.png" width="70%">
 
 
-You can continue with the next exercise - **[Exercise 4 - Integrate the Wrapper into the Shopping Cart Business Object](../ex4/README.md)**.
+# Summary 
+[^Top of page](#)
+
+Now that you've... 
+- enhanced the data model with a value help,
+- enhanced the behavior definition,
+- enhanced the behavior implementation, and
+- ran the SAP Fiori Elements App Preview,
+
+you can continue with the next exercise - **[Exercise 4 - Integrate the Wrapper into the Shopping Cart Business Object](../ex4/README.md)**..
+
+---
