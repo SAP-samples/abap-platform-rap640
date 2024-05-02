@@ -48,6 +48,10 @@ Now that you've created your Shopping Cart RAP business object and a UI service 
  
   3. Check your behavior definition:
 
+<details>
+  <summary>🟡📄 Click to expand and view or copy the source code!</summary>
+  
+   ```
     managed implementation in class ZBP_SHOPCARTTP_### unique;
     strict ( 2 );
     with draft;
@@ -109,6 +113,8 @@ Now that you've created your Shopping Cart RAP business object and a UI service 
       }
     }
     **Hint:** Please replace **`###`** with your ID.
+   ```
+</details>
     
    4. Save and activate. 
 
@@ -139,7 +145,10 @@ This data definition is needed to create a value help for products.
 
  4. In your data definition **`ZI_Products_###`** replace your code with following:
 
-    ```ABAP
+<details>
+  <summary>🟡📄 Click to expand and view or copy the source code!</summary>
+  
+   ```
     @AbapCatalog.viewEnhancementCategory: [#NONE]
     @AccessControl.authorizationCheck: #NOT_REQUIRED
     @EndUserText.label: 'Value Help for I_PRODUCT'
@@ -182,7 +191,9 @@ This data definition is needed to create a value help for products.
       or Product = 'D004'
       or Product = 'D005'
       or Product = 'D006'
-    ```
+   ```
+
+</details>
     
  5. Save and activate.
 
