@@ -23,7 +23,7 @@ Now that you have implemented the wrapper for the unreleased SAP API **`BAPI_PR_
 > If you don't have a group number, choose a 3-digit suffix and use it for all exercises.
 
 
-# Create ABAP package
+# Step 1: Create ABAP package
 
 **Hint:** In case the CAL instance is not used, please set up for developer extensibility to get `ZLOCAL` package.
  - Create software component for local cloud-ready development with `ZLOCAL`
@@ -60,7 +60,7 @@ Now that you have implemented the wrapper for the unreleased SAP API **`BAPI_PR_
        Click **Finish**.
 
 
-# Create database table
+# Step 2: Create database table
 
   1. Right-click your package `Z_PURCHASE_REQ_###` and select **New** > **Other ABAP Repository Object**.
 
@@ -121,7 +121,7 @@ Now that you have implemented the wrapper for the unreleased SAP API **`BAPI_PR_
    6. Save and activate.
 
 
-# Generate transactional UI services
+# Step 3: Generate transactional UI services
 
 
   1. Right-click your database table `ZASHOPCART_###` and select **Generate ABAP Repository Objects**.
@@ -173,7 +173,7 @@ Now that you have implemented the wrapper for the unreleased SAP API **`BAPI_PR_
 
 
 
-# Enhance behavior definition of data model
+# Step 4: Enhance behavior definition of data model
 
 **In this tutorial example a SAP S/4HANA Cloud, ABAP environment system was used. The mode therefore is `strict (2)`.**
   
@@ -260,7 +260,7 @@ Now that you have implemented the wrapper for the unreleased SAP API **`BAPI_PR_
    3. Save and activate.  
 
 
-# Publish service binding and run SAP Fiori Elements preview
+# Step 5: Publish service binding and run SAP Fiori Elements preview
 
 Choose between the tabs **Cloud** and **On-premise** and follow the publishing process.
 
