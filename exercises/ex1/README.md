@@ -597,7 +597,8 @@ You will now need to run ATC checks on the objects you created and request exemp
 
 To run the ATC checks right click on the `$Z_PURCHASE_REQ_TIER2_###` package and select **Run As** > **ABAP Test Cockpit With...** and select your ATC check variant. Confirm by clicking on **OK**.   
 
-<!-- ![ATC checks - interface error](images/select_atc_check_variant.png) -->
+<!-- ![ATC checks - select variant](images/select_atc_check_variant.png) -->
+<img alt="ATC checks - interface error" src="images/select_atc_check_variant.png" width="70%">
 
 The result of the ATC check will appear in the ATC Problems tab. As expected, you will get ATC check errors because you are using an unreleased API:
 
