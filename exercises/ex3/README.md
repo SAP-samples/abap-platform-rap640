@@ -1,7 +1,7 @@
 # Exercise 3: Create Value Help, Enhance the Behavior Definition and Behavior Implementation of the Shopping Cart Business Object
 <!-- description --> Create your first order in the shopping cart.
 
-# Introduction
+## Introduction
 
 Now that you've created your Shopping Cart RAP business object and a UI service on top in [exercise 2](../ex2/README.md), you will enhance the RAP BO data model, behavior definition, and behavior implementation in the present exercise. 
 
