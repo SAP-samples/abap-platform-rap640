@@ -6,7 +6,7 @@
 Now that you've created your Shopping Cart RAP business object and a UI service on top in [exercise 2](../ex2/README.md), you will enhance the RAP BO data model, behavior definition, and behavior implementation in the present exercise. 
 
 - [You will learn](#you-will-learn)
-- [Summary & Next Exercise](#summary)  
+- [Summary & Next Exercise](#summary--next-exercise)  
 
 ## You will learn  
 - How to enhance a behavior definition
@@ -630,7 +630,7 @@ This data definition is needed to create a value help for products.
      <img alt="preview" src="images/order3.png" width="70%">
 
 
-# Summary 
+# Summary & Next Exercise
 [^Top of page](#)
 
 Now that you've... 
