@@ -621,7 +621,7 @@ Proceed in the same way to request an exemption for the whole wrapper class.
 
 >How to maintain approvers and how to approve exemptions is beyond the scope of this tutorial. After a maintained approver has approved the exemptions, you can verify it by running ATC checks again in ADT: no issue should arise.
 
-# Step 9: Test released wrapper with console application in tier 1
+## Step 9: Test released wrapper with console application in tier 1
 
 You can test that the wrapper was correctly released for consumption in tier 1 by running the console application class `ZCL_BAPI_WRAP_TEST_###`. First, the errors in the class should have disappeared now that you released the wrapper, so you can save and activate the class. Now you can run it: right click on the class and select **Run As** > **ABAP Application (Console)**. The class should now run without errors and the purchase requisition will be created and displayed in the console:
 
