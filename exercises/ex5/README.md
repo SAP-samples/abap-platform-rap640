@@ -10,7 +10,7 @@ In this exercise we want to test two different authorization scenarios: the case
 In a realistic scenario, the next step would be to develop a UI for your application, deploy it to your system, and maintain all the needed objects (i.e.: Business Catalogs, Business Roles, etc). However, in this tutorial we will follow a simplified approach and we will test the various authorization scenarios via the application preview available in ADT, without the need for UI development and deployment. For this reason, we need a user which is allowed to access the application preview via ADT: we create this user in the next step.
 
 - [You will learn](#you-will-learn)
-- [Summary & Next Exercise](#summary--next-exercise)  
+- [Summary](#summary)  
 
 > **Reminder:**   
 > Don't forget to replace all occurences of the placeholder **`###`** with your assigned group number in the exercise steps below.  
@@ -239,7 +239,7 @@ Save it. Now the service binding will not perform authorization checks for all t
 ![Shopping cart user creates PR with DO NOT CHECK option](images/business_user_do_not_check_option_test.png)
 
 
-# Summary & Next Exercise 
+# Summary 
 [^Top of page](#)
 
 Now that you've learned... 
