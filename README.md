@@ -25,7 +25,7 @@ This repository contains the material for the hands-on session **RAP640 - Mitiga
 ## 📋Requirements for attending this workshop 
 [^Top of page](#)
 
-> To complete the practical exercises in this workshop, you need the latest version of the ABAP Development Tools for Eclipse (ADT) on your laptop or PC and the access to a suitable ABAP system - i.e. at least release 2022 of SAP S/4HANA Cloud Private Edition and SAP S/4HANA.
+To complete the practical exercises in this workshop, you need the latest version of the ABAP Development Tools for Eclipse (ADT) on your laptop or PC and the access to a suitable ABAP system - i.e. at least release 2022 of SAP S/4HANA Cloud Private Edition and SAP S/4HANA.
 
 <details>
   <summary>Click to expand!</summary>
@@ -34,15 +34,15 @@ The requirements to follow the exercises in this repository are:
 1. [Install the latest Eclipse platform and the latest ABAP Development Tools (ADT) plugin](https://developers.sap.com/tutorials/abap-install-adt.html)
 2. [Adapt the Web Browser settings in your ADT installation](https://github.com/SAP-samples/abap-platform-rap-workshops/blob/main/requirements_rap_workshops.md#4-adapt-the-web-browser-settings-in-your-adt-installation)   
 
->> ℹ️ **Regarding SAP-led events such as "ABAP Developer Day" and "SAP CodeJam"**:   
->> → A dedicated ABAP system for the hands-on workshop participants will be provided.   
->> → Access to the system details for the workshop will be provided by the instructors during the session.
+> ℹ️ **Regarding SAP-led events such as "ABAP Developer Day" and "SAP CodeJam"**:   
+> → A dedicated ABAP system for the hands-on workshop participants will be provided.   
+> → Access to the system details for the workshop will be provided by the instructors during the session.
 
 </details>
 
 ## System access (workshops provided by SAP)
 
-In a workshop that is conducted by SAP we a SAP S/4HANA 2023 preconfigured appliance system will be provided to the workshop participants.  
+In a workshop that is conducted by SAP we a SAP S/4HANA 2023 preconfigured appliance system will be provided to the workshop participants. 
 
 The system details will be provided by the trainers. With the system details you can connect via ADT to the system as described in the following how-to-guide.   
 
@@ -52,14 +52,14 @@ The system details will be provided by the trainers. With the system details you
 [^Top of page](#)
 
 <!-- #### Current Business Scenario -->
-> Learn about the current business scenario and the 3 tier extensibility model.
-> 
+Learn about the current business scenario and the 3 tier extensibility model.
+ 
 <details>
   <summary>Click to expand!</summary>
  
 ### About  the Business Scenario 
   
-  In this hands-on workshop, we will guide you through the development of a custom wrapper for the ABAP Cloud enablement of an unreleased SAP BAPI for creating purchase requisitions, then a custom RAP BO and UI service on top of it to develop a transactional, design-capable, Fiori Elements-based list report app using RAP. Finally, you'll use your custom API wrapper in your custom RAP BO to integrate your custom app with the standard professional SAP Purchase Requisition app.
+In this hands-on workshop, we will guide you through the development of a custom wrapper for the ABAP Cloud enablement of an unreleased SAP BAPI for creating purchase requisitions, then a custom RAP BO and UI service on top of it to develop a transactional, design-capable, Fiori Elements-based list report app using RAP. Finally, you'll use your custom API wrapper in your custom RAP BO to integrate your custom app with the standard professional SAP Purchase Requisition app.
 
 The resulting app will look like this:
 
@@ -81,7 +81,7 @@ Learn more: [Understand the sample scenario how to mitigate a missing released S
 ## 🛠Exercises
 [^Top of page](#)
 
-> Follow these steps to build a custom wrapper for the ABAP Cloud enablement of an unreleased SAP API for creating purchase requisitions, then a custom RAP BO and a UI service on top of it for a transactional, draft-enabled Fiori Elements list report app. Finally, you'll use your custom API wrapper in your custom RAP BO to integrate your custom app with the standard professional SAP Purchase Requisition app.
+Follow these steps to build a custom wrapper for the ABAP Cloud enablement of an unreleased SAP API for creating purchase requisitions, then a custom RAP BO and a UI service on top of it for a transactional, draft-enabled Fiori Elements list report app. Finally, you'll use your custom API wrapper in your custom RAP BO to integrate your custom app with the standard professional SAP Purchase Requisition app.
 
 
 #### Main Exercises
@@ -104,13 +104,13 @@ Learn more: [Understand the sample scenario how to mitigate a missing released S
 ## 📤Solution Package
 [^Top of page](#)
  
-> You can import the solution package **`ZRAP640_SOL`** into your system* - i.e. at least the release 2022 of SAP S/4HANA Cloud Private Edition and SAP S/4HANA.
+You can import the solution package **`ZRAP640_SOL`** into your system* - i.e. at least the release 2022 of SAP S/4HANA Cloud Private Edition and SAP S/4HANA.
+
+> ℹ️ **Regarding SAP-led events such as "ABAP Developer Day" and "SAP CodeJam"**:     
+> The solution package **`ZRAP640_SOL`** is already imported into your dedicated system used during these events.
 
 🚧 _More details coming soon_  
 _ _
-
->> ℹ️ **Regarding SAP-led events such as "ABAP Developer Day" and "SAP CodeJam"**:     
->> The solution package **`ZRAP640_SOL`** is already imported into your dedicated system used during these events.
 
 
 ## 🔁Recordings
