@@ -1,23 +1,29 @@
 # Exercise 5: Provide Authorizations to Users for non-Released Authorization Objects checked by the "Create Purchase Requisition" function module
 <!-- description --> Learn how to provide a user with authorizations for your wrapper-enhanced RAP BO for both CHECK and DO NOT CHECK options.  
 
-## Prerequisites
- - [You have completed the previous tutorial in this group](abap-s4hanacloud-purchasereq-integrate-wrapper) and integrated your wrapper in your RAP BO.
- - You will be using the same user with full development authorization you used in the previous tutorial of this group. Throughout the tutorial, we will refer to this user as 'developer user' or 'user with unrestricted access', to distinguish it from other users we will create as part of the tutorial.
+# Introduction
+
+In [exercise 4](../ex4/README.md), you've learned to integrate a custom wrapper into a RAP BO and implement a new action to call the custom wrapper during the save sequence phase of the RAP BO. You also learn how to expose an action via the service binding. To be able to develop the custom shopping cart RAP BO and the custom wrapper, your ABAP user have full development authorization. 
+
+In this exercise we want to test two different authorization scenarios: the case in which we want authorizations to be checked upon the creation of a purchase requisition (so that only authorized users can perform this action), and the case in which we do not want any authorization check to be performed.
+
+In a realistic scenario, the next step would be to develop a UI for your application, deploy it to your system, and maintain all the needed objects (i.e.: Business Catalogs, Business Roles, etc). However, in this tutorial we will follow a simplified approach and we will test the various authorization scenarios via the application preview available in ADT, without the need for UI development and deployment. For this reason, we need a user which is allowed to access the application preview via ADT: we create this user in the next step.
+
+- [You will learn](#you-will-learn)
+- [Summary & Next Exercise](#summary--next-exercise)  
+
+> **Reminder:**   
+> Don't forget to replace all occurences of the placeholder **`###`** with your assigned group number in the exercise steps below.  
+> You can use the ADT function **Replace All** (**Ctrl+F**) for the purpose.   
+> If you don't have a group number, choose a 3-digit suffix and use it for all exercises.
 
 ## You will learn
 - How to find out the needed authorization objects for a given BAPI
 - How to handle authorizations via an authorization default variant for the check authorization use case
 - How to suppress all authorization checks in the disable authorization check use case
 
-## Intro
->Throughout this tutorial, wherever ### appears, use a number (e.g. 000). This tutorial is done with the placeholder 000.
 
->In the previous tutorials of this group we used a user with full development authorization to be able to develop the RAP BO and the wrapper. Given the unrestricted access that this user has, we did not have to worry about providing authorizations so far. In this tutorial we want to test two different authorization scenarios: the case in which we want authorizations to be checked upon the creation of a purchase requisition (so that only authorized users can perform this action), and the case in which we do not want any authorization check to be performed.
-
->In a realistic scenario, the next step would be to develop a UI for your application, deploy it to your system, and maintain all the needed objects (i.e.: Business Catalogs, Business Roles, etc). However, in this tutorial we will follow a simplified approach and we will test the various authorization scenarios via the application preview available in ADT, without the need for UI development and deployment. For this reason, we need a user which is allowed to access the application preview via ADT: we create this user in the next step.
-
-### Provide user with restricted role for preview testing
+# Step 1: Provide user with restricted role for preview testing
 
 In this tutorial we want to test different authorization scenarios via the application preview, and therefore we need a user with restricted access. You will now create such a user, which we will refer to as 'shopping cart user'.
 
@@ -45,7 +51,7 @@ Then go back, navigate to the **User** tab and add the `Z_USER_###` (1), Save (2
 
 This role allows the user to access ADT and get the URL of any service binding preview. However, the user still lacks access to the actual service binding (i.e: it cannot use the application preview). This will be addressed in the next step.
 
-### Check authorization use case - Test user access with restricted authorizations
+# Step 2: Check authorization use case - Test user access with restricted authorizations
 
 For demonstration purposes and to keep this tutorial as modular as possible, you will now create a new service binding on which you will perform the authorizations tests: connect to your system via ADT and navigate to the package `Z_PURCHASE_REQ_###` containing the RAP BO, right click on the Service Definition `ZUI_SHOPCART_###` and select **New Service Binding**, input the Name `ZUI_SHOPCART_WRAPPER_O4_###`and a Description, and choose the **Binding Type** = `OData V4 - UI`:
 
@@ -75,7 +81,7 @@ The limited access of the shopping cart user allows it to access the service bin
 
 ![Shopping cart user no authorization case](images/auth_case_0.png)
 
-### Check authorization use case - create authorization default variant
+# Step 3: Check authorization use case - create authorization default variant
 
 In this authorization scenario you want authorization checks to be performed when creating a purchase requisition in your application, so that only authorized users can perform that action.
 
@@ -99,7 +105,7 @@ Input the name `ZUI_SHOPCART_WRAPPER_O4_###_V` and a description for the default
 
 Select a suitable transport request (or create a new one if needed) and confirm.
 
-### Check authorization use case - Maintain authorization defaults for the wrapper in default variant
+# Step 4: Check authorization use case - Maintain authorization defaults for the wrapper in default variant
 
 You now want to find out the required authorizations for the `BAPI_PR_CREATE` wrapper that is used in the wrapper service binding, and add them to your default variant.
 
@@ -145,7 +151,7 @@ This will copy the authorization objects, but you still need to copy the authori
 
 Save it and select a suitable transport request (or create a new one if needed).
 
-### Check authorization use case - add authorization default variant to the role
+# Step 5: Check authorization use case - add authorization default variant to the role
 
 In the previous steps you found out the needed authorization objects to create a purchase requisition via the `BAPI_PR_CREATE` wrapper, and you created a default variant for the service binding granting such authorizations. The last step is to add this default variant to the `ZR_SHOPCART_###` role. Any user with this role will then be able to create a purchase requisition.
 
@@ -169,7 +175,7 @@ You can test it: open the service binding using the shopping cart user credentia
 
 >After the `DO CHECK` use case test is succesfully done, remove the `ZR_SHOPCART_###` roles from the `Z_USER_###` (this can be done in transaction `SU01`) so that the shopping cart user is returned to its limited access state, and ready to be used in the next use case.
 
-### Disable authorization check use case
+# Step 6: Disable authorization check use case
 
 In this authorization scenario, you have decided that you do not want that any of the authorizations required for the BAPI call are checked when creating a purchase requisition in your application. So any user using the application should be able to create a purchase requisition, regardless of roles and authorizations. To achieve this you can set the check indicator of the authorization objects to `Do not Check` in transaction `SU24`.
 
@@ -200,3 +206,17 @@ Then select all of them and click on **Check Indicator** -> **Do Not Check**:
 Save it. Now the service binding will not perform authorization checks for all the authorization objects with a 'DO NOT CHECK' indicator. As a result, even users with limited access and no specific authorizations will be able to create a purchase requisition. You can test this with the `Z_USER_###` user:
 
 ![Shopping cart user creates PR with DO NOT CHECK option](images/business_user_do_not_check_option_test.png)
+
+
+# Summary & Next Exercise 
+[^Top of page](#)
+
+Now that you've learned... 
+- how to find out the needed authorization objects for a given BAPI,
+- how to handle authorizations via an authorization default variant for the check authorization use case, and
+- how to suppress all authorization checks in the disable authorization check use case,
+
+you are done with this hands-on. **Congratulations!** 
+
+We hope you enjoyed the RAP640 hands-on exercises. Now you can go back to the [RAP640 exercises overview](https://github.com/SAP-samples/abap-platform-rap640/blob/main/README.md#exercises) on the entry page.
+
