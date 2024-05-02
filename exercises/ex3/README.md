@@ -14,14 +14,16 @@ Now that you've created your Shopping Cart RAP business object and a UI service 
 - How to enhance a behavior implementation
 - How to run the SAP Fiori Elements Preview
 
-## Intro
-In this tutorial, wherever ### appears, use a number (e.g. 000). This tutorial is done with the placeholder 000.
+> **Reminder:**   
+> Don't forget to replace all occurences of the placeholder **`###`** with your assigned group number in the exercise steps below.  
+> You can use the ADT function **Replace All** (**Ctrl+F**) for the purpose.   
+> If you don't have a group number, choose a 3-digit suffix and use it for all exercises.
 
 ---
 
-### Enhance behavior definition of data model
+# Step 1: Enhance behavior definition of data model
 
-**In this tutorial example a SAP S/4HANA Cloud, ABAP environment system was used. The mode therefore is `strict (2)`.**
+> **In this tutorial example a SAP S/4HANA Cloud, ABAP environment system was used. The mode therefore is `strict (2)`.**
 
   1. Open your behavior definition **`ZR_SHOPCARTTP_###`** to enhance it. Add the following statements to your behavior definition:
 
@@ -111,7 +113,7 @@ In this tutorial, wherever ### appears, use a number (e.g. 000). This tutorial i
    4. Save and activate. 
 
 
-### Create data definition for products
+# Step 2: Create data definition for products
 
 This data definition is needed to create a value help for products.
 
@@ -123,7 +125,7 @@ This data definition is needed to create a value help for products.
 
  2. Create a new data definition:
     - Name: `ZI_Products_###`
-    - Description: data definition for products
+    - Description: `data definition for products`
   
       Click **Next >**.
 
@@ -180,15 +182,19 @@ This data definition is needed to create a value help for products.
       or Product = 'D004'
       or Product = 'D005'
       or Product = 'D006'
-
+    ```
+    
  5. Save and activate.
 
 
-### Enhance metadata extension
+# Step 3: Enhance metadata extension
 
  1. In your metadata extension **`ZC_SHOPCARTTP_###`** replace your code with following:
 
-    ```ABAP
+  <details>
+    <summary>🟡📄 Click to expand and view or copy the source code!</summary> 
+  
+   ```ABAP
     @Metadata.layer: #CORE
     @UI: {
       headerInfo: {
@@ -363,14 +369,21 @@ This data definition is needed to create a value help for products.
       } ]
       prcreationdate;
     }
+   ```
+  </details>
     
  2. Save and activate.
    
-### Enhance behavior implementation
+# Step 4: Enhance behavior implementation
 
-**Hint:** Please replace **`###`** with your ID. 
+  > **Hint:** Please replace **`###`** with your ID. 
 
   1. Open the behavior implementation **`ZBP_SHOPCARTTP_###`**, add the constant `c_overall_status` to your behavior implementation. In your **Local Types**, replace your code with following:
+
+  <details>
+    <summary>🟡📄 Click to expand and view or copy the source code!</summary>
+
+   ```
 
     CLASS lhc_shopcart DEFINITION INHERITING FROM cl_abap_behavior_handler.
       PRIVATE SECTION.
@@ -575,13 +588,15 @@ This data definition is needed to create a value help for products.
         ENDLOOP.
       ENDMETHOD.
     ENDCLASS.
+   ```
+  </details>
 
    2. Save and activate.
 
    3. Go back to your behavior definition `ZR_SHOPCARTTP_###` and activate it again, if needed. 
 
 
-### Run SAP Fiori Elements preview and create first order
+# Step 5: Run SAP Fiori elements app preview and create first order
 
  1. Select **`ShoppingCart`** in your service binding and click **Preview** to open SAP Fiori Elements preview.
 
@@ -611,7 +626,7 @@ Now that you've...
 - enhanced the data model with a value help,
 - enhanced the behavior definition,
 - enhanced the behavior implementation, and
-- ran the SAP Fiori Elements App Preview,
+- ran the SAP Fiori elements app preview,
 
 you can continue with the next exercise - **[Exercise 4 - Integrate the Wrapper into the Shopping Cart Business Object](../ex4/README.md)**..
 
