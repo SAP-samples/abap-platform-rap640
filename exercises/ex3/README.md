@@ -3,7 +3,7 @@
 
 # Introduction
 
-Now that you've created your Shopping Cart RAP business object and a UI service on top in [exercise 2](../ex2/README.md), you will now enhance the BO data model, behavior definition, and behavior implementation. 
+Now that you've created your Shopping Cart RAP business object and a UI service on top in [exercise 2](../ex2/README.md), you will enhance the RAP BO data model, behavior definition, and behavior implementation in the present exercise. 
 
 - [You will learn](#you-will-learn)
 - [Summary & Next Exercise](#summary)  
