@@ -29,7 +29,9 @@ Now that you have implemented a custom wrapper for the unreleased SAP API `BAPI_
  - Create software component for local cloud-ready development with `ZLOCAL`
  - Create a structure package with `ZLOCAL`
 
-
+<details>
+  <summary>🔵 Click to expand</summary>
+  
   1.  Select **ZLOCAL** > **New** > **ABAP Package**.
 
       <!-- ![package](images/packagenew.png) -->
@@ -58,9 +60,14 @@ Now that you have implemented a custom wrapper for the unreleased SAP API `BAPI_
       <img alt="package" src="images/packagenew4.png" width="70%">
 
        Click **Finish**.
-
+</details>
 
 ## Step 2: Create database table
+
+We start the creation of the RAP business object with creating a database table.   
+
+<details>
+  <summary>🔵 Click to expand</summary>
 
   1. Right-click your package `Z_PURCHASE_REQ_###` and select **New** > **Other ABAP Repository Object**.
 
@@ -120,6 +127,7 @@ Now that you have implemented a custom wrapper for the unreleased SAP API `BAPI_
    
    6. Save and activate.
 
+</details>
 
 ## Step 3: Generate transactional UI services
 
