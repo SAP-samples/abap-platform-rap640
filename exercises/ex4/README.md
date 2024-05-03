@@ -121,10 +121,14 @@ As seen in the previous tutorial of this series, certain BAPI have a test mode t
 
 Open the behavior definition `ZR_SHOPCARTTP_###` and implement a new validation called `checkPurchaseRequisition`:
 
+Add the following statement so that the validation will be executed also in draft mode.  
+
 ```ABAP
   draft determine action Prepare { validation checkOrderedQuantity; validation checkDeliveryDate; validation checkPurchaseRequisition;}
-  .
-  .
+```
+
+And add the following code to define the new validation (see also screen shot below).      
+```ABAP  
   validation checkPurchaseRequisition on save { field OverallStatus; }
 ```
 
