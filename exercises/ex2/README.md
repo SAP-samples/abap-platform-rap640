@@ -188,7 +188,7 @@ You will now use a wizard to generate all repository objects required for your R
 
 ## Step 4: Enhance behavior definition of data model
 
-**In this tutorial example a SAP S/4HANA Cloud, ABAP environment system was used. The mode therefore is `strict (2)`.**
+The generated code has to be enhanced so that additional fields are made read-only.   
 
  <details>
   <summary>🔵 Click to expand</summary>
