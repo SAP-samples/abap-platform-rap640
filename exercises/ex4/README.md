@@ -208,11 +208,10 @@ Save it and activate it.
 
 In our scenario, we want to call the wrapper during the save sequence and therefore we need to switch to a RAP BO with unmanaged save, so that we can implement and adapt the `save_modified` method and call the wrapper therein.
 
-Open the behavior definition `ZR_SHOPCARTTP_###`, **delete** the following line:
+Open the behavior definition `ZR_SHOPCARTTP_###`, **delete** or **comment out** the following line:
 
 ```ABAP
-persistent table zashopcart_### 
-
+//persistent table zashopcart_### 
 ```
 and **add** the unmanaged save statement:
 
