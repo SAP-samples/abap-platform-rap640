@@ -214,7 +214,7 @@ Open the behavior definition `ZR_SHOPCARTTP_###`, **delete** the following line:
 persistent table zashopcart_### 
 
 ```
-and add the unmanaged save statement:
+and **add** the unmanaged save statement:
 
 ```ABAP
 with unmanaged save
