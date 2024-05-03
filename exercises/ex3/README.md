@@ -39,7 +39,7 @@ Now that you've created your Shopping Cart RAP business object and a UI service 
 
      `draft determine action Prepare;` 
    
-     o your behavior definition:
+     in your behavior definition with the following code:   
 
         ``` 
         draft determine action Prepare { validation checkOrderedQuantity;  validation checkDeliveryDate;}
