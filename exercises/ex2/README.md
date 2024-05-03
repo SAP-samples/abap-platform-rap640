@@ -192,7 +192,7 @@ Now that you have implemented a custom wrapper for the unreleased SAP API `BAPI_
   2. Check your behavior definition:
 
 <details>
-  <summary>🟡📄 Click to expand and view or copy the source code!</summary>
+  <summary>🟡📄 Click to expand and view and compare the source code!</summary>
 
    ```
     managed implementation in class ZBP_SHOPCARTTP_### unique;
@@ -262,12 +262,11 @@ Now that you have implemented a custom wrapper for the unreleased SAP API `BAPI_
 
 ## Step 5: Publish service binding and run SAP Fiori Elements preview
 
-Choose between the tabs **Cloud** and **On-premise** and follow the publishing process.
+What is left to do is to publish your service locally, so that it can be tested using the Fiori Elements preview.  
 
  <details>
-  <summary>🔵 Click to expand *[OPTION Cloud]*!</summary>
+  <summary>🔵 Click to expand</summary>
  
- [OPTION BEGIN [Cloud]]
  
   1. Open your service binding **`ZUI_SHOPCART_O4_###`** and click **Publish**.
 
@@ -279,51 +278,6 @@ Choose between the tabs **Cloud** and **On-premise** and follow the publishing p
      ![preview](images/generator6.png)
      <img alt="" src="" width="70%">
 
-[OPTION END]
-  </details>
-  
-  <details>
-  <summary>🔵 Click to expand *[OPTION On-Premise]*!</summary>
-  
-[OPTION BEGIN [On-premise]] 
-
-  1. Login to **SAP NetWeaver** and execute `/n/IWFND/V4_ADMIN` `t-code`.
-
-     <!-- ![preview](images/onprem.png) -->
-     <img alt="preview" src="images/onprem.png" width="70%">
-
-  2. Click on **Publish Service Groups**.
-
-     <!-- ![preview](images/onprem2.png) -->
-     <img alt="preview" src="images/onprem2.png" width="70%">
-
-  3. Select **System Alias** and click **Get Service Groups**. Select the Service Group **`ZUI_SHOPCART_O4_###`** and click **Publish Service Groups**.
-
-    <!-- ![preview](images/publishnew4.png) -->
-     <img alt="preview" src="images/publishnew4.png" width="70%">
-
-  4. Click **Continue**, you will get the message **New service group(s) successfully published**.
-    
-     <!-- ![preview](images/onprem3.png) -->
-     <img alt="preview" src="images/onprem3.png" width="70%">
-
-  5. Click the back button to see the published group.
-
-  6. Expand the **Service Groups** and double click on the group.
-
-      <!-- ![preview](images/onpremisepublish.png) -->
-      <img alt="preview" src="images/onpremisepublish.png" width="70%">
-
-  7. We can see the available services under this group.
-
-  8. To test the service, go back to your service binding, select **`ShoppingCart`** to start the SAP Fiori Elements preview.
-
-      <!-- ![previewimages/onpremisenew2.png) -->
-      <img alt="preview" src="previewimages/onpremisenew2.png" width="70%">
-
-     More information [here](https://launchpad.support.sap.com/#/notes/2948977).
-  
-[OPTION END]
 </details>
 
 ## Summary & Next Exercise
