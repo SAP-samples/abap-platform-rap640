@@ -81,7 +81,7 @@ Learn more: [Understand the sample scenario how to mitigate a missing released S
 ## 🛠Exercises
 [^Top of page](#)
 
-Follow these steps to build a custom wrapper for the ABAP Cloud enablement of an unreleased SAP API for creating purchase requisitions, then a custom RAP BO and a UI service on top of it for a transactional, draft-enabled Fiori Elements list report app. Finally, you'll use your custom API wrapper in your custom RAP BO to integrate your custom app with the standard professional SAP Purchase Requisition app.
+Follow these steps to build a custom wrapper for the ABAP Cloud enablement of an non-released SAP API for creating purchase requisitions, then a custom RAP BO and a UI service on top of it for a transactional, draft-enabled Fiori Elements list report app. Finally, you'll use your custom API wrapper in your custom RAP BO to integrate your custom app with the standard professional SAP Purchase Requisition app.
 
 
 #### Main Exercises
