@@ -123,6 +123,11 @@ Now that you have implemented a custom wrapper for the unreleased SAP API `BAPI_
 
 ## Step 3: Generate transactional UI services
 
+You will now use a wizard to generate all repository objects required for your RAP business object based on the table you have just created.  
+
+ <details>
+  <summary>🔵 Click to expand</summary>
+
 
   1. Right-click your database table `ZASHOPCART_###` and select **Generate ABAP Repository Objects**.
 
@@ -171,11 +176,14 @@ Now that you have implemented a custom wrapper for the unreleased SAP API `BAPI_
 <!-- ![cds](images/generator4.png) -->
 <img alt="cds" src="images/generator4.png" width="70%">
 
-
+</details>
 
 ## Step 4: Enhance behavior definition of data model
 
 **In this tutorial example a SAP S/4HANA Cloud, ABAP environment system was used. The mode therefore is `strict (2)`.**
+
+ <details>
+  <summary>🔵 Click to expand</summary>
   
   1. Open your behavior definition **`ZR_SHOPCARTTP_###`** to enhance it. Add the following read-only fields to your behavior definition:
 
@@ -258,7 +266,7 @@ Now that you have implemented a custom wrapper for the unreleased SAP API `BAPI_
 </details>
 
    3. Save and activate.  
-
+</details>
 
 ## Step 5: Publish service binding and run SAP Fiori Elements preview
 
