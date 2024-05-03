@@ -402,14 +402,14 @@ This data definition is needed to create a value help for products.
   <details>
     <summary>🟡📄 Click to expand and view or copy the source code!</summary>
 
-    ```
+   ```
 
     CLASS lhc_shopcart DEFINITION INHERITING FROM cl_abap_behavior_handler.
       PRIVATE SECTION.
         CONSTANTS:
           BEGIN OF c_overall_status,
             new       TYPE string VALUE 'New / Composing',
-    *        composing  TYPE string VALUE 'Composing...',
+   *        composing  TYPE string VALUE 'Composing...',
             submitted TYPE string VALUE 'Submitted / Approved',
             cancelled TYPE string VALUE 'Cancelled',
           END OF c_overall_status.
@@ -455,10 +455,10 @@ This data definition is needed to create a value help for products.
                               = COND #( WHEN OnlineOrder-OverallStatus = c_overall_status-submitted  THEN if_abap_behv=>fc-o-disabled
                                         WHEN OnlineOrder-OverallStatus = c_overall_status-cancelled THEN if_abap_behv=>fc-o-disabled
                                         ELSE if_abap_behv=>fc-o-enabled   )
-    *                         %features-%delete
-    *                           = COND #( WHEN OnlineOrder-PurchaseRequisition IS NOT INITIAL THEN if_abap_behv=>fc-o-disabled
-    *                                     WHEN OnlineOrder-OverallStatus = c_overall_status-cancelled THEN if_abap_behv=>fc-o-disabled
-    *                                     ELSE if_abap_behv=>fc-o-enabled   )
+   *                         %features-%delete
+   *                           = COND #( WHEN OnlineOrder-PurchaseRequisition IS NOT INITIAL THEN if_abap_behv=>fc-o-disabled
+   *                                     WHEN OnlineOrder-OverallStatus = c_overall_status-cancelled THEN if_abap_behv=>fc-o-disabled
+   *                                     ELSE if_abap_behv=>fc-o-enabled   )
                             %action-Edit
                               = COND #( WHEN OnlineOrder-OverallStatus = c_overall_status-submitted THEN if_abap_behv=>fc-o-disabled
                                         WHEN OnlineOrder-OverallStatus = c_overall_status-cancelled THEN if_abap_behv=>fc-o-disabled
@@ -607,7 +607,7 @@ This data definition is needed to create a value help for products.
         ENDLOOP.
       ENDMETHOD.
     ENDCLASS.
-    ```
+  ```
   </details>
 
    2. Save and activate.
