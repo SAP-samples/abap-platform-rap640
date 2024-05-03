@@ -222,12 +222,12 @@ This data definition is needed to create a value help for products.
       , title: {
           type: #STANDARD,
           label: 'ShoppingCart',
-          value: 'orderid'
+          value: 'OrderID'
         }
       },
       presentationVariant: [ {
         sortOrder: [ {
-          by: 'orderid',
+          by: 'OrderID',
           direction: #DESC
         } ],
         visualizations: [ {
