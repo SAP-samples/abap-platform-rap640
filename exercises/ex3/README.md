@@ -402,7 +402,7 @@ This data definition is needed to create a value help for products.
   <details>
     <summary>🟡📄 Click to expand and view or copy the source code!</summary>
 
-   ```
+    ```
 
     CLASS lhc_shopcart DEFINITION INHERITING FROM cl_abap_behavior_handler.
       PRIVATE SECTION.
@@ -607,7 +607,7 @@ This data definition is needed to create a value help for products.
         ENDLOOP.
       ENDMETHOD.
     ENDCLASS.
-   ```
+    ```
   </details>
 
    2. Save and activate.
