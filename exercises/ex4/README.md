@@ -376,7 +376,7 @@ The logic is now fully implemented: when the new action is used, shopping cart o
 
 ## Step 6: Expose the new action
 
-You will now expose the newly created action. To do this, you will modify the Metadata Extension and the Behavior Definition to expose the action.
+You will now expose the newly created action. To do this, you will modify the *Metadata Extension* and the *Behavior Projection* to expose the action.
 
 Open the Metadata Extension `ZC_SHOPCARTTP_###` and substitute all the metadata content referring to the action `PurchaseRequisition` with the following code snippet referring to the new action:
 
