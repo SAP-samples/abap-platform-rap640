@@ -35,13 +35,19 @@ Now that you've created your Shopping Cart RAP business object and a UI service 
 <!--![projection](images/updatenew.png)-->
 <img alt="projection" src="images/updatenew.png" width="50%">
 
-  2. Replace the following statements to your behavior definition:
+  2. Replace the statement
 
-    draft determine action Prepare { validation checkOrderedQuantity;  validation checkDeliveryDate;}
+     `draft determine action Prepare;` 
+   
+     o your behavior definition:
+
+        ``` 
+        draft determine action Prepare { validation checkOrderedQuantity;  validation checkDeliveryDate;}
         determination setInitialOrderValues on modify { create; }
         determination calculateTotalPrice on modify { create; field Price; } 
-      validation checkOrderedQuantity on save { create; field OrderQuantity; }
-      validation checkDeliveryDate on save { create; field DeliveryDate; }
+        validation checkOrderedQuantity on save { create; field OrderQuantity; }
+        validation checkDeliveryDate on save { create; field DeliveryDate; }
+        ```
    
 <!--![projection](images/bdef5xx.png) -->
 <img alt="projection" src="images/bdef5xx.png" width="70%">
