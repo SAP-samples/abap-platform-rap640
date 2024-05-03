@@ -25,7 +25,7 @@ In a later exercise you will then create a Shopping Cart RAP business object for
 
 ## Step 1: Get to know the BAPI_PR_CREATE via the BAPI Explorer
 
-The first step is to look for a suitable unreleased API to create purchase requisitions. You can use the BAPI Explorer for this purpose. Connect to the backend of your SAP S/4HANA system and start transaction `BAPI`. For the purpose of this tutorial, we will use the unreleased BAPI `BAPI_PR_CREATE`: switch to the **Alphabetical** view (1), look for the Business Object `PurchaseRequisition` (2), find and click on the method `CreateFromData1` (3). You can see that its function module is the `BAPI_PR_CREATE` (4).
+The first step is to look for a suitable non-released API to create purchase requisitions. You can use the BAPI Explorer for this purpose. Connect to the backend of your SAP S/4HANA system and start transaction `BAPI`. For the purpose of this tutorial, we will use the non-released BAPI `BAPI_PR_CREATE`: switch to the **Alphabetical** view (1), look for the Business Object `PurchaseRequisition` (2), find and click on the method `CreateFromData1` (3). You can see that its function module is the `BAPI_PR_CREATE` (4).
 
 <!-- ![BAPI explorer](images/bapi_explorer.png) -->
 <img alt="BAPI explorer" src="images/bapi_explorer.png" width="70%">
@@ -469,9 +469,9 @@ ENDCLASS.
 
 Save and activate it.
 
-## Step 6: Test unreleased wrapper with console application in tier 1
+## Step 6: Test non-released wrapper with console application in tier 1
 
-The wrapper you just created is currently not released for consumption in tier 1. You can test this by creating a console application in tier 1 to call the (unreleased) wrapper. We suggest to create a dedicated package under the tier 1 `ZLOCAL` package in your SAP S/4HANA System for this test.
+The wrapper you just created is currently not released for consumption in tier 1. You can test this by creating a console application in tier 1 to call the (non-released) wrapper. We suggest to create a dedicated package under the tier 1 `ZLOCAL` package in your SAP S/4HANA System for this test.
 
 In ADT, open your SAP S/4HANA system project folder, navigate to the `ZLOCAL` structure package, right click on it and select **New** > **ABAP Package** and input the Name `Z_PURCHASE_REQ_TEST_###` and a Description:
 
@@ -593,14 +593,14 @@ Repeat the same steps to release the factory class you created:
 
 > **Note**: This exercise is optional. 
 
-You will now need to run ATC checks on the objects you created and request exemptions to use unreleased API.
+You will now need to run ATC checks on the objects you created and request exemptions to use non-released API.
 
 To run the ATC checks right click on the `$Z_PURCHASE_REQ_TIER2_###` package and select **Run As** > **ABAP Test Cockpit With...** and select your ATC check variant. Confirm by clicking on **OK**.   
 
 <!-- ![ATC checks - select variant](images/select_atc_check_variant.png) -->
 <img alt="ATC checks - interface error" src="images/select_atc_check_variant.png" width="70%">
 
-The result of the ATC check will appear in the ATC Problems tab. As expected, you will get ATC check errors because you are using an unreleased API:
+The result of the ATC check will appear in the ATC Problems tab. As expected, you will get ATC check errors because you are using an non-released API:
 
 <!-- ![ATC checks - interface error](images/interface_atc_checks.png) -->
 <img alt="ATC checks - interface error" src="images/interface_atc_checks.png" width="70%">
