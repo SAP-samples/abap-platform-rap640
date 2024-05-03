@@ -203,6 +203,8 @@ This data definition is needed to create a value help for products.
     
  5. Save and activate.
 
+ 6. You can test your CDS view entity by pressing F8 to start the _Data Preview_.   
+
 
 ## Step 3: Enhance metadata extension
 
