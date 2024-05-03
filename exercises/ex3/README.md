@@ -533,7 +533,7 @@ This data definition is needed to create a value help for products.
 
       METHOD checkDeliveryDate.
 
-    *   " read transfered instances
+   *   " read transfered instances
         READ ENTITIES OF zr_shopcarttp_### IN LOCAL MODE
           ENTITY ShoppingCart
             FIELDS ( DeliveryDate )
