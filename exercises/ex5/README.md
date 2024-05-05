@@ -63,7 +63,7 @@ This role allows the user to access ADT and get the URL of any service binding p
 
 ## Step 2: Check authorization use case - Test user access with restricted authorizations
 
-For demonstration purposes and to keep this exericise as modular as possible, you will now create a new service binding on which you will perform the authorizations tests.
+For demonstration purposes and to keep this exercise as modular as possible, you will now create a new service binding on which you will perform the authorizations tests.
 
 <details>
   <summary>🔵 Click to expand</summary>
@@ -146,7 +146,7 @@ You can use various [authorization traces](https://help.sap.com/docs/ABAP_PLATFO
 <details>
   <summary>🔵 Click to expand</summary>
 
-In the **`SU22`** transaction, open the newly created authorization default variant. Switch to edit mode (1) and then click on **Object** -> **Add Object from System Trace** -> **Local** (2):
+Go to the transaction **`SU22`** and open the newly created authorization default variant. Switch to **edit mode** (1) and then click on **Object** -> **Add Object from System Trace** -> **Local** (2).
 
 <!-- <!-- ![Activate trace](images/authorization_trace_2.png) -->
 <img alt="Activate trace" src="images/authorization_trace_2.png" width="70%">
