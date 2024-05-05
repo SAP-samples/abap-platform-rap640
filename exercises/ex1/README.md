@@ -26,7 +26,7 @@ In a later exercise you will then create a Shopping Cart RAP business object for
 ## Step 1: Get to know the BAPI_PR_CREATE via the BAPI Explorer
 
 <details>
-  <summary>🟦 Click to expand!</summary>
+  <summary>🔵 Click to expand!</summary>
   
 The first step is to look for a suitable non-released API to create purchase requisitions. You can use the BAPI Explorer for this purpose. Connect to the backend of your SAP S/4HANA system and start transaction `BAPI`. For the purpose of this tutorial, we will use the non-released BAPI `BAPI_PR_CREATE`: switch to the **Alphabetical** view (1), look for the Business Object `PurchaseRequisition` (2), find and click on the method `CreateFromData1` (3). You can see that its function module is the `BAPI_PR_CREATE` (4).
 
@@ -49,11 +49,11 @@ In the **Tools** section you can click on the **Function Builder** and then clic
 
 ## Step 2: Create a development package
 
-<details>
-  <summary>🟦 Click to expand!</summary>
-  
 You will develop the wrapper in a dedicated package under the package `$TMP` in your SAP S/4HANA system.
 
+<details>
+  <summary>🔵 Click to expand</summary>
+  
 In ADT, open your SAP S/4HANA system project folder, right click on it and select **New** > **ABAP Package** and input the Name `$Z_PURCHASE_REQ_TIER2_###` and a Description:
 
 <!-- ![Create Tier 2 package](images/create_tier2_package.png) -->
@@ -65,10 +65,10 @@ Select **Add to favorite packages** for easy access later on. Keep the Package T
 
 ## Step 3: Create a wrapper interface
 
-<details>
-  <summary>🟦 Click to expand!</summary>
-  
 You now want to wrap the API `BAPI_PR_CREATE`. Depending on your specific use-case, you normally would need to access only certain specific functionalities and methods of the BAPI you want to expose. An ABAP Interface is the perfect development object for this purpose: the interface simplifies and restricts the usage of the underlying BAPI for the specific use-case, by exposing only the parameters that are needed. As a consequence, non-wrapped functionalities are forbidden.
+
+<details>
+  <summary>🔵 Click to expand</summary>
 
 To create the interface for your BAPI wrapper right click on the newly created package and select **New** > **ABAP Interface**. Input the Name `ZIF_WRAP_BAPI_PR_CREATE_###` and a Description:
 
@@ -182,11 +182,11 @@ Save and activate it.
 
 ## Step 4: Create a wrapper class
 
-<details>
-  <summary>🟦 Click to expand!</summary>
-  
 You now need to create a class to wrap the BAPI (implementing the interface you created in the previous step) and implement its methods.
 
+<details>
+  <summary>🔵 Click to expand</summary>
+  
 Right click on your package and select **New** > **ABAP Class**. Input the Name `ZCL_BAPI_PR_WRAPPER_###` and a Description:
 
 <!-- ![Create wrapper class](images/create_wrapper_class.png) -->
@@ -438,10 +438,10 @@ Save and activate it.
 
 ## Step 5: Create a wrapper factory class
 
-<details>
-  <summary>🟦 Click to expand!</summary>
-  
 In the scope of this tutorial group, our recommended approach is to create a factory class to control the instantiation of the wrapper class. This factory class will then be released for consumption in tier 1. This approach has the advantage of a clear control of when and where an instance of the wrapper class is created, and in the event in which several wrapper classes are needed all their instantiations could be handled inside one single factory class. Also, in case of wrapper classes this has the advantage that in case the wrapper class is changed throughout it's software lifecycle, at a later point in time a different class could be initialized, without changes to the consumer implementation.
+
+<details>
+  <summary>🔵 Click to expand</summary>  
 
 To create the factory class right click on your package and select **New** > **ABAP Class**. Input the Name `ZCL_BAPI_WRAP_FACTORY_###` and a Description:
 
@@ -495,10 +495,10 @@ Save and activate it.
 
 ## Step 6: Test non-released wrapper with console application in tier 1
 
-<details>
-  <summary>🟦 Click to expand!</summary>
-  
 The wrapper you just created is currently not released for consumption in tier 1. You can test this by creating a console application in tier 1 to call the (non-released) wrapper. We suggest to create a dedicated package under the tier 1 `ZLOCAL` package in your SAP S/4HANA System for this test.
+
+<details>
+  <summary>🔵 Click to expand</summary>  
 
 In ADT, open your SAP S/4HANA system project folder, navigate to the `ZLOCAL` structure package, right click on it and select **New** > **ABAP Package** and input the Name `Z_PURCHASE_REQ_TEST_###` and a Description:
 
@@ -585,10 +585,10 @@ The class calls the wrapper factory class and, given some input parameter values
 
 ## Step 7: Release the wrapper interface and factory class
 
-<details>
-  <summary>🟦 Click to expand!</summary>
-  
 Now you need to release the wrapper interface and wrapper factory class for consumption in tier 1. To do this, you need to add a Release Contract (C1) to both objects for use system-internally and use in Cloud Development.
+
+<details>
+  <summary>🔵 Click to expand</summary>
 
 In your Project Explorer open the ABAP Interface you created. In the **Properties** tab click on the **API State** tab and then click on the green plus icon next to the **Use System-Internally (Contract C1)**.
 
@@ -625,12 +625,12 @@ Repeat the same steps to release the factory class you created:
 
 ## Step 8: Run ATC checks and request exemptions \[OPTIONAL\]
 
-<details>
-  <summary>🟦 Click to expand!</summary>  
-
 > **Note**: This exercise is optional. 
 
 You will now need to run ATC checks on the objects you created and request exemptions to use non-released API.
+
+<details>
+  <summary>🔵 Click to expand</summary>  
 
 To run the ATC checks right click on the `$Z_PURCHASE_REQ_TIER2_###` package and select **Run As** > **ABAP Test Cockpit With...** and select your ATC check variant. Confirm by clicking on **OK**.   
 
@@ -662,10 +662,12 @@ Proceed in the same way to request an exemption for the whole wrapper class.
 
 ## Step 9: Test released wrapper with console application in tier 1
 
+You can test that the wrapper was correctly released for consumption in tier 1 by running the console application class `ZCL_BAPI_WRAP_TEST_###`. First, the errors in the class should have disappeared now that you released the wrapper, so you can save and activate the class. 
+
 <details>
-  <summary>🟦 Click to expand!</summary>
+  <summary>🔵 Click to expand</summary>
   
-You can test that the wrapper was correctly released for consumption in tier 1 by running the console application class `ZCL_BAPI_WRAP_TEST_###`. First, the errors in the class should have disappeared now that you released the wrapper, so you can save and activate the class. Now you can run it: right click on the class and select **Run As** > **ABAP Application (Console)**. The class should now run without errors and the purchase requisition will be created and displayed in the console:
+Now you can run it: right click on the class and select **Run As** > **ABAP Application (Console)**. The class should now run without errors and the purchase requisition will be created and displayed in the console:
 
 ![Purchase requisition creation test](images/purchase_requisition_test.png)
 <img alt="Purchase requisition creation test" src="images/purchase_requisition_test.png" width="70%">
