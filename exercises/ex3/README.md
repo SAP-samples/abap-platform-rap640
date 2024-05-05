@@ -25,6 +25,9 @@ Now that you've created your Shopping Cart RAP business object and a UI service 
 
 > **In this tutorial example a SAP S/4HANA Cloud, ABAP environment system was used. The mode therefore is `strict (2)`.**
 
+<details>
+  <summary>🔵 Click to expand</summary>
+  
   1. Open your behavior definition **`ZR_SHOPCARTTP_###`** to enhance it. Add the following statements to your behavior definition:
 
     update (features: instance);
@@ -124,10 +127,14 @@ Now that you've created your Shopping Cart RAP business object and a UI service 
     
    4. Save and activate. 
 
+</details>
 
 ## Step 2: Create data definition for products
 
 This data definition is needed to create a value help for products.
+
+<details>
+  <summary>🔵 Click to expand</summary>
 
  1. Right-click **Data Definitions** and select **New Data Definition**.
   
@@ -205,9 +212,15 @@ This data definition is needed to create a value help for products.
 
  6. You can test your CDS view entity by pressing F8 to start the _Data Preview_.   
 
+</details>
 
 ## Step 3: Enhance metadata extension
 
+You will now adjust the UI semantics of your Fiori elements app by enhancing the CDS metadata extension ``.
+
+<details>
+  <summary>🔵 Click to expand</summary>
+  
  1. In your metadata extension **`ZC_SHOPCARTTP_###`** replace your code with following:
 
   <details>
@@ -392,18 +405,24 @@ This data definition is needed to create a value help for products.
   </details>
     
  2. Save and activate.
+
+   </details>
    
 ## Step 4: Enhance behavior implementation
 
-  > **Hint:** Please replace **`###`** with your ID. 
+Enhance the BO behavior implementation according to the enhancements done in the BO behavior definition.
 
-  1. Open the behavior implementation **`ZBP_SHOPCARTTP_###`**, add the constant `c_overall_status` to your behavior implementation. In your **Local Types**, replace your code with following:
+<details>
+  <summary>🔵 Click to expand</summary>
 
+1. Open the behavior implementation **`ZBP_SHOPCARTTP_###`**, add the constant `c_overall_status` to your behavior implementation. In your **Local Types**, replace your code with following:
+  
+   Do not forget to replace all occurences of the placeholder **`###`** with your suffix. 
+ 
   <details>
     <summary>🟡📄 Click to expand and view or copy the source code!</summary>
 
-   ```
-
+   ```ABAP
     CLASS lhc_shopcart DEFINITION INHERITING FROM cl_abap_behavior_handler.
       PRIVATE SECTION.
         CONSTANTS:
@@ -610,14 +629,19 @@ This data definition is needed to create a value help for products.
   ```
   </details>
 
-   2. Save and activate.
+2. Save and activate.
 
-   3. Go back to your behavior definition `ZR_SHOPCARTTP_###` and activate it again, if needed. 
+3. Go back to your behavior definition `ZR_SHOPCARTTP_###` and activate it again, if needed. 
 
+</details>
 
 ## Step 5: Run SAP Fiori elements app preview and create first order
+Test the enhance _Shopping Cart_ app.
 
- 1. Select **`ShoppingCart`** in your service binding and click **Preview** to open SAP Fiori Elements preview.
+<details>
+  <summary>🔵 Click to expand</summary>
+  
+ 1. Select **`ShoppingCart`** in your service binding and click **Preview** to open SAP Fiori elements preview.
 
      <!-- ![preview](images/uinew0.png)
      <img alt="preview" src="images/uinew0.png" width="70%">
@@ -637,6 +661,7 @@ This data definition is needed to create a value help for products.
      <!-- ![preview](images/order3.png) -->
      <img alt="preview" src="images/order3.png" width="70%">
 
+</details>
 
 ## Summary & Next Exercise
 [^Top of page](#)
