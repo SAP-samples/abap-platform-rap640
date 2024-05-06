@@ -216,7 +216,7 @@ This data definition is needed to create a value help for products.
 
 ## Step 3: Enhance metadata extension
 
-You will now adjust the UI semantics of your Fiori elements app by enhancing the CDS metadata extension ``.
+You will now adjust the UI semantics of your Fiori elements app by enhancing the CDS metadata extension `ZC_SHOPCARTTP_###`.
 
 <details>
   <summary>🔵 Click to expand</summary>
