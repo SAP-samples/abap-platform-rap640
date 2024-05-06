@@ -37,7 +37,7 @@ Logon on to your SAP S/4HANA system via the backend, using your developer user c
 
 Now, you will need to create a role for this user to be able to access the ADT and get the URL of any service binding preview.
 
-Start transaction `PFCG` and create a new role as a copy of the `SAP_BC_ABAP_DEVELOPER_5` role template, according to [Set Up Developer Extensibility documentation](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ed0e11412f9841e7ac5cd9a6799368d4/a4bd20568a734c0daabe3585fe33a05a.html?state=202210.latest&version=202210.002). This role is needed for preview testing. Input the template role name and click on the **Copy Role** icon:
+Start transaction `PFCG` and create a new role as a copy of the `SAP_BC_ABAP_DEVELOPER_5` role template, according to [Set Up Developer Extensibility documentation](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b5670aaaa2364a29935f40b16499972d/31367ef6c3e947059e0d7c1cbfcaae93.html?version=202310.000). This role is needed for preview testing. Input the template role name and click on the **Copy Role** icon:
 
 <!-- ![Create developer 5 role](images/create_dev_5_role.png) -->
 <img alt="Create developer 5 role" src="images/create_dev_5_role.png" width="70%">
