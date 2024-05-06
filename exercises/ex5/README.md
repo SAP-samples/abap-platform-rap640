@@ -37,7 +37,7 @@ Logon on to your SAP S/4HANA system via the backend, using your developer user c
 
 Now, you will need to create a role for this user to be able to access the ADT and get the URL of any service binding preview.
 
-Start transaction `PFCG` and create a new role as a copy of the `SAP_BC_ABAP_DEVELOPER_5` role template, according to [Set Up Developer Extensibility documentation](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ed0e11412f9841e7ac5cd9a6799368d4/a4bd20568a734c0daabe3585fe33a05a.html?state=202210.latest&version=202210.002). This role is needed for preview testing. Input the template role name and click on the **Copy Role** icon:
+Start transaction `PFCG` and create a new role as a copy of the `SAP_BC_ABAP_DEVELOPER_5` role template, according to [Set Up Developer Extensibility documentation](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b5670aaaa2364a29935f40b16499972d/31367ef6c3e947059e0d7c1cbfcaae93.html?version=latest). This role is needed for preview testing. Input the template role name and click on the **Copy Role** icon:
 
 <!-- ![Create developer 5 role](images/create_dev_5_role.png) -->
 <img alt="Create developer 5 role" src="images/create_dev_5_role.png" width="70%">
@@ -50,7 +50,7 @@ Start transaction `PFCG` and create a new role as a copy of the `SAP_BC_ABAP_DEV
 
 Open the newly created role in edit mode, navigate to the **Authorizations** tab and click on **Change Authorization Data**. Click on the **Status** button (1) and confirm the pop-up to give the role full authorizations (2). Then Save it (3) and click on the **Generate** icon to generate the authorization profile (4) (confirm the pop-up window).
 
-![Create developer 5 role - authorizations](images/create_dev_5_role_3.png) -->
+![Create developer 5 role - authorizations](images/create_dev_5_role_3.png)
 
 Then go back, navigate to the **User** tab and add the `Z_USER_###` (1), Save (2) and click on the **User Comparison** button (3) (select **Full Comparison** in the pop-up window):
 
@@ -73,7 +73,7 @@ For that, connect to your system via ADT and navigate to the package `Z_PURCHASE
 <!-- ![Create service binding](images/create_service_binding_wrapper.png) -->
 <img alt="Create service binding" src="images/create_service_binding_wrapper.png" width="70%">
 
-Click on **Next**, select a suitable transport request (or create a new one) and then click on **Finish**. Activate it. Publish the service binding (as shown in a [previous tutorial](abap-s4hanacloud-procurement-purchasereq-shop)).
+Click on **Next**, select a suitable transport request (or create a new one) and then click on **Finish**. Activate it. Publish the service binding (as shown in a [previous exercise](../ex2/README.md#step-5-publish-service-binding-and-run-sap-fiori-elements-preview)).
 
 We will now use the shopping cart user created in the previous step to test out different authorization scenarios. First of all, to be able to test our service binding, the shopping cart user must have access to it. Logon on to your SAP S/4HANA system via the backend, using your developer user credentials, start transaction `PFCG` and create a new single role, with name: `ZR_SHOPCART_###`. In the **Menu** tab select **Transaction** --> **Authorization Default**
 
@@ -141,7 +141,7 @@ Select a suitable transport request (or create a new one if needed) and confirm.
 
 You now want to find out the required authorizations for the `BAPI_PR_CREATE` wrapper that is used in the wrapper service binding, and add them to your default variant.
 
-You can use various [authorization traces](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c6e6d078ab99452db94ed7b3b7bbcccf/cac80adc77a440e0a855364a4267079f.html?version=202210.000) to find out the needed authorization objects for a given BAPI. For the scope of this tutorial, we will show the recommended approach using the system trace in the `SU22` transaction, but we suggest you familiarise yourself with all the various available traces.
+You can use various [authorization traces](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c6e6d078ab99452db94ed7b3b7bbcccf/cac80adc77a440e0a855364a4267079f.html?version=latest) to find out the needed authorization objects for a given BAPI. For the scope of this tutorial, we will show the recommended approach using the system trace in the `SU22` transaction, but we suggest you familiarise yourself with all the various available traces.
 
 <details>
   <summary>🔵 Click to expand</summary>
@@ -246,7 +246,7 @@ To keep this exericise clear and modular, we will create a new service binding t
 <!-- ![Create Service Binding](images/create_service_binding.png) -->
 <img alt="Create Service Binding" src="images/create_service_binding.png" width="70%">
 
-Click on **Next**. Select an existing transport request (or create a new one if needed) and click on **Finish**. Activate it. Publish the service binding as shown in a [previous tutorial](abap-s4hanacloud-procurement-purchasereq-shop) of this series.
+Click on **Next**. Select an existing transport request (or create a new one if needed) and click on **Finish**. Activate it. Publish the service binding as shown in a [previous exercise](../ex2/README.md#step-5-publish-service-binding-and-run-sap-fiori-elements-preview) of this series.
 
 After the service binding has been published, logon to the backend of the system using the developer user credentials and, similar as what done in a previous step, create a new role (we suggest to name the role `ZR_SHOPCART_NCK_###`) and add the newly created `ZUI_SHOPCART_WRP_NCK_O4_###` service binding defaults in the **Menu** tab to gain access to the service. Assign the `Z_USER_###` user to role (do not forget to generate the authroization profile and do the user comparison). The shopping cart user should now have only two roles: `ZAP_BC_ABAP_DEVELOPER_5_###` and `ZR_SHOPCART_NCK_###`:
 
