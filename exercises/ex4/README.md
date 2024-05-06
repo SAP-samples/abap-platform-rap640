@@ -487,26 +487,27 @@ The purchase requisition will be created:
 
 </details>
 
-## Step 8: Check the results in the standard SAP Purchase Requisition (Professional) App
+## Step 8: Check the results in the SAP standard `Purchase Requisition - Professional` App
 
-You can  use the app **Manage Purchase Requisition - Professional** to check the purchase requistions that you have created using your custom RAP business object.   
+You can  use the app **Manage Purchase Requisition - Professional** to check the purchase requistions that you have created using your custom _shopping cart_ RAP BO.   
 
 <details>
   <summary>🔵 Click to expand</summary>
   
-  > **Note**
-  > Before checking the results in the ADT Fiori Elements preview make sure to clear the cache by pressing **F12** and by selecting **clear cache and refresh**. Otherwise you might run into the issue that the button of the action is visible but not functional.   
-
-  1. In a preconfigured appliance system, the standard **Manage Purchase Requisition - Professional** app can be started using the ABAP Fiori Launchpad using the following URL with your assigned system IP address.  
+  1. In a preconfigured appliance system, the standard **Manage Purchase Requisition - Professional** app can be started using the ABAP Fiori Launchpad using the following URL with your assigned system IP address.     
    
-   > **Hint:** Alternatively you start the Fiori launchpad with the transaction code **`/ui2/flp`** (`/n/ui2/flp`) and search for the app *Manage Purchase Requisition - Professional*.
-   
-   **https://your_system_ip_address:44301/sap/bc/ui2/flp?sap-client=100&sap-language=EN#PurchaseRequisition-maintain**
+  https://your_system_ip_address:44301/sap/bc/ui2/flp?sap-client=100&sap-language=EN#PurchaseRequisition-maintain
 
-     **Manage Purchase Requistion - SAP standard application**   
-     ![Manage Purchase Requistion - Professional](images/pr_professional_app.png)  
+  > **Hint:** Alternatively you start the Fiori launchpad with the transaction code **`/ui2/flp`** (`/n/ui2/flp`) and search for the app *Manage Purchase Requisition - Professional*.
+
+  **Manage Purchase Requistion - SAP standard application**   
+  ![Manage Purchase Requistion - Professional](images/pr_professional_app.png)  
     
-    Now you can search for the created purchase requisition number.
+  Now you can search for the created purchase requisition number.
+
+  > **Note**
+  > Before checking the results in the ADT Fiori Elements preview make sure to clear the cache by pressing **F12** and by selecting **clear cache and refresh**. Otherwise you might run into the issue that the button 
+    of the action is visible but not functional.   
 
 </details>
 
