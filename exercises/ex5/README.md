@@ -3,7 +3,7 @@
 
 ## Introduction
 
-In [exercise 4](../ex4/README.md), you've learned to integrate a custom wrapper into a RAP BO and implement a new action to call the custom wrapper during the save sequence phase of the RAP BO. You also learn how to expose an action via the service binding. To be able to develop the custom shopping cart RAP BO and the custom wrapper, your ABAP user have full development authorization. 
+In [exercise 4](../ex4/README.md), you've learned to integrate a custom wrapper into a RAP BO and implement a new action to call the custom wrapper during the save sequence phase of the RAP BO. You also learn how to expose an action via the service binding. To be able to develop the custom shopping cart RAP BO and the custom wrapper, your ABAP user should have full development authorization. 
 
 In this exercise we want to test two different authorization scenarios: the case in which we want authorizations to be checked upon the creation of a purchase requisition (so that only authorized users can perform this action), and the case in which we do not want any authorization check to be performed.
 
