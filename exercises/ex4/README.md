@@ -494,20 +494,20 @@ You can  use the app **Manage Purchase Requisition - Professional** to check the
 <details>
   <summary>🔵 Click to expand</summary>
   
-  1. In a preconfigured appliance system, the standard **Manage Purchase Requisition - Professional** app can be started using the ABAP Fiori Launchpad using the following URL with your assigned system IP address.     
-   
-  https://your_system_ip_address:44301/sap/bc/ui2/flp?sap-client=100&sap-language=EN#PurchaseRequisition-maintain
-
-  > **Hint:** Alternatively you start the Fiori launchpad with the transaction code **`/ui2/flp`** (`/n/ui2/flp`) and search for the app *Manage Purchase Requisition - Professional*.
-
-  **Manage Purchase Requistion - SAP standard application**   
-  ![Manage Purchase Requistion - Professional](images/pr_professional_app.png)  
+  1. In a preconfigured appliance system, the standard **Manage Purchase Requisition - Professional** app can be started using the ABAP Fiori Launchpad using the following URL, where you will replace `xxx.xxx.xxx.xxx` with your assigned system IP address:     
+  
+     https://xxx.xxx.xxx.xxx:44301/sap/bc/ui2/flp?sap-client=100&sap-language=EN#PurchaseRequisition-maintain
     
-  Now you can search for the created purchase requisition number.
+     > **Hint:** Alternatively you start the Fiori launchpad with the transaction code **`/ui2/flp`** (`/n/ui2/flp`) and search for the app *Manage Purchase Requisition - Professional*.
 
-  > **Note**
-  > Before checking the results in the ADT Fiori Elements preview make sure to clear the cache by pressing **F12** and by selecting **clear cache and refresh**. Otherwise you might run into the issue that the button 
-    of the action is visible but not functional.   
+     **Manage Purchase Requistion - SAP standard application**   
+     ![Manage Purchase Requistion - Professional](images/pr_professional_app.png)  
+    
+     Now you can search for the created purchase requisition number.
+
+     > **Note**
+     > Before checking the results in the ADT Fiori Elements preview make sure to clear the cache by pressing **F12** and by selecting **clear cache and refresh**. Otherwise you might run into the issue that the button 
+       of the action is visible but not functional.   
 
 </details>
 
