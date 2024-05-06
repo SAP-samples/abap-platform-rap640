@@ -50,7 +50,7 @@ Start transaction `PFCG` and create a new role as a copy of the `SAP_BC_ABAP_DEV
 
 Open the newly created role in edit mode, navigate to the **Authorizations** tab and click on **Change Authorization Data**. Click on the **Status** button (1) and confirm the pop-up to give the role full authorizations (2). Then Save it (3) and click on the **Generate** icon to generate the authorization profile (4) (confirm the pop-up window).
 
-![Create developer 5 role - authorizations](images/create_dev_5_role_3.png) -->
+![Create developer 5 role - authorizations](images/create_dev_5_role_3.png)
 
 Then go back, navigate to the **User** tab and add the `Z_USER_###` (1), Save (2) and click on the **User Comparison** button (3) (select **Full Comparison** in the pop-up window):
 
