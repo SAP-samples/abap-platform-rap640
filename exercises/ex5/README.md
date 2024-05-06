@@ -73,7 +73,7 @@ For that, connect to your system via ADT and navigate to the package `Z_PURCHASE
 <!-- ![Create service binding](images/create_service_binding_wrapper.png) -->
 <img alt="Create service binding" src="images/create_service_binding_wrapper.png" width="70%">
 
-Click on **Next**, select a suitable transport request (or create a new one) and then click on **Finish**. Activate it. Publish the service binding (as shown in a [previous tutorial](abap-s4hanacloud-procurement-purchasereq-shop)).
+Click on **Next**, select a suitable transport request (or create a new one) and then click on **Finish**. Activate it. Publish the service binding (as shown in a [previous tutorial](../ex2/README.md#step-5-publish-service-binding-and-run-sap-fiori-elements-preview)).
 
 We will now use the shopping cart user created in the previous step to test out different authorization scenarios. First of all, to be able to test our service binding, the shopping cart user must have access to it. Logon on to your SAP S/4HANA system via the backend, using your developer user credentials, start transaction `PFCG` and create a new single role, with name: `ZR_SHOPCART_###`. In the **Menu** tab select **Transaction** --> **Authorization Default**
 
