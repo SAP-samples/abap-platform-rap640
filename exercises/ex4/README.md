@@ -498,7 +498,7 @@ You can  use the app **Manage Purchase Requisition - Professional** to check the
   
      https://xxx.xxx.xxx.xxx:44301/sap/bc/ui2/flp?sap-client=100&sap-language=EN#PurchaseRequisition-maintain
     
-     > **Hint:** Alternatively you start the Fiori launchpad with the transaction code **`/ui2/flp`** (`/n/ui2/flp`) and search for the app *Manage Purchase Requisition - Professional*.
+     > **Hint:** Alternatively, you can launch the ABAP Fiori launchpad using the transaction code **`/ui2/flp`** (`/n/ui2/flp`) and then search for the app *Manage Purchase Requisition - Professional*.
 
      **Manage Purchase Requistion - SAP standard application**   
      ![Manage Purchase Requistion - Professional](images/pr_professional_app.png)  
