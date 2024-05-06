@@ -140,8 +140,8 @@ For additional support, [ask a question in SAP Community](https://answers.sap.co
 [^Top of page](#)
 
 You can find further information here:
- - [Blog Post on how to mitigate missing released SAP APIs in SAP S/4HANA Cloud](https://media.github.tools.sap/user/25144/files/dde22765-3092-4e2a-b2f0-623cebd510d0) | SAP Community
- - [Detailed document on ABAP Cloud API Enablement Guidelines](https://media.github.tools.sap/user/25144/files/30db2f3b-44b6-4be3-bb3c-92d88ef80968) | Guide
+ - [Blog Post on how to mitigate missing released SAP APIs in SAP S/4HANA Cloud](https://blogs.sap.com/2023/05/24/abap-cloud-how-to-mitigate-missing-released-sap-apis-in-sap-s-4hana-cloud-private-edition-and-sap-s-4hana-the-new-abap-cloud-api-enablement-guide/) | SAP Community
+ - [Detailed document on ABAP Cloud API Enablement Guidelines](https://www.sap.com/documents/2023/05/b0bd8ae6-747e-0010-bca6-c68f7e60039b.html) | Guide
  - [ABAP RESTful Application Programming Model (RAP)](https://community.sap.com/topics/abap/rap) | SAP Community page   
  - Most frequently asked questions: [ABAP Cloud FAQ](https://community.sap.com/topics/abap/abap-cloud-faq) | [RAP FAQ](https://blogs.sap.com/2020/10/16/abap-restful-application-programming-model-faq/)    
  - [RAP640 Tutorials Group: Mitigate Missing Released SAP API in the 3-tier Extensibility Model](https://developers.sap.com/group.sap-s4hana-extensibility-wrap-api.html) | SAP Developers' Center
