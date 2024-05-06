@@ -225,7 +225,7 @@ You can test it: open the service binding using the shopping cart user credentia
 <!-- ![Shopping cart user create PR with variant](images/business_user_variant_test.png) -->
 <img alt="Shopping cart user create PR with variant" src="images/business_user_variant_test.png" width="70%">
 
->After the `DO CHECK` use case test is succesfully done, remove the `ZR_SHOPCART_###` roles from the `Z_USER_###` (this can be done in transaction `SU01`) so that the shopping cart user is returned to its limited access state, and ready to be used in the next use case.
+>After the `DO CHECK` use case test is succesfully done, remove the `ZR_SHOPCART_###` role from the `Z_USER_###` (this can be done in transaction `SU01`) so that the shopping cart user is returned to its limited access state, and ready to be used in the next use case.
 
 </details>
 
