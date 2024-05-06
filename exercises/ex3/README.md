@@ -667,6 +667,6 @@ Now that you've...
 - enhanced the behavior implementation, and
 - ran the SAP Fiori elements app preview,
 
-you can continue with the next exercise - **[Exercise 4 - Integrate the Wrapper into the Shopping Cart Business Object](../ex4/README.md)**..
+you can continue with the next exercise - **[Exercise 4 - Integrate the Wrapper into the Shopping Cart Business Object](../ex4/README.md)**.
 
 ---
