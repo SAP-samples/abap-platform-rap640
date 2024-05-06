@@ -73,7 +73,7 @@ For that, connect to your system via ADT and navigate to the package `Z_PURCHASE
 <!-- ![Create service binding](images/create_service_binding_wrapper.png) -->
 <img alt="Create service binding" src="images/create_service_binding_wrapper.png" width="70%">
 
-Click on **Next**, select a suitable transport request (or create a new one) and then click on **Finish**. Activate it. Publish the service binding (as shown in a [previous tutorial](../ex2/README.md#step-5-publish-service-binding-and-run-sap-fiori-elements-preview)).
+Click on **Next**, select a suitable transport request (or create a new one) and then click on **Finish**. Activate it. Publish the service binding (as shown in a [previous exercise](../ex2/README.md#step-5-publish-service-binding-and-run-sap-fiori-elements-preview)).
 
 We will now use the shopping cart user created in the previous step to test out different authorization scenarios. First of all, to be able to test our service binding, the shopping cart user must have access to it. Logon on to your SAP S/4HANA system via the backend, using your developer user credentials, start transaction `PFCG` and create a new single role, with name: `ZR_SHOPCART_###`. In the **Menu** tab select **Transaction** --> **Authorization Default**
 
@@ -246,7 +246,7 @@ To keep this exericise clear and modular, we will create a new service binding t
 <!-- ![Create Service Binding](images/create_service_binding.png) -->
 <img alt="Create Service Binding" src="images/create_service_binding.png" width="70%">
 
-Click on **Next**. Select an existing transport request (or create a new one if needed) and click on **Finish**. Activate it. Publish the service binding as shown in a [previous tutorial](../ex2/README.md#step-5-publish-service-binding-and-run-sap-fiori-elements-preview) of this series.
+Click on **Next**. Select an existing transport request (or create a new one if needed) and click on **Finish**. Activate it. Publish the service binding as shown in a [previous exercise](../ex2/README.md#step-5-publish-service-binding-and-run-sap-fiori-elements-preview) of this series.
 
 After the service binding has been published, logon to the backend of the system using the developer user credentials and, similar as what done in a previous step, create a new role (we suggest to name the role `ZR_SHOPCART_NCK_###`) and add the newly created `ZUI_SHOPCART_WRP_NCK_O4_###` service binding defaults in the **Menu** tab to gain access to the service. Assign the `Z_USER_###` user to role (do not forget to generate the authroization profile and do the user comparison). The shopping cart user should now have only two roles: `ZAP_BC_ABAP_DEVELOPER_5_###` and `ZR_SHOPCART_NCK_###`:
 
