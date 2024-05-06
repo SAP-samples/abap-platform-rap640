@@ -35,7 +35,7 @@ In this hands-on exercise we will show you how to deal with the case where no co
 
 > ℹ️ This hands-on workshop follows the assumption that there is no suitable released API to create purchase requisitions, and we therefore need to find and wrap an unreleased API as a suitable alternative.   
 > 
-> Please be aware that we follow this assumption simply for illustrative purposes, as SAP does indeed provide a released API to create purchase requisitions (see [Integrate released purchase requisition API into Shopping Cart Business Object](abap-s4hanacloud-purchasereq-integrate-api)).
+> Please be aware that we follow this assumption simply for illustrative purposes, as SAP does indeed provide a released API to create purchase requisitions (see [Integrate released purchase requisition API into Shopping Cart Business Object](https://developers.sap.com/tutorials/abap-s4hanacloud-purchasereq-integrate-api.html)).
 
 <img src="images/scenario_overview.png" alt="Scenario overview" width="70%">
 
@@ -63,8 +63,8 @@ Now that you've learned
 - how the 3-tier extensibility model works for SAP S/4HANA Cloud Private Edition and SAP S/4HANA,
 - the concept how to mitigate missing released SAP APIs using custom wrappers, 
 - the sample business scenario that will be used to show how to mitigate a missing released SAP API by wrapping an unreleased BAPI,
-- and eventuals verify the technical requirements,
+- and eventually verify the technical requirements,
 
-you can continue with the next exercise - **[Exercise 2 - Implement a Wrapper for the "Create Purchase Requisition" (BAPI_PR_CREATE) function module](../ex2/README.md)**.
+you can continue with the next exercise - **[Exercise 1: Implement a Wrapper for the "Create Purchase Requisition" (BAPI_PR_CREATE) function module](../ex1/README.md)**.
 
 ---

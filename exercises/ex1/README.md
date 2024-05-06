@@ -438,7 +438,7 @@ Save and activate it.
 
 ## Step 5: Create a wrapper factory class
 
-In this hands-on workshop, our recommended approach is to create a factory class to control the instantiation of the wrapper class and to release the factory class will for use in tier 1. 
+In this hands-on workshop, our recommended approach is to create a factory class to control the instantiation of the wrapper class and to release the factory class for use in tier 1. 
 
 This approach has the advantage of a clear control of when and where an instance of the wrapper class is created, and in the event in which several wrapper classes are needed all their instantiations could be handled inside one single factory class. 
 Also, in case of wrapper classes this has the advantage that in case the wrapper class is changed throughout it's software lifecycle, at a later point in time a different class could be initialized, without changes to the consumer implementation.

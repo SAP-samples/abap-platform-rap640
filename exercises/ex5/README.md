@@ -3,7 +3,7 @@
 
 ## Introduction
 
-In [exercise 4](../ex4/README.md), you've learned to integrate a custom wrapper into a RAP BO and implement a new action to call the custom wrapper during the save sequence phase of the RAP BO. You also learn how to expose an action via the service binding. To be able to develop the custom shopping cart RAP BO and the custom wrapper, your ABAP user have full development authorization. 
+In [exercise 4](../ex4/README.md), you've learned to integrate a custom wrapper into a RAP BO and implement a new action to call the custom wrapper during the save sequence phase of the RAP BO. You also learn how to expose an action via the service binding. To be able to develop the custom shopping cart RAP BO and the custom wrapper, your ABAP user should have full development authorization. 
 
 In this exercise we want to test two different authorization scenarios: the case in which we want authorizations to be checked upon the creation of a purchase requisition (so that only authorized users can perform this action), and the case in which we do not want any authorization check to be performed.
 
@@ -225,7 +225,7 @@ You can test it: open the service binding using the shopping cart user credentia
 <!-- ![Shopping cart user create PR with variant](images/business_user_variant_test.png) -->
 <img alt="Shopping cart user create PR with variant" src="images/business_user_variant_test.png" width="70%">
 
->After the `DO CHECK` use case test is succesfully done, remove the `ZR_SHOPCART_###` roles from the `Z_USER_###` (this can be done in transaction `SU01`) so that the shopping cart user is returned to its limited access state, and ready to be used in the next use case.
+>After the `DO CHECK` use case test is succesfully done, remove the `ZR_SHOPCART_###` role from the `Z_USER_###` (this can be done in transaction `SU01`) so that the shopping cart user is returned to its limited access state, and ready to be used in the next use case.
 
 </details>
 
@@ -248,7 +248,7 @@ To keep this exericise clear and modular, we will create a new service binding t
 
 Click on **Next**. Select an existing transport request (or create a new one if needed) and click on **Finish**. Activate it. Publish the service binding as shown in a [previous exercise](../ex2/README.md#step-5-publish-service-binding-and-run-sap-fiori-elements-preview) of this series.
 
-After the service binding has been published, logon to the backend of the system using the developer user credentials and, similar as what done in a previous step, create a new role (we suggest to name the role `ZR_SHOPCART_NCK_###`) and add the newly created `ZUI_SHOPCART_WRP_NCK_O4_###` service binding defaults in the **Menu** tab to gain access to the service. Assign the `Z_USER_###` user to role (do not forget to generate the authroization profile and do the user comparison). The shopping cart user should now have only two roles: `ZAP_BC_ABAP_DEVELOPER_5_###` and `ZR_SHOPCART_NCK_###`:
+After the service binding has been published, logon to the backend of the system using the developer user credentials and, similar as what done in a previous step, create a new role (we suggest to name the role `ZR_SHOPCART_NCK_###`) and add the newly created `ZUI_SHOPCART_WRP_NCK_O4_###` service binding defaults in the **Menu** tab to gain access to the service. Assign the `Z_USER_###` user to role (do not forget to generate the authorization profile and do the user comparison). The shopping cart user should now have only two roles: `ZAP_BC_ABAP_DEVELOPER_5_###` and `ZR_SHOPCART_NCK_###`:
 
 <!-- ![Remove role](images/remove_roles.png) -->
 <img alt="Remove role" src="images/remove_roles.png" width="70%">

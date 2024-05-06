@@ -42,7 +42,7 @@ The requirements to follow the exercises in this repository are:
 
 ## System access (workshops provided by SAP)
 
-In a workshop that is conducted by SAP we a SAP S/4HANA 2023 preconfigured appliance system will be provided to the workshop participants. 
+In a workshop that is conducted by SAP a SAP S/4HANA 2023 preconfigured appliance system will be provided to the workshop participants. 
 
 The system details will be provided by the trainers. With the system details you can connect via ADT to the system as described in the following how-to-guide.   
 
@@ -52,12 +52,12 @@ The system details will be provided by the trainers. With the system details you
 [^Top of page](#)
 
 <!-- #### Current Business Scenario -->
-Learn about the current business scenario and the 3 tier extensibility model.
+Learn about the current business scenario and the 3-tier extensibility model.
  
 <details>
   <summary>Click to expand!</summary>
  
-### About  the Business Scenario 
+### About the Business Scenario 
   
 In this hands-on workshop, we will guide you through the development of a custom wrapper for the ABAP Cloud enablement of an unreleased SAP BAPI for creating purchase requisitions, then a custom RAP BO and UI service on top of it to develop a transactional, design-capable, Fiori Elements-based list report app using RAP. Finally, you'll use your custom API wrapper in your custom RAP BO to integrate your custom app with the standard professional SAP Purchase Requisition app.
 
@@ -67,13 +67,13 @@ The resulting app will look like this:
   
 To set the business context, the scenario is the following: This demo scenario shows a custom and SAP Fiori elements-based shopping cart app built on-stack with RAP. The custom app is integrated with the standard Purchase Requisition app in SAP S/4HANA Materials Management using a custom wrapper on top of the unreleased SAP API `BAPI_CREATE_PR`.
 
-### About the 3 Tier Extensibility Model
+### About the 3-Tier Extensibility Model
 
 You will learn how to apply the [Cloud API Enablement Guidelines for SAP S/4HANA Cloud Private Edition and and SAP S/4HANA](https://www.sap.com/documents/2023/05/b0bd8ae6-747e-0010-bca6-c68f7e60039b.html) to consume an unreleased SAP API. You will learn how to mitigate missing released SAP APIs in the 3-tier extensibility model when working with ABAP Cloud on these two products.
 
 <img src="images/3-tier-extmodel.png" alt="3-tier extensibility model" width="80%">
 
-Learn more: [Understand the sample scenario how to mitigate a missing released SAP API](exercises/ex1/README.md)
+Learn more: [Understand the sample scenario how to mitigate a missing released SAP API](exercises/GettingStarted/README.md)
   
 </details>
 

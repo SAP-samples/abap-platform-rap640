@@ -216,7 +216,7 @@ This data definition is needed to create a value help for products.
 
 ## Step 3: Enhance metadata extension
 
-You will now adjust the UI semantics of your Fiori elements app by enhancing the CDS metadata extension ``.
+You will now adjust the UI semantics of your Fiori elements app by enhancing the CDS metadata extension `ZC_SHOPCARTTP_###`.
 
 <details>
   <summary>🔵 Click to expand</summary>
@@ -428,7 +428,6 @@ Enhance the BO behavior implementation according to the enhancements done in the
         CONSTANTS:
           BEGIN OF c_overall_status,
             new       TYPE string VALUE 'New / Composing',
-   *        composing  TYPE string VALUE 'Composing...',
             submitted TYPE string VALUE 'Submitted / Approved',
             cancelled TYPE string VALUE 'Cancelled',
           END OF c_overall_status.
@@ -474,10 +473,6 @@ Enhance the BO behavior implementation according to the enhancements done in the
                               = COND #( WHEN OnlineOrder-OverallStatus = c_overall_status-submitted  THEN if_abap_behv=>fc-o-disabled
                                         WHEN OnlineOrder-OverallStatus = c_overall_status-cancelled THEN if_abap_behv=>fc-o-disabled
                                         ELSE if_abap_behv=>fc-o-enabled   )
-   *                         %features-%delete
-   *                           = COND #( WHEN OnlineOrder-PurchaseRequisition IS NOT INITIAL THEN if_abap_behv=>fc-o-disabled
-   *                                     WHEN OnlineOrder-OverallStatus = c_overall_status-cancelled THEN if_abap_behv=>fc-o-disabled
-   *                                     ELSE if_abap_behv=>fc-o-enabled   )
                             %action-Edit
                               = COND #( WHEN OnlineOrder-OverallStatus = c_overall_status-submitted THEN if_abap_behv=>fc-o-disabled
                                         WHEN OnlineOrder-OverallStatus = c_overall_status-cancelled THEN if_abap_behv=>fc-o-disabled
@@ -672,6 +667,6 @@ Now that you've...
 - enhanced the behavior implementation, and
 - ran the SAP Fiori elements app preview,
 
-you can continue with the next exercise - **[Exercise 4 - Integrate the Wrapper into the Shopping Cart Business Object](../ex4/README.md)**..
+you can continue with the next exercise - **[Exercise 4 - Integrate the Wrapper into the Shopping Cart Business Object](../ex4/README.md)**.
 
 ---
