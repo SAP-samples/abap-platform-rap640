@@ -246,7 +246,7 @@ To keep this exericise clear and modular, we will create a new service binding t
 <!-- ![Create Service Binding](images/create_service_binding.png) -->
 <img alt="Create Service Binding" src="images/create_service_binding.png" width="70%">
 
-Click on **Next**. Select an existing transport request (or create a new one if needed) and click on **Finish**. Activate it. Publish the service binding as shown in a [previous tutorial](abap-s4hanacloud-procurement-purchasereq-shop) of this series.
+Click on **Next**. Select an existing transport request (or create a new one if needed) and click on **Finish**. Activate it. Publish the service binding as shown in a [previous tutorial](../ex2/README.md#step-5-publish-service-binding-and-run-sap-fiori-elements-preview) of this series.
 
 After the service binding has been published, logon to the backend of the system using the developer user credentials and, similar as what done in a previous step, create a new role (we suggest to name the role `ZR_SHOPCART_NCK_###`) and add the newly created `ZUI_SHOPCART_WRP_NCK_O4_###` service binding defaults in the **Menu** tab to gain access to the service. Assign the `Z_USER_###` user to role (do not forget to generate the authroization profile and do the user comparison). The shopping cart user should now have only two roles: `ZAP_BC_ABAP_DEVELOPER_5_###` and `ZR_SHOPCART_NCK_###`:
 
