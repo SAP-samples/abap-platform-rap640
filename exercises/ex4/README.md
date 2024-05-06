@@ -441,7 +441,28 @@ Open the Behavior Definition `ZC_SHOPCARTTP_###` and expose the new action with 
 
 The Behavior Definition should now look as follows:
 
-![Enhance behvaior definition](enhance_bdef.png)
+```ABAP
+  projection;
+  strict ( 1 );
+  use draft;
+
+  define behavior for ZC_SHOPCARTTP_### alias ShoppingCart
+  use etag
+
+  {
+    use create;
+    use update;
+    use delete;
+
+    use action Edit;
+    use action Activate;
+    use action Discard;
+    use action Resume;
+    use action Prepare;
+
+    use action createPurchRqnBAPISave;
+  }
+``` 
 
 Save and activate it.
 
