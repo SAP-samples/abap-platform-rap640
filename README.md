@@ -73,7 +73,7 @@ You will learn how to apply the [Cloud API Enablement Guidelines for SAP S/4HANA
 
 <img src="images/3-tier-extmodel.png" alt="3-tier extensibility model" width="80%">
 
-Learn more: [Understand the sample scenario how to mitigate a missing released SAP API](exercises/ex1/README.md)
+Learn more: [Understand the sample scenario how to mitigate a missing released SAP API](exercises/GettingStarted/README.md)
   
 </details>
 
