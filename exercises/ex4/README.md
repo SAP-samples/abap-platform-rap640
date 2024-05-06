@@ -466,7 +466,7 @@ The purchase requisition will be created:
 
 </details>
 
-## Step 8: Check the results in the standard SAP Purchase Requisition (Professional) App
+## Step 8: Check the results in the SAP standard `Purchase Requisition - Professional` App
 
 You can  use the app **Manage Purchase Requisition - Professional** to check the purchase requistions that you have created using your custom _shopping cart_ RAP BO.   
 
