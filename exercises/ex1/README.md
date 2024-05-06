@@ -679,6 +679,7 @@ Now you can run it: right click on the class and select **Run As** > **ABAP Appl
 
 </details>
 
+<!--
 ## Step 10: Check the results in the SAP standard `Purchase Requisition - Professional` App
 
 You can  use the app **Manage Purchase Requisition - Professional** to check the purchase requistions that you have created using your console application.   
@@ -693,7 +694,7 @@ You can  use the app **Manage Purchase Requisition - Professional** to check the
      > **Hint:** Alternatively, you can launch the ABAP Fiori launchpad using the transaction code **`/ui2/flp`** (`/n/ui2/flp`) and then search for the app *Manage Purchase Requisition - Professional*.
 
      **Manage Purchase Requistion - SAP standard application**   
-     ![Manage Purchase Requistion - Professional](images/pr_professional_app.png)  
+     ![Manage Purchase Requistion - Professional](../ex4/images/pr_professional_app.png)  
     
      Now you can search for the created purchase requisition number.
 
@@ -702,6 +703,7 @@ You can  use the app **Manage Purchase Requisition - Professional** to check the
        of the action is visible but not functional.   
 
 </details>
+-->
 
 ## Summary & Next Exercise
 [^Top of page](#)
