@@ -441,7 +441,7 @@ Open the Behavior Definition `ZC_SHOPCARTTP_###` and expose the new action with 
 
 The Behavior Definition should now look as follows:
 
-![Enhance behvaior definition](enhance_bdef.png)
+![Enhance behavior definition](enhance_bdef.png)
 
 Save and activate it.
 
