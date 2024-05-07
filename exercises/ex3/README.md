@@ -235,7 +235,7 @@ You will now adjust the UI semantics of your Fiori elements app by enhancing the
       , title: {
           type: #STANDARD,
           label: 'ShoppingCart',
-          value: 'OrderID'
+          value: 'orderid'
         }
       },
       presentationVariant: [ {
@@ -257,149 +257,139 @@ You will now adjust the UI semantics of your Fiori elements app by enhancing the
         position: 10 
       } ]
       @UI.hidden: true
-      orderuuid;
+      OrderUUID;
       
       @UI.lineItem: [ {
-        position: 20 ,
-        importance: #HIGH,
+        position: 10 , 
+        importance: #MEDIUM, 
         label: 'OrderID'
-      } ] 
+      } ]
       @UI.identification: [ {
-        position: 20 ,
+        position: 10 , 
         label: 'OrderID'
       } ]
-      @UI.selectionField: [ {
-        position: 20
+      OrderID;
+      
+      @UI.lineItem: [ {
+        position: 20 , 
+        importance: #MEDIUM, 
+        label: 'OrderedItem'
       } ]
-      orderid;
+      @UI.identification: [ {
+        position: 20 , 
+        label: 'OrderedItem'
+      } ]
       @Consumption.valueHelpDefinition: [{ entity: 
                     {name: 'ZI_PRODUCTS_###' , element: 'ProductText' },
                     additionalBinding: [{ localElement: 'Price', element: 'Price', usage: #RESULT },
                                         { localElement: 'Currency', element: 'Currency', usage: #RESULT }
                                                                           ]
-                    }]
+                    }]  
+      OrderedItem;
       
       @UI.lineItem: [ {
-        position: 30 ,
-        importance: #HIGH,
-        label: 'Ordered Item'
-      } ]
-      @UI.identification: [ {
-        position: 30 ,
-        label: 'Ordered Item'
-      } ]
-      @UI.selectionField: [ {
-        position: 30
-      } ]
-      ordereditem;
-      
-      @UI.lineItem: [ {
-        position: 40 ,
-        importance: #HIGH,
+        position: 30 , 
+        importance: #MEDIUM, 
         label: 'Price'
       } ]
       @UI.identification: [ {
-        position: 40 ,
+        position: 30 , 
         label: 'Price'
       } ]
-      @UI.selectionField: [ {
-        position: 40
-      } ]
-      price;
+      Price;
       
       @UI.lineItem: [ {
-        position: 45 ,
-        importance: #HIGH,
-        label: 'Total Price'
+        position: 40 , 
+        importance: #MEDIUM, 
+        label: 'TotalPrice'
       } ]
       @UI.identification: [ {
-        position: 45 ,
-        label: 'Total Price'
+        position: 40 , 
+        label: 'TotalPrice'
       } ]
-      @UI.selectionField: [ {
-        position: 50
-      } ]
-      totalprice;
-      @Consumption.valueHelpDefinition: [ { entity: { name: 'I_Currency', element: 'Currency' } } ]
+      TotalPrice;
+      
       @UI.lineItem: [ {
-        position: 50 ,
-        importance: #HIGH,
-        label: 'currency'
-      } ]
-      @UI.identification: [ {
-        position: 50 ,
+        position: 50 , 
+        importance: #MEDIUM, 
         label: 'Currency'
       } ]
-      @UI.selectionField: [ {
-        position: 60
+      @UI.identification: [ {
+        position: 50 , 
+        label: 'Currency'
       } ]
-      currency;
+      @Consumption.valueHelpDefinition: [ { entity: { name: 'I_Currency', element: 'Currency' } } ]  
+      Currency;
       
       @UI.lineItem: [ {
-        position: 55 ,
-        importance: #HIGH,
-        label: 'Ordered Quantity'
+        position: 60 , 
+        importance: #MEDIUM, 
+        label: 'OrderQuantity'
       } ]
       @UI.identification: [ {
-        position: 55 ,
-        label: 'Ordered Quantity'
+        position: 60 , 
+        label: 'OrderQuantity'
       } ]
-      @UI.selectionField: [ {
-        position: 65
-      } ]
-      orderquantity;
+      OrderQuantity;
       
       @UI.lineItem: [ {
-        position: 60 ,
-        importance: #HIGH,
-        label: 'Delivery Date'
+        position: 70 , 
+        importance: #MEDIUM, 
+        label: 'DeliveryDate'
       } ]
       @UI.identification: [ {
-        position: 60 ,
-        label: 'Delivery Date'
+        position: 70 , 
+        label: 'DeliveryDate'
       } ]
-      deliverydate;
+      DeliveryDate;
+      
       @UI.lineItem: [ {
-        position: 65 ,
-        importance: #HIGH,
-        label: 'Overall Status'
+        position: 80 , 
+        importance: #MEDIUM, 
+        label: 'OverallStatus'
       } ]
       @UI.identification: [ {
-        position: 65 ,
-        label: 'Overall Status'
+        position: 80 , 
+        label: 'OverallStatus'
       } ]
-      overallstatus;
-    @UI.lineItem: [ {
-        position: 70 ,
-        importance: #HIGH,
+      OverallStatus;
+      
+      @UI.lineItem: [ {
+        position: 90 , 
+        importance: #MEDIUM, 
         label: 'Notes'
       } ]
       @UI.identification: [ {
-        position: 70 ,
+        position: 90 , 
         label: 'Notes'
       } ]
-      notes;
+      Notes;
       
       @UI.hidden: true
-      locallastchangedat;
+      LocalLastChangedAt;
       
       @UI.lineItem: [ {
-        position: 70 ,
-        label: 'Purchase requisition number',
-        importance: #HIGH
-      }]
-      purchaserequisition;
+        position: 100 , 
+        importance: #MEDIUM, 
+        label: 'PurchaseRequisition'
+      },
+      { type: #FOR_ACTION, dataAction: 'createPurchRqnBAPISave', label: 'Create PR via BAPI in SAVE' } ]
+      @UI.identification: [ {
+        position: 100 , 
+        label: 'PurchaseRequisition'
+      }, { type: #FOR_ACTION, dataAction: 'createPurchRqnBAPISave', label: 'Create PR via BAPI in SAVE' }  ]
+      PurchaseRequisition;
       
       @UI.lineItem: [ {
-        position: 75 ,
-        importance: #HIGH,
-        label: 'PR Creation Date'
+        position: 110 , 
+        importance: #MEDIUM, 
+        label: 'PrCreationDate'
       } ]
       @UI.identification: [ {
-        position: 75 ,
-        label: 'PR Creation Date'
+        position: 110 , 
+        label: 'PrCreationDate'
       } ]
-      prcreationdate;
+      PrCreationDate;
     }
    ```
   </details>
