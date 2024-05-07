@@ -274,8 +274,8 @@ You will now adjust the UI semantics of your Fiori elements app by enhancing the
       orderid;
       @Consumption.valueHelpDefinition: [{ entity: 
                     {name: 'ZI_PRODUCTS_###' , element: 'ProductText' },
-                    additionalBinding: [{ localElement: 'price', element: 'Price', usage: #RESULT },
-                                        { localElement: 'currency', element: 'Currency', usage: #RESULT }
+                    additionalBinding: [{ localElement: 'Price', element: 'Price', usage: #RESULT },
+                                        { localElement: 'Currency', element: 'Currency', usage: #RESULT }
                                                                           ]
                     }]
       
