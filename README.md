@@ -109,9 +109,7 @@ You can import the solution package **`ZRAP640_SOL`** into your system* - i.e. a
 > ℹ️ **Regarding SAP-led events such as "ABAP Developer Day" and "SAP CodeJam"**:     
 > The solution package **`ZRAP640_SOL`** is already imported into your dedicated system used during these events.
 
-🚧 _More details coming soon_  
-_ _
-
+🚧 _More information coming soon_  
 
 ## 🔁Recordings
 [^Top of page](#)
