@@ -10,9 +10,9 @@ Now that you have implemented a custom wrapper for the non-released SAP API `BAP
 
 
 ## You will learn  
-- How to create an ABAP package
+- How to create an ABAP package on tier 1 (superpackage: `ZLOCAL`),
 - How to create a database table
-- How to create transactional UI services
+- How to generate a transactional UI service
 - How to enhance the behavior definition of a data model 
 - How to publish a service binding
 - How to run the SAP Fiori Elements Preview
@@ -129,7 +129,7 @@ We start the creation of the RAP business object with creating a database table.
 
 </details>
 
-## Step 3: Generate transactional UI services
+## Step 3: Generate a transactional UI service
 
 You will now use a wizard to generate all repository objects required for your RAP business object based on the table you have just created.  
 
@@ -300,7 +300,7 @@ What is left to do is to publish your service locally, so that it can be tested 
 [^Top of page](#)
 
 Now that you've... 
-- created an ABAP package on tier 1 (superpackage: ZLOCAL),
+- created an ABAP package on tier 1 (superpackage: `ZLOCAL`),
 - created a database table to store the shopping cart data,
 - generated a RAP BO and a transactional UI service,
 - enhanced the behavior definition of a data model,
