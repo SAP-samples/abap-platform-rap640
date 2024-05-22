@@ -143,6 +143,7 @@ You can find further information here:
  - [ABAP RESTful Application Programming Model (RAP)](https://community.sap.com/topics/abap/rap) | SAP Community page   
  - Most frequently asked questions: [ABAP Cloud FAQ](https://community.sap.com/topics/abap/abap-cloud-faq) | [RAP FAQ](https://blogs.sap.com/2020/10/16/abap-restful-application-programming-model-faq/)    
  - [RAP640 Tutorials Group: Mitigate Missing Released SAP API in the 3-tier Extensibility Model](https://developers.sap.com/group.sap-s4hana-extensibility-wrap-api.html) | SAP Developers' Center
+ - [Various hands-on workshop materials on ABAP Cloud, including RAP and embedded analytics](https://github.com/SAP-samples/abap-platform-rap-workshops/blob/main/README.md) 
 
 <!--
 ## Contributing
