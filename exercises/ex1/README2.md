@@ -103,6 +103,7 @@ Also, in case of wrapper classes this has the advantage that in case the wrapper
 
    A. Function Modules  
       - Here you can select one or more function modules that will be wrapped by one single class. Please enter here only `BAPI_PR_CREATE`.  
+        
    B. Specify repository object names  
       - Name of a proxy class: Enter a name for the wrapper class, e.g. `ZCL_WRAP_BAPI_PR_###`.   
       - Package: Select `ZTIER2_###`.    
