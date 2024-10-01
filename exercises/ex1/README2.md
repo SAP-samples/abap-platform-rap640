@@ -202,6 +202,128 @@ ENDCLASS.
 
 Save it.
 
+
+## new wrapper test class
+
+<details>
+
+```ABAP
+CLASS zcl_bapi_wrap_test_abcd_err2 DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+
+    INTERFACES if_oo_adt_classrun .
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+ENDCLASS.
+
+
+
+CLASS zcl_bapi_wrap_test_abcd_err2 IMPLEMENTATION.
+
+
+  METHOD if_oo_adt_classrun~main.
+
+    DATA pr_returns TYPE bapirettab.
+
+    DATA prheader TYPE zif_wrap_bapi_pr_abcd4=>bapimereqheader .
+    DATA prheaderx TYPE zif_wrap_bapi_pr_abcd4=>bapimereqheaderx .
+    DATA number  TYPE zif_wrap_bapi_pr_abcd4=>banfn  .
+    DATA pritem  TYPE zif_wrap_bapi_pr_abcd4=>_bapimereqitemimp .
+    DATA pritemx  TYPE zif_wrap_bapi_pr_abcd4=>_bapimereqitemx  .
+    DATA prheaderexp  TYPE zif_wrap_bapi_pr_abcd4=>bapimereqheader .
+
+    DATA(myclass) = zcl_f_wrap_bapi_pr_abcd4=>create_instance( ).
+
+    prheader = VALUE #( pr_type = 'NB' ).
+    prheaderx = VALUE #( pr_type = 'X' ).
+
+    pritem           = VALUE #( (
+                      preq_item  = '00010'
+                      plant      = '1010'
+                      acctasscat = 'U'
+                      currency   = 'EUR'
+                      deliv_date = cl_abap_context_info=>get_system_date(  ) + 14   "format: yyyy-mm-dd (at least 10 days)
+                      material   = 'ZPRINTER01'
+                      matl_group = 'A001'
+                      preq_price = '100.00'
+                      quantity   = '1'
+                      unit       = 'ST'
+                      pur_group = '001'
+                      purch_org = '1010'
+                      short_text = 'ZPRINTER01'
+                    ) ).
+
+    pritemx           = VALUE #( (
+                      preq_item  = '00010'
+                      plant      = 'X'
+                      acctasscat = 'X'
+                      currency   = 'X'
+                      deliv_date = 'X'
+                      material   = 'X'
+                      matl_group = 'X'
+                      preq_price = 'X'
+                      quantity   = 'X'
+                      unit       = 'X'
+                      pur_group = 'X'
+                      purch_org = 'X'
+                      short_text = 'X'
+                    ) ).
+
+    TRY.
+    
+*        myclass->bapi_pr_create(
+*          EXPORTING
+*            prheader = prheader
+*            prheaderx = prheaderx
+**            _dest_  = 'NONE'
+*          IMPORTING
+*            number   = number
+*            prheaderexp = prheaderexp
+*          CHANGING
+*            pritem = pritem
+*            pritemx = pritemx
+*     )
+*        .
+
+
+
+
+        CALL FUNCTION 'BAPI_PR_CREATE' " DESTINATION space
+          EXPORTING
+            prheader    = prheader
+            prheaderx   = prheaderx
+*           testrun     = testrun
+          IMPORTING
+            number      = number
+            prheaderexp = prheaderexp
+          TABLES
+            pritem      = pritem
+            pritemx     = pritemx
+            return      = pr_returns
+          .
+
+      CATCH cx_aco_application_exception cx_aco_communication_failure cx_aco_system_failure INTO DATA(call_wrapper_exception).
+        "handle exception
+        out->write( |Exception occured: { call_wrapper_exception->get_text(  ) }| ).
+    ENDTRY.
+    out->write( |purchase requistion number: { number  } | ).
+    LOOP AT pr_returns INTO DATA(bapiret2_line).
+      out->write( |bapi_return: { bapiret2_line-message } | ).
+    ENDLOOP.
+
+
+  ENDMETHOD.
+ENDCLASS.
+
+```
+
+  
+</details>
+
 The class calls the wrapper factory class and, given some input parameter values like the delivery date and the item price, creates a purchase requisition for that specific item and prints the information to the console. Since the wrapper is not released for consumption in tier 1, when you try to activate the class you will get an error message.
 
 <!-- ![unreleased wrapper error](images/unreleased_wrapper_console_application.png) -->
