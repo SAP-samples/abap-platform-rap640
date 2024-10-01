@@ -107,13 +107,12 @@ Also, in case of wrapper classes this has the advantage that in case the wrapper
    d. Create Interface: Check the check box and choose a name for the interface, e.g. `ZIF_WRAP_BAPI_PR_###`  
    e. Create Factory Class: Check the check box and choose a name for the factory class, e.g. `ZCL_F_WRAP_BAPI_PR_###`   
 
-   Options:
+   Options:  
 
-   Uncheck the check box Pass Destination via Constructor
-Choose the radio-button Class-Based Exceptions
-Check the check box Do not create Shadows of C1 Released Types
-Check the check box C1 Release
-Check the check box Create Private Methods
+   f. Choose the radio-button Class-Based Exceptions   
+   g. Check the check box Do not create Shadows of C1 Released Types   
+   h. Check the check box C1 Release   
+   i. Check the check box Create Private Methods   
 
 
 
