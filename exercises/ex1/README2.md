@@ -95,13 +95,17 @@ Also, in case of wrapper classes this has the advantage that in case the wrapper
   <summary>🔵 Click to expand</summary>
 
 1. To create the interface, the class and the factory class for your BAPI start transaction ACO_PROXY.
+
+    <!-- ![Start ACO_PROXY](images/start_aco_proxy.png) -->
+    <img alt="Start ACO_PROXY" src="images/create_tier2_package_2.png" width="70%"> 
+
 2. Enter the following values
 
-   a. Here you can select one or more function modules that will be wrapped by one single class. Please enter here only `BAPI_PR_CREATE`.
+   a. Here you can select one or more function modules that will be wrapped by one single class. Please enter here only `BAPI_PR_CREATE`.  
    b. Name of a proxy class: Enter a name for the wrapper class, e.g. `ZCL_WRAP_BAPI_PR_###`.   
-   c. Package: Select `ZTIER2_###`.   
-   d. Create Interface: Check the check box and choose a name for the interface, e.g. `ZIF_WRAP_BAPI_PR_###`
-   e. Create Factory Class: Check the check box and choose a name for the factory class, e.g. `ZCL_F_WRAP_BAPI_PR_###` 
+   c. Package: Select `ZTIER2_###`.    
+   d. Create Interface: Check the check box and choose a name for the interface, e.g. `ZIF_WRAP_BAPI_PR_###`  
+   e. Create Factory Class: Check the check box and choose a name for the factory class, e.g. `ZCL_F_WRAP_BAPI_PR_###`   
 
    Options:
 
