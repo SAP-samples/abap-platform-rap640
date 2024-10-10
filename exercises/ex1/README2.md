@@ -97,7 +97,7 @@ Also, in case of wrapper classes this has the advantage that in case the wrapper
 1. To create the interface, the class and the factory class for your BAPI start transaction ACO_PROXY.
 
     <!-- ![Start ACO_PROXY](images/start_aco_proxy_2.png) -->
-    <img alt="Start ACO_PROXY" src="images/start_aco_proxy_2.png" width="70%"> 
+    <img alt="Start ACO_PROXY" src="images/start_aco_proxy_2.png" width="100%"> 
 
 2. Enter the following values
 
