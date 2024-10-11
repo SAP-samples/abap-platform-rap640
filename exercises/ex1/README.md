@@ -14,7 +14,7 @@ In a later exercise you will then create a Shopping Cart RAP business object for
 
 
 ## You will learn
-- How to create a wrapper interface and implement a wrapper class for the `BAPI_PR_CREATE`.
+- How to generate a wrapper interface, a wrapper class and a factory class for the BAPI `BAPI_PR_CREATE`.
 - How to release the wrapper for consumption in tier 1.
 
 > **Reminder:**   
