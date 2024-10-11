@@ -122,16 +122,17 @@ This approach has the advantage of a clear control of when and where an instance
 
    Transaction **ACO_PROXY** offers you to un-select optional values that shall not be part of the public interface.
 
-   Only select the following optional parameters of the 'BAPI_PR_CREATE'.
-
-   -  NUMBER  
+   Only leave the following optional parameters of the 'BAPI_PR_CREATE' selected
+   
+   - NUMBER  
    - PRHEADEREXP  
    - PRHEADER  
    - PRHEADERX  
    - TESTRUN  
    - PRITEMX  
    - RETURN  
-   
+
+   and un-select all other optional parameters.   
 
    <img alt="Select optional parameters 1" src="images/rap640_parameter_010.png" width="70%">
 
@@ -148,27 +149,25 @@ The wrapper you just created is released for consumption in tier 1. You can test
 <details>
   <summary>🔵 Click to expand</summary>  
 
-In ADT, open your SAP S/4HANA system project folder, navigate to the structure package **`ZTIER1`**, right click on it and select **New** > **ABAP Package** and input the Name **`Z_PURCHASE_REQ_TEST_###`** and a Description:
+1. In ADT, open your SAP S/4HANA system project folder, navigate to the structure package **`ZTIER1`**, right click on it and select **New** > **ABAP Package** and input the Name **`Z_PURCHASE_REQ_TEST_###`** and a Description:
 
 <!-- ![Create test package](images/create_test_package.png) -->
 <img alt="Create test package" src="images/create_test_package.png" width="70%">        
 
-Click on **Next** and then **Next** again. Select a suitable transport request (or create a new one if needed) and then click on **Finish**. Now you can create the class for the console application. Right click on the newly created package and select **New** > **ABAP Class** and input the Name `ZCL_BAPI_WRAP_TEST_###` and a Description:
+2. Click on **Next** and then **Next** again. Select a suitable transport request (or create a new one if needed) and then click on **Finish**. Now you can create the class for the console application. Right click on the newly created package and select **New** > **ABAP Class** and input the Name `ZCL_BAPI_WRAP_TEST_###` and a Description:
 
 <!-- ![Create test class](images/create_test_class.png) -->
 <img alt="Create test class" src="images/create_test_class.png" width="70%">
 
-Click on **Next**, select a suitable transport request (or create a new one if needed) and then click on **Finish**.
+3. Click on **Next**, select a suitable transport request (or create a new one if needed) and then click on **Finish**.
 
-You can check that the newly created class is a tier 1 class by checking that the **ABAP Language Version** is `ABAP Language for Cloud Development` in the **Properties** > **General** tab:
+4. You can check that the newly created class is a tier 1 class by checking that the **ABAP Language Version** is `ABAP Language for Cloud Development` in the **Properties** > **General** tab:
 
 <!-- ![Console application language](images/console_application_language.png) -->
 <img alt="Console application language" src="images/console_application_language.png" width="70%">
 
-Implement the newly created class as shown below:
-
-The class calls the wrapper factory class and, given some input parameter values like the delivery date and the item price, creates a purchase requisition for that specific item and prints the information to the console.
-        
+5. Implement the newly created class as shown below. The class calls the wrapper factory class and, given some input parameter values like the delivery date and the item price, creates a purchase requisition for that specific item and prints the information to the console.   
+         
  <details>
   <summary>🟡📄 Click to expand and view or copy the source code!</summary>
 
@@ -264,11 +263,14 @@ METHOD if_oo_adt_classrun~main.
 
  </details>   
 
-Save it.
+6. Save and activate your changes.   
 
-Now run this class via F9.
+7. Now run this class  by pressing F9.   
 
-The class calls the wrapper factory class and, given some input parameter values like the delivery date and the item price, creates a purchase requisition for that specific item and prints the information to the console. 
+8. You shall see an output as follows:
+
+   <img alt="Console output test class" src="images/console_output_test_class.png" width="70%">   
+   
 
 
 ## Step 8: Run ATC checks and request exemptions \[OPTIONAL\]
