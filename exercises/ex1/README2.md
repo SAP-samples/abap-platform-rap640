@@ -103,20 +103,17 @@ This approach has the advantage of a clear control of when and where an instance
       - Here you can select one or more function modules that will be wrapped by one single class. Please enter here only `BAPI_PR_CREATE`.  
         
    **B. Specify repository object names**    
-      - Name of a proxy class: Enter a name for the wrapper class, e.g. `ZCL_WRAP_BAPI_PR_###`.   
-      - Package: Select `ZTIER2_###`.    
-      - Create Interface: Check the check box and choose a name for the interface, e.g. `ZIF_WRAP_BAPI_PR_###`  
-      - Create Factory Class: Check the check box and choose a name for the factory class, e.g. `ZCL_F_WRAP_BAPI_PR_###`   
+      - **Name of a proxy class**: Enter a name for the wrapper class, e.g. `ZCL_WRAP_BAPI_PR_###`.   
+      - **Package**: Select `ZTIER2_###`.    
+      - **Create Interface**: Check the check box and choose a name for the interface, e.g. `ZIF_WRAP_BAPI_PR_###`  
+      - **Create Factory Class**: Check the check box and choose a name for the factory class, e.g. `ZCL_F_WRAP_BAPI_PR_###`   
 
    **C. Options**   
-      - Choose the radio-button Class-Based Exceptions   
-      - Check the check box Do not create Shadows of C1 Released Types   
-      - Check the check box C1 Release   
-      - Check the check box Create Private Methods   
-
-
-
-
+      - Choose the radio-button **Class-Based Exceptions**       
+      - Check the check box **Do not create Shadows of C1 Released Types**       
+      - Check the check box **C1 Release**       
+      - Check the check box **Create Private Methods**          
+      
 
 
 ## Step 4: Test non-released wrapper with console application in tier 1
