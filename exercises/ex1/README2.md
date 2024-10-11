@@ -116,10 +116,28 @@ This approach has the advantage of a clear control of when and where an instance
 
   and press F3 to continue.
 
+3. Press the green check mark or **F8** to continue
+   
+4. Select optional values
 
-3. Unselect optional values
+   Transaction **ACO_PROXY** offers you to un-select optional values that shall not be part of the public interface.
 
-   ACO_PROXY offers you to un-select optional values that shall not be part of the public interface.
+   Only select the following optional parameters of the 'BAPI_PR_CREATE'.
+
+   -  NUMBER  
+   - PRHEADEREXP  
+   - PRHEADER  
+   - PRHEADERX  
+   - TESTRUN  
+   - PRITEMX  
+   - RETURN  
+   
+
+   <img alt="Select optional parameters 1" src="images/rap640_parameter_010.png" width="70%">
+
+   <img alt="Select optional parameters 2" src="images/rap640_parameter_020.png" width="70%">
+
+   <img alt="Select optional parameters 3" src="images/rap640_parameter_030.png" width="70%">
 
 </details>   
 
