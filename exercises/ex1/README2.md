@@ -121,7 +121,7 @@ This approach has the advantage of a clear control of when and where an instance
 
    ACO_PROXY offers you to un-select optional values that shall not be part of the public interface.
 
-   
+</details>   
 
 ## Step 4: Test wrapper with console application in tier 1
 
@@ -250,56 +250,8 @@ Save it.
 
 Now run this class via F9.
 
+The class calls the wrapper factory class and, given some input parameter values like the delivery date and the item price, creates a purchase requisition for that specific item and prints the information to the console. 
 
-
-The class calls the wrapper factory class and, given some input parameter values like the delivery date and the item price, creates a purchase requisition for that specific item and prints the information to the console. Since the wrapper is not released for consumption in tier 1, when you try to activate the class you will get an error message.
-
-<!-- ![unreleased wrapper error](images/unreleased_wrapper_console_application.png) -->
-<img alt="unreleased wrapper error" src="images/unreleased_wrapper_console_application.png" width="70%">
-
->The class calls the method `create` of the BAPI, which will create an instance of the Shopping Cart Business Object and the relative purchase requisition. In the context of this tutorial group, this is of course done for educational purposes, to show the creation of a purchase requsition and test the wrapper via console application. If for any reason you do not wish to create an instance of the Shopping Cart Business Object at this point, you can instead make use of the BAPI method `check`.
-
-</details>
-
-## Step 7: Release the wrapper interface and factory class
-
-Now you need to release the wrapper interface and wrapper factory class for consumption in tier 1. To do this, you need to add a Release Contract (C1) to both objects for use system-internally and use in Cloud Development.
-
-<details>
-  <summary>🔵 Click to expand</summary>
-
-In your Project Explorer open the ABAP Interface you created. In the **Properties** tab click on the **API State** tab and then click on the green plus icon next to the **Use System-Internally (Contract C1)**.
-
-<!-- ![Release interface](images/release_interface.png) -->
-<img alt="Release interface" src="images/release_interface.png" width="70%">
-
-Make sure the **Release State** is set to **Released** and check the option **Use in Cloud Development**:
-
-<!-- ![Release interface - 2](images/release_interface_2.png) -->
-<img alt="Release interface - 2" src="images/release_interface_2.png" width="70%">
-
-Click on **Next**. The changes will be validated. No issues should arise:
-
-<!-- ![Release interface - 3](images/release_interface_3.png) -->
-<img alt="Release interface - 3" src="images/release_interface_3.png" width="70%">
-
-Click on **Next** and then click on **Finish**.
-
-The API State tab will now show the new Release State:
-
-<!--![Release interface - 4](images/release_interface_4.png) -->
-<img alt="Release interface - 4" src="images/release_interface_4.png" width="70%">
-
-Repeat the same steps to release the factory class you created:
-
->When releasing this class, you will see an option in the wizard called 'Enable Configuration of Authorization Default Values' which allows you to define authorization default values while releasing the class. In the scope of this tutorial, we will not utilize this option, since at the moment we have no information on the needed authorization default values for `BAPI_PR_CREATE`. The handling of authorizations will be handled in a later tutorial of this series.
-
-<!-- ![Release factory class](images/release_factory_class.png) -->
-<img alt="Release factory class" src="images/release_factory_class.png" width="70%">
-
->You will not release the wrapper class.
-
-</details>
 
 ## Step 8: Run ATC checks and request exemptions \[OPTIONAL\]
 
@@ -338,21 +290,7 @@ Proceed in the same way to request an exemption for the whole wrapper class.
 
 </details>
 
-## Step 9: Test released wrapper with console application in tier 1
 
-You can test that the wrapper was correctly released for consumption in tier 1 by running the console application class `ZCL_BAPI_WRAP_TEST_###`. First, the errors in the class should have disappeared now that you released the wrapper, so you can save and activate the class. 
-
-<details>
-  <summary>🔵 Click to expand</summary>
-  
-Now you can run it: right click on the class and select **Run As** > **ABAP Application (Console)**. The class should now run without errors and the purchase requisition will be created and displayed in the console:
-
-![Purchase requisition creation test](images/purchase_requisition_test.png)
-<img alt="Purchase requisition creation test" src="images/purchase_requisition_test.png" width="70%">
-
->The console application is a quick and simple way to check if the BAPI was correctly wrapped and released and if the wrapper works as intended. In the next tutorials of this group you will create a Shopping Cart Business Object and you will integrate the wrapper to create purchase requisitions for the shopping cart entries.
-
-</details>
 
 <!--
 ## Step 10: Check the results in the SAP standard `Purchase Requisition - Professional` App
