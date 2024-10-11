@@ -271,7 +271,8 @@ METHOD if_oo_adt_classrun~main.
 
    <img alt="Console output test class" src="images/console_output_test_class.png" width="70%">   
    
-
+ </details>
+ 
 <!--    
 
 ## Step 8: Run ATC checks and request exemptions \[OPTIONAL\]
