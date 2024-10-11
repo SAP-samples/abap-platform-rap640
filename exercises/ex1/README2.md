@@ -113,17 +113,24 @@ This approach has the advantage of a clear control of when and where an instance
       - Check the check box **Do not create Shadows of C1 Released Types**       
       - Check the check box **C1 Release**       
       - Check the check box **Create Private Methods**          
-      
+
+  and press F3 to continue.
 
 
-## Step 4: Test non-released wrapper with console application in tier 1
+3. Unselect optional values
+
+   ACO_PROXY offers you to un-select optional values that shall not be part of the public interface.
+
+   
+
+## Step 4: Test wrapper with console application in tier 1
 
 The wrapper you just created is released for consumption in tier 1. You can test this by creating a console application in tier 1 to call the wrapper. We suggest to create a dedicated package under in tier 1 by using `ZTIER1` as the super-package of your package in your SAP S/4HANA System for this test.
 
 <details>
   <summary>🔵 Click to expand</summary>  
 
-In ADT, open your SAP S/4HANA system project folder, navigate to the `ZLOCAL` structure package, right click on it and select **New** > **ABAP Package** and input the Name `Z_PURCHASE_REQ_TEST_###` and a Description:
+In ADT, open your SAP S/4HANA system project folder, navigate to the structure package **`ZTIER1`**, right click on it and select **New** > **ABAP Package** and input the Name **`Z_PURCHASE_REQ_TEST_###`** and a Description:
 
 <!-- ![Create test package](images/create_test_package.png) -->
 <img alt="Create test package" src="images/create_test_package.png" width="70%">        
@@ -140,98 +147,41 @@ You can check that the newly created class is a tier 1 class by checking that th
 <!-- ![Console application language](images/console_application_language.png) -->
 <img alt="Console application language" src="images/console_application_language.png" width="70%">
 
-Implement the newly created class as follows:
+Implement the newly created class as shown below:
+
+The class calls the wrapper factory class and, given some input parameter values like the delivery date and the item price, creates a purchase requisition for that specific item and prints the information to the console.
         
  <details>
   <summary>🟡📄 Click to expand and view or copy the source code!</summary>
 
 ```ABAP
+
 CLASS zcl_bapi_wrap_test_### DEFINITION
   PUBLIC
   FINAL
   CREATE PUBLIC .
 
   PUBLIC SECTION.
-    INTERFACES if_oo_adt_classrun .
-
+  INTERFACES if_oo_adt_classrun .
   PROTECTED SECTION.
   PRIVATE SECTION.
 ENDCLASS.
+
 
 
 CLASS zcl_bapi_wrap_test_### IMPLEMENTATION.
-  METHOD if_oo_adt_classrun~main.
-
-DATA pr_returns TYPE bapirettab.
-DATA(purchase_requisition) = zcl_bapi_wrap_factory_###=>create_instance( )->create(
-          EXPORTING
-            pr_header        = VALUE zif_wrap_bapi_pr_create_###=>pr_header( pr_type = 'NB' )
-            pr_items         = VALUE zif_wrap_bapi_pr_create_###=>pr_items( (
-              preq_item  = '00010'
-              plant      = '1010'
-              acctasscat = 'U'
-              currency   = 'EUR'
-              deliv_date = cl_abap_context_info=>get_system_date(  ) + 14   "format: yyyy-mm-dd (at least 10 days)
-              material   = 'ZPRINTER01'
-              matl_group = 'A001'
-              preq_price = '100.00'
-              quantity   = '1'
-              unit       = 'ST'
-              pur_group = '001'
-              purch_org = '1010'
-              short_text = 'ZPRINTER01'
-            ) )
-
-          IMPORTING
-            pr_returns      = pr_returns
-        ).
-
-  out->write( pr_returns ).
-
-  ENDMETHOD.
-
-ENDCLASS.
-```
-
- </details>   
-
-Save it.
-
-
-## new wrapper test class
-
-<details>
-
-```ABAP
-CLASS zcl_bapi_wrap_test_abcd_err2 DEFINITION
-  PUBLIC
-  FINAL
-  CREATE PUBLIC .
-
-  PUBLIC SECTION.
-
-    INTERFACES if_oo_adt_classrun .
-  PROTECTED SECTION.
-  PRIVATE SECTION.
-ENDCLASS.
-
-
-
-CLASS zcl_bapi_wrap_test_abcd_err2 IMPLEMENTATION.
-
-
-  METHOD if_oo_adt_classrun~main.
+METHOD if_oo_adt_classrun~main.
 
     DATA pr_returns TYPE bapirettab.
 
-    DATA prheader TYPE zif_wrap_bapi_pr_abcd4=>bapimereqheader .
-    DATA prheaderx TYPE zif_wrap_bapi_pr_abcd4=>bapimereqheaderx .
-    DATA number  TYPE zif_wrap_bapi_pr_abcd4=>banfn  .
-    DATA pritem  TYPE zif_wrap_bapi_pr_abcd4=>_bapimereqitemimp .
-    DATA pritemx  TYPE zif_wrap_bapi_pr_abcd4=>_bapimereqitemx  .
-    DATA prheaderexp  TYPE zif_wrap_bapi_pr_abcd4=>bapimereqheader .
+    DATA prheader TYPE zif_wrap_bapi_pr_###=>bapimereqheader .
+    DATA prheaderx TYPE zif_wrap_bapi_pr_###=>bapimereqheaderx .
+    DATA number  TYPE zif_wrap_bapi_pr_###=>banfn  .
+    DATA pritem  TYPE zif_wrap_bapi_pr_###=>_bapimereqitemimp .
+    DATA pritemx  TYPE zif_wrap_bapi_pr_###=>_bapimereqitemx  .
+    DATA prheaderexp  TYPE zif_wrap_bapi_pr_###=>bapimereqheader .
 
-    DATA(myclass) = zcl_f_wrap_bapi_pr_abcd4=>create_instance( ).
+    DATA(myclass) = zcl_f_wrap_bapi_pr_###=>create_instance( ).
 
     prheader = VALUE #( pr_type = 'NB' ).
     prheaderx = VALUE #( pr_type = 'X' ).
@@ -269,38 +219,19 @@ CLASS zcl_bapi_wrap_test_abcd_err2 IMPLEMENTATION.
                     ) ).
 
     TRY.
-    
-*        myclass->bapi_pr_create(
-*          EXPORTING
-*            prheader = prheader
-*            prheaderx = prheaderx
-**            _dest_  = 'NONE'
-*          IMPORTING
-*            number   = number
-*            prheaderexp = prheaderexp
-*          CHANGING
-*            pritem = pritem
-*            pritemx = pritemx
-*     )
-*        .
-
-
-
-
-        CALL FUNCTION 'BAPI_PR_CREATE' " DESTINATION space
+        myclass->bapi_pr_create(
           EXPORTING
-            prheader    = prheader
-            prheaderx   = prheaderx
-*           testrun     = testrun
+            prheader = prheader
+            prheaderx = prheaderx
+            testrun = abap_false
           IMPORTING
-            number      = number
+            number   = number
             prheaderexp = prheaderexp
-          TABLES
-            pritem      = pritem
-            pritemx     = pritemx
-            return      = pr_returns
-          .
-
+          CHANGING
+            pritem = pritem
+            pritemx = pritemx
+     )
+        .
       CATCH cx_aco_application_exception cx_aco_communication_failure cx_aco_system_failure INTO DATA(call_wrapper_exception).
         "handle exception
         out->write( |Exception occured: { call_wrapper_exception->get_text(  ) }| ).
@@ -309,15 +240,17 @@ CLASS zcl_bapi_wrap_test_abcd_err2 IMPLEMENTATION.
     LOOP AT pr_returns INTO DATA(bapiret2_line).
       out->write( |bapi_return: { bapiret2_line-message } | ).
     ENDLOOP.
-
-
   ENDMETHOD.
-ENDCLASS.
 
 ```
 
-  
-</details>
+ </details>   
+
+Save it.
+
+Now run this class via F9.
+
+
 
 The class calls the wrapper factory class and, given some input parameter values like the delivery date and the item price, creates a purchase requisition for that specific item and prints the information to the console. Since the wrapper is not released for consumption in tier 1, when you try to activate the class you will get an error message.
 
