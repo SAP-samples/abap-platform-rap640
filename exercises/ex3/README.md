@@ -30,14 +30,17 @@ Now that you've created your Shopping Cart RAP business object and a UI service 
   
   1. Open your behavior definition **`ZR_SHOPCARTTP_###`** to enhance it. Add the following statements to your behavior definition:
 
-     ```
-    update (features: instance);    
-    ```   
+      ```   
+      update (features: instance);    
+      ```   
 
+     and    
     
-    ``` 
-    draft action(features: instance) Edit;   
-    ```
+      ``` 
+      draft action(features: instance) Edit;   
+      ```
+
+      
 
 <!--![projection](images/updatenew.png)-->
 <img alt="projection" src="images/updatenew.png" width="50%">
