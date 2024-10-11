@@ -285,24 +285,24 @@ You will now need to run ATC checks on the objects you created and request exemp
 
 To run the ATC checks right click on the `$Z_PURCHASE_REQ_TIER2_###` package and select **Run As** > **ABAP Test Cockpit With...** and select your ATC check variant. Confirm by clicking on **OK**.   
 
-<!-- ![ATC checks - select variant](images/select_atc_check_variant.png) -->
+
 <img alt="ATC checks - interface error" src="images/select_atc_check_variant.png" width="70%">
 
 The result of the ATC check will appear in the ATC Problems tab. As expected, you will get ATC check errors because you are using an non-released API:
 
-<!-- ![ATC checks - interface error](images/interface_atc_checks.png) -->
+
 <img alt="ATC checks - interface error" src="images/interface_atc_checks.png" width="70%">
 
 >Note that there are ATC checks errors for both the interface and the wrapper class. You will need to request an exemption for each of the two objects.
 
 Right click on any one of the interface related errors in the ATC Problems tab and choose **Request Exemption**. You can then request an exemption for the whole interface by selecting `Interface (ABAP Objects)` under the `Apply exemption To` tab:
 
-<!-- ![Request exemptions for the whole interface](images/interface_request_exemption.png) -->
+
 <img alt="Request exemptions for the whole interface" src="images/interface_request_exemption.png" width="70%">
 
 Click **Next**, choose a valid approver, a reason to request the exemptions and input a justification for it. Then click on **Finish**.
 
-<!-- ![Approver and justification](images/approver_and_justification.png) -->
+
 <img alt="Approver and justification" src="images/approver_and_justification.png" width="70%">
 
 Proceed in the same way to request an exemption for the whole wrapper class.
