@@ -272,7 +272,7 @@ METHOD if_oo_adt_classrun~main.
    <img alt="Console output test class" src="images/console_output_test_class.png" width="70%">   
    
 
-
+<!--
 ## Step 8: Run ATC checks and request exemptions \[OPTIONAL\]
 
 > **Note**: This exercise is optional. 
@@ -310,7 +310,7 @@ Proceed in the same way to request an exemption for the whole wrapper class.
 
 </details>
 
-
+-->   
 
 <!--
 ## Step 10: Check the results in the SAP standard `Purchase Requisition - Professional` App
