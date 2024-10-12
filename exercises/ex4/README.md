@@ -292,18 +292,13 @@ Save and activate it. Position the cursor on the `with unmanaged save` statement
 ```ABAP
   METHOD save_modified.
 
-    DATA : lt_shopping_cart_as        TYPE STANDARD TABLE OF zashopcart_###,
-          ls_shopping_cart_as        TYPE                   zashopcart_###.
     IF create-shoppingcart IS NOT INITIAL.
-      lt_shopping_cart_as = CORRESPONDING #( create-shoppingcart MAPPING FROM ENTITY ).
-      INSERT zashopcart_### FROM TABLE @lt_shopping_cart_as.
+      INSERT zashopcart_### FROM TABLE @create-shoppingcart  MAPPING FROM ENTITY .
     ENDIF.
+
     IF update IS NOT INITIAL.
-      CLEAR lt_shopping_cart_as.
-      lt_shopping_cart_as = CORRESPONDING #( update-shoppingcart MAPPING FROM ENTITY ).
-      LOOP AT update-shoppingcart  INTO DATA(shoppingcart) WHERE OrderUUID IS NOT INITIAL.
-        MODIFY zashopcart_### FROM TABLE @lt_shopping_cart_as.
-      ENDLOOP.
+      UPDATE zashopcart_### FROM TABLE @update-shoppingcart
+         INDICATORS SET STRUCTURE %control MAPPING FROM ENTITY.
     ENDIF.
 
     LOOP AT delete-shoppingcart INTO DATA(shoppingcart_delete) WHERE OrderUUID IS NOT INITIAL.
@@ -376,7 +371,8 @@ The `save_modified` method implementation should now look as follows:
 
 ```ABAP
   METHOD save_modified.
-    DATA : lt_shopping_cart_as        TYPE STANDARD TABLE OF zashopcart_###,
+
+ DATA : lt_shopping_cart_as        TYPE STANDARD TABLE OF zashopcart_###,
            ls_shoppingcart_as        TYPE                   zashopcart_###.
     IF create-shoppingcart IS NOT INITIAL.
       lt_shopping_cart_as = CORRESPONDING #( create-shoppingcart MAPPING FROM ENTITY ).
