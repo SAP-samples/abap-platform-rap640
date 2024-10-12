@@ -88,7 +88,7 @@ Now that you've created your Shopping Cart RAP business object and a UI service 
       LocalLastChangedAt,
       PurchaseRequisition,
       PrCreationDate,
-      DeliveryDate;
+      OverallStatus;
 
       field ( numbering : managed )
       OrderUUID;
