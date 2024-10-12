@@ -161,6 +161,11 @@ Now that you've created your Shopping Cart RAP business object and a UI service 
 
 ## Step 2: Activate use of side effects in the behavior projection
 
+In this step will activate the use of side effects so that the field **TotalPrice** will be updated immediately once the price or the number of ordered items has been changed.   
+
+<details>
+  <summary>🔵 Click to expand</summary>
+
   1. Open your behavior definition **`ZC_SHOPCARTTP_###`** to enhance it. Add the following statements to your behavior projection:
 
       ```   
@@ -198,7 +203,7 @@ Now that you've created your Shopping Cart RAP business object and a UI service 
 
    ```
 </details> 
-
+</details>
 ## Step 3: Create data definition for products
 
 This data definition is needed to create a value help for products.
