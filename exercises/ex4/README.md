@@ -326,42 +326,82 @@ As a final step, you now need to modify the `save_modified` method of the saver 
 Open the `lsc_zr_shopcarttp_###` class of the behavior implementation and navigate to the `save_modified` method. Add the following code snippet:
 
 ```ABAP
+
+DATA : prheader    TYPE zif_wrap_bapi_pr_000=>bapimereqheader,
+           prheaderx   TYPE zif_wrap_bapi_pr_000=>bapimereqheaderx,
+           number      TYPE zif_wrap_bapi_pr_000=>banfn,
+           pritem      TYPE zif_wrap_bapi_pr_000=>_bapimereqitemimp,
+           pritemx     TYPE zif_wrap_bapi_pr_000=>_bapimereqitemx,
+           prheaderexp TYPE zif_wrap_bapi_pr_000=>bapimereqheader,
+           pr_return   TYPE zif_wrap_bapi_pr_000=>_bapiret2.
+
+    prheader = VALUE #( pr_type = 'NB' ).
+    prheaderx = VALUE #( pr_type = 'X' ).
+
     IF update IS NOT INITIAL.
       LOOP AT update-shoppingcart INTO DATA(OnlineOrder) WHERE %control-OverallStatus = if_abap_behv=>mk-on.
-        DATA pr_returns TYPE zif_wrap_bapi_pr_create_###=>pr_returns.
-        DATA(purchase_requisition) = zcl_bapi_wrap_factory_###=>create_instance( )->create(
+
+        pritem           = VALUE #( (
+                              preq_item  = '00010'
+                              plant      = '1010'
+                              acctasscat = 'U'
+                              currency   = OnlineOrder-Currency
+                              deliv_date  = OnlineOrder-DeliveryDate
+                              material    = 'ZPRINTER01'
+                              matl_group  = 'A001'
+                              preq_price  = OnlineOrder-Price
+                              quantity    = OnlineOrder-OrderQuantity
+                              unit        = 'ST'
+                              pur_group   = '001'
+                              purch_org   = '1010'
+                              short_text = OnlineOrder-OrderedItem
+                            ) ).
+
+        pritemx           = VALUE #( (
+                          preq_item  = '00010'
+                          plant      = 'X'
+                          acctasscat = 'X'
+                          currency   = 'X'
+                          deliv_date = 'X'
+                          material   = 'X'
+                          matl_group = 'X'
+                          preq_price = 'X'
+                          quantity   = 'X'
+                          unit       = 'X'
+                          pur_group  = 'X'
+                          purch_org  = 'X'
+                          short_text = 'X'
+                        ) ).
+
+
+        DATA(myclass) = zcl_f_wrap_bapi_pr_000=>create_instance( ).
+
+        myclass->bapi_pr_create(
           EXPORTING
-            pr_header        = VALUE zif_wrap_bapi_pr_create_###=>pr_header( pr_type = 'NB' )
-            pr_items         = VALUE zif_wrap_bapi_pr_create_###=>pr_items( (
-              preq_item  = '00010'
-              plant      = '1010'
-              acctasscat = 'U'
-              currency   = OnlineOrder-Currency
-              deliv_date = OnlineOrder-DeliveryDate
-              material   = 'ZPRINTER01'
-              matl_group = 'A001'
-              preq_price = OnlineOrder-Price
-              quantity   = OnlineOrder-OrderQuantity
-              unit       = 'ST'
-              pur_group = '001'
-              purch_org = '1010'
-              short_text = OnlineOrder-OrderedItem
-            ) )
-
+            prheader    = prheader
+            prheaderx   = prheaderx
+            testrun     = abap_false
           IMPORTING
-            pr_returns   = pr_returns
-        ).
+            number      = number
+            prheaderexp = prheaderexp
+          CHANGING
+            pritem      = pritem
+            pritemx     = pritemx
+            return      = pr_return
+          ).
 
-        ASSERT NOT line_exists( pr_returns[ type = 'E' ] ).
+        ASSERT NOT line_exists( pr_return[ type = 'E' ] ).
 
         DATA(creation_date) = cl_abap_context_info=>get_system_date(  ).
 
-        UPDATE zashopcart_###
-        SET purchase_requisition = @purchase_requisition,
+        UPDATE zashopcart_000
+        SET purchase_requisition = @number,
             pr_creation_date = @creation_date
         WHERE order_uuid = @OnlineOrder-OrderUUID.
+
       ENDLOOP.
     ENDIF.
+
 ```
 
 The `save_modified` method implementation should now look as follows:
@@ -372,54 +412,87 @@ The `save_modified` method implementation should now look as follows:
 ```ABAP
   METHOD save_modified.
 
- DATA : lt_shopping_cart_as        TYPE STANDARD TABLE OF zashopcart_###,
-           ls_shoppingcart_as        TYPE                   zashopcart_###.
     IF create-shoppingcart IS NOT INITIAL.
-      lt_shopping_cart_as = CORRESPONDING #( create-shoppingcart MAPPING FROM ENTITY ).
-      INSERT zashopcart_### FROM TABLE @lt_shopping_cart_as.
+      INSERT zashopcart_### FROM TABLE @create-shoppingcart  MAPPING FROM ENTITY .
     ENDIF.
+
     IF update IS NOT INITIAL.
-      CLEAR lt_shopping_cart_as.
-      lt_shopping_cart_as = CORRESPONDING #( update-shoppingcart MAPPING FROM ENTITY ).
-      LOOP AT update-shoppingcart  INTO DATA(shoppingcart) WHERE OrderUUID IS NOT INITIAL.
-        MODIFY zashopcart_### FROM TABLE @lt_shopping_cart_as.
-      ENDLOOP.
+      UPDATE zashopcart_### FROM TABLE @update-shoppingcart
+         INDICATORS SET STRUCTURE %control MAPPING FROM ENTITY.
     ENDIF.
+
+    DATA : prheader    TYPE zif_wrap_bapi_pr_###=>bapimereqheader,
+           prheaderx   TYPE zif_wrap_bapi_pr_###=>bapimereqheaderx,
+           number      TYPE zif_wrap_bapi_pr_###=>banfn,
+           pritem      TYPE zif_wrap_bapi_pr_###=>_bapimereqitemimp,
+           pritemx     TYPE zif_wrap_bapi_pr_###=>_bapimereqitemx,
+           prheaderexp TYPE zif_wrap_bapi_pr_###=>bapimereqheader,
+           pr_return   TYPE zif_wrap_bapi_pr_###=>_bapiret2.
+
+    prheader = VALUE #( pr_type = 'NB' ).
+    prheaderx = VALUE #( pr_type = 'X' ).
 
     IF update IS NOT INITIAL.
       LOOP AT update-shoppingcart INTO DATA(OnlineOrder) WHERE %control-OverallStatus = if_abap_behv=>mk-on.
-        DATA pr_returns TYPE zif_wrap_bapi_pr_create_###=>pr_returns.
-        DATA(purchase_requisition) = zcl_bapi_wrap_factory_###=>create_instance( )->create(
+
+        pritem           = VALUE #( (
+                              preq_item  = '00010'
+                              plant      = '1010'
+                              acctasscat = 'U'
+                              currency   = OnlineOrder-Currency
+                              deliv_date  = OnlineOrder-DeliveryDate
+                              material    = 'ZPRINTER01'
+                              matl_group  = 'A001'
+                              preq_price  = OnlineOrder-Price
+                              quantity    = OnlineOrder-OrderQuantity
+                              unit        = 'ST'
+                              pur_group   = '001'
+                              purch_org   = '1010'
+                              short_text = OnlineOrder-OrderedItem
+                            ) ).
+
+        pritemx           = VALUE #( (
+                          preq_item  = '00010'
+                          plant      = 'X'
+                          acctasscat = 'X'
+                          currency   = 'X'
+                          deliv_date = 'X'
+                          material   = 'X'
+                          matl_group = 'X'
+                          preq_price = 'X'
+                          quantity   = 'X'
+                          unit       = 'X'
+                          pur_group  = 'X'
+                          purch_org  = 'X'
+                          short_text = 'X'
+                        ) ).
+
+
+        DATA(myclass) = zcl_f_wrap_bapi_pr_###=>create_instance( ).
+
+        myclass->bapi_pr_create(
           EXPORTING
-            pr_header        = VALUE zif_wrap_bapi_pr_create_###=>pr_header( pr_type = 'NB' )
-            pr_items         = VALUE zif_wrap_bapi_pr_create_###=>pr_items( (
-              preq_item  = '00010'
-              plant      = '1010'
-              acctasscat = 'U'
-              currency   = OnlineOrder-Currency
-              deliv_date = OnlineOrder-DeliveryDate
-              material   = 'ZPRINTER01'
-              matl_group = 'A001'
-              preq_price = OnlineOrder-Price
-              quantity   = OnlineOrder-OrderQuantity
-              unit       = 'ST'
-              pur_group = '001'
-              purch_org = '1010'
-              short_text = OnlineOrder-OrderedItem
-            ) )
-
+            prheader    = prheader
+            prheaderx   = prheaderx
+            testrun     = abap_false
           IMPORTING
-            pr_returns    = pr_returns
-        ).
+            number      = number
+            prheaderexp = prheaderexp
+          CHANGING
+            pritem      = pritem
+            pritemx     = pritemx
+            return      = pr_return
+          ).
 
-        ASSERT NOT line_exists( pr_returns[ type = 'E' ] ).
+        ASSERT NOT line_exists( pr_return[ type = 'E' ] ).
 
         DATA(creation_date) = cl_abap_context_info=>get_system_date(  ).
 
         UPDATE zashopcart_###
-        SET purchase_requisition = @purchase_requisition,
+        SET purchase_requisition = @number,
             pr_creation_date = @creation_date
         WHERE order_uuid = @OnlineOrder-OrderUUID.
+
       ENDLOOP.
     ENDIF.
 
@@ -434,7 +507,7 @@ The `save_modified` method implementation should now look as follows:
 Save and activate it.
 
 The logic is now fully implemented: when the new action is used, shopping cart orders are marked (similar to a checkbox) using the `OverallStatus` field, they are subsequently validated for purchase requisition creation and then used to create the actual purchase requisition in the unmanaged save implementation in the `save_modified` method.
-
+  
 > **Brief explanantion**:      
 > The BAPI wrapper call is implemented in the unmanaged save implementation `save_modified`, and not directly in the action implementation. The reason is for transactional consistency: during the BAPI call a `CALL FUNCTION IN UPDATE TASK` happens, and the update task is not allowed in the interaction phase or early-save phase and leads to a runtime error.
 >
