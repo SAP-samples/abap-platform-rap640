@@ -61,8 +61,22 @@ Now that you've created your Shopping Cart RAP business object and a UI service 
    
 <!--![projection](images/bdef5xx.png) -->
 <img alt="projection" src="images/bdef5xx.png" width="70%">
+
+  3. Add side effects to update the field **TotalPrice**.   
+
+     Add this code-snippet before the `mapping` statement.   
+
+      ``` 
+      //  side effects
+      side effects
+      {
+        field Price affects field TotalPrice;
+        field OrderQuantity affects field TotalPrice;
+      }   
+      ```
+
  
-  3. Check your behavior definition:
+  4. Check your behavior definition:
 
 <details>
   <summary>🟡📄 Click to expand and view or copy the source code!</summary>
@@ -107,6 +121,15 @@ Now that you've created your Shopping Cart RAP business object and a UI service 
       validation checkOrderedQuantity on save { create; field OrderQuantity; }
       validation checkDeliveryDate on save { create; field DeliveryDate; }
 
+
+      //  side effects
+      side effects
+      {
+        field Price affects field TotalPrice;
+        field OrderQuantity affects field TotalPrice;
+      }   
+
+ 
       mapping for ZASHOPCART_### 
       {
         OrderUUID = order_uuid;
@@ -136,7 +159,47 @@ Now that you've created your Shopping Cart RAP business object and a UI service 
 
 </details>
 
-## Step 2: Create data definition for products
+## Step 2: Activate use of side effects in the behavior projection
+
+  1. Open your behavior definition **`ZC_SHOPCARTTP_###`** to enhance it. Add the following statements to your behavior projection:
+
+      ```   
+      use side effects;      
+      ```   
+
+  2. Check your behavior projection:
+
+<details>
+  <summary>🟡📄 Click to expand and view or copy the source code!</summary>
+  
+   ```
+   projection;
+   strict ( 2 );
+   use draft;
+   use side effects;
+
+   define behavior for ZC_SHOPCARTTP_### alias ShoppingCart
+   use etag
+
+
+
+   {
+     use create;
+     use update;
+     use delete;
+
+     use action Edit;
+     use action Activate;
+     use action Discard;
+     use action Resume;
+     use action Prepare;
+ 
+   }
+
+   ```
+</details> 
+
+## Step 3: Create data definition for products
 
 This data definition is needed to create a value help for products.
 
@@ -221,7 +284,7 @@ This data definition is needed to create a value help for products.
 
 </details>
 
-## Step 3: Enhance metadata extension
+## Step 4: Enhance metadata extension
 
 You will now adjust the UI semantics of your Fiori elements app by enhancing the CDS metadata extension `ZC_SHOPCARTTP_###`.
 
@@ -405,7 +468,7 @@ You will now adjust the UI semantics of your Fiori elements app by enhancing the
 
    </details>
    
-## Step 4: Enhance behavior implementation
+## Step 5: Enhance behavior implementation
 
 Enhance the BO behavior implementation according to the enhancements done in the BO behavior definition.
 
@@ -631,7 +694,7 @@ Enhance the BO behavior implementation according to the enhancements done in the
 
 </details>
 
-## Step 5: Run SAP Fiori elements app preview and create first order
+## Step 6: Run SAP Fiori elements app preview and create first order
 Test the enhance _Shopping Cart_ app.
 
 <details>
