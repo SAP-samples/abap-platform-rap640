@@ -49,12 +49,14 @@ In the **Tools** section you can click on the **Function Builder** and then clic
 
 ## Step 2: Create a development package
 
-You will develop the wrapper in a dedicated package under the structure package `ZTIER2` in your SAP S/4HANA system.
+<!-- You will develop the wrapper in a dedicated package under the structure package `ZTIER2` in your SAP S/4HANA system. -->
+
+You will develop the wrapper in a dedicated package  `TEST_TIER2_###` in your SAP S/4HANA system.  
 
 <details>
   <summary>🔵 Click to expand</summary>
   
-In ADT, open your SAP S/4HANA system project folder, right click on it and select **New** > **ABAP Package** and input the Name `Z_TIER2_###` the superpackage `ZTIER2` and a Description, e.g. `Package Tier2` :
+In ADT, open your SAP S/4HANA system project folder, right click on it and select **New** > **ABAP Package** and input the Name `TEST_TIER2_###` leave the field superpackage empty and enter a Description, e.g. `Package Tier2` :
 
 <!-- ![Create Tier 2 package](images/create_tier2_package.png) -->
 <!--  <img alt="Create Tier 2 package" src="images/create_tier2_package_2.png" width="70%">  -->   
