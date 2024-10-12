@@ -174,36 +174,37 @@ In this step will activate the use of side effects so that the field **TotalPric
 
   2. Check your behavior projection:
 
-<details>
-  <summary>🟡📄 Click to expand and view or copy the source code!</summary>
+   <details>
+     <summary>🟡📄 Click to expand and view or copy the source code!</summary>
   
-   ```
-   projection;
-   strict ( 2 );
-   use draft;
-   use side effects;
+       ```
+       projection;
+       strict ( 2 );
+       use draft;
+       use side effects;
 
-   define behavior for ZC_SHOPCARTTP_### alias ShoppingCart
-   use etag
+       define behavior for ZC_SHOPCARTTP_### alias ShoppingCart
+       use etag
 
 
 
-   {
-     use create;
-     use update;
-     use delete;
+       {
+         use create;
+         use update;
+         use delete;
 
-     use action Edit;
-     use action Activate;
-     use action Discard;
-     use action Resume;
-     use action Prepare;
+         use action Edit;
+         use action Activate;
+         use action Discard;
+         use action Resume;
+         use action Prepare;
  
-   }
+       }
 
-   ```
-</details> 
-</details>
+       ```
+    </details> 
+</details>   
+
 ## Step 3: Create data definition for products
 
 This data definition is needed to create a value help for products.
