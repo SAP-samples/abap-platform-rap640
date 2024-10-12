@@ -174,8 +174,8 @@ In this step will activate the use of side effects so that the field **TotalPric
 
   2. Check your behavior projection:
 
-   <details>
-     <summary>🟡📄 Click to expand and view or copy the source code!</summary>
+    <details>
+      <summary>🟡📄 Click to expand and view or copy the source code!</summary>
   
        ```
        projection;
@@ -202,7 +202,8 @@ In this step will activate the use of side effects so that the field **TotalPric
        }
 
        ```
-    </details> 
+    </details>   
+    
 </details>   
 
 ## Step 3: Create data definition for products
