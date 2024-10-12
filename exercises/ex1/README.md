@@ -63,9 +63,6 @@ Select **Add to favorite packages** for easy access later on. Keep the Package T
 
 Create a new transport request and give it a meaningful name such as `Tier2 development - Group ###` so that it can be more easily identified. Then click on **Finish**. The package will be created.
 
-<!-- ![Create Tier 2 transport](images/create_tier2_package.png) -->
-<img alt="Create Tier 2 package" src="images/create_tier2_package_2.png" width="70%">
-
 </details>  
 
 ## Step 3: Create a wrapper class, interface and factory class
