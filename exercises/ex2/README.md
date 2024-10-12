@@ -186,9 +186,9 @@ You will now use a wizard to generate all repository objects required for your R
 
 </details>
 
-## Step 4: Enhance behavior definition of data model
+## Step 4: Adapt the behavior definition of data model 
 
-The generated code has to be enhanced so that additional fields are made read-only.   
+The generated code has to be adapted so that additional fields are made _read-only_.   
 
  <details>
   <summary>🔵 Click to expand</summary>
@@ -232,7 +232,7 @@ The generated code has to be enhanced so that additional fields are made read-on
        LocalLastChangedAt,
        PurchaseRequisition,
        PrCreationDate,
-       DeliveryDate;
+       OverallStatus;
 
     field ( numbering : managed )
        OrderUUID;
