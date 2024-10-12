@@ -196,10 +196,10 @@ The generated code has to be enhanced so that additional fields are made read-on
   1. Open your behavior definition **`ZR_SHOPCARTTP_###`** to enhance it. Add the following read-only fields to your behavior definition:
 
    ```
-    ,
-    PurchaseRequisition,
-    PrCreationDate,
-    DeliveryDate;
+    ,   
+    PurchaseRequisition,   
+    PrCreationDate,   
+    OverallStatus;   
    ```
    
    <!-- ![projection](images/bdef3x.png) -->
