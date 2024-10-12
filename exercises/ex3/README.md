@@ -23,7 +23,7 @@ Now that you've created your Shopping Cart RAP business object and a UI service 
 
 ## Step 1: Enhance behavior definition of data model
 
-> **Info:** In this tutorial example, a SAP S/4HANA Cloud ABAP environment system was used. The mode therefore is `strict (2)`.
+In this step we will add validations, determinations and side effects.   
 
 <details>
   <summary>🔵 Click to expand</summary>
