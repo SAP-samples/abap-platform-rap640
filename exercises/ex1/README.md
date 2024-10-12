@@ -149,10 +149,11 @@ The wrapper you just created is released for consumption in tier 1. You can test
 <details>
   <summary>🔵 Click to expand</summary>  
 
-1. In ADT, open your SAP S/4HANA system project folder, navigate to the structure package **`ZTIER1`**, right click on it and select **New** > **ABAP Package** and input the Name **`Z_PURCHASE_REQ_TEST_###`** and a Description:
+1. In ADT, open your SAP S/4HANA system project folder, right click on it and select **New** > **ABAP Package** and input the Name **`Z_PURCHASE_REQ_TEST_###`** and a Description. Choose **`ZLOCAL`** as the superpackage:
 
 <!-- ![Create test package](images/create_test_package.png) -->
-<img alt="Create test package" src="images/create_test_package.png" width="70%">        
+<!-- <img alt="Create test package" src="images/create_test_package.png" width="70%">   --> 
+<img alt="Create test package" src="images/new_package_zlocal.png" width="70%">
 
 2. Click on **Next** and then **Next** again. Select a suitable transport request (or create a new one if needed) and then click on **Finish**. Now you can create the class for the console application. Right click on the newly created package and select **New** > **ABAP Class** and input the Name `ZCL_BAPI_WRAP_TEST_###` and a Description:
 
