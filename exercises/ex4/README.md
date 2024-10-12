@@ -158,35 +158,76 @@ Save and activate it. Then place the cursor on the newly created validation and 
   
 ``` ABAP
   METHOD checkpurchaserequisition.
+
+    DATA prheader TYPE zif_wrap_bapi_pr_###=>bapimereqheader .
+    DATA prheaderx TYPE zif_wrap_bapi_pr_###=>bapimereqheaderx .
+    DATA number  TYPE zif_wrap_bapi_pr_###=>banfn  .
+    DATA pritem  TYPE zif_wrap_bapi_pr_###=>_bapimereqitemimp .
+    DATA pritemx  TYPE zif_wrap_bapi_pr_###=>_bapimereqitemx  .
+    DATA prheaderexp  TYPE zif_wrap_bapi_pr_###=>bapimereqheader .
+    DATA  return  TYPE zif_wrap_bapi_pr_###=>_bapiret2 .
+
     "read relevant order instance data
     READ ENTITIES OF zr_shopcarttp_### IN LOCAL MODE
       ENTITY ShoppingCart
         ALL FIELDS WITH
         CORRESPONDING #( keys )
       RESULT DATA(OnlineOrders).
- 
+
+    prheader = VALUE #( pr_type = 'NB' ).
+    prheaderx = VALUE #( pr_type = 'X' ).
+
     LOOP AT OnlineOrders INTO DATA(OnlineOrder) WHERE OverallStatus = c_overall_status-submitted.
-      DATA(pr_returns) = zcl_bapi_wrap_factory_###=>create_instance( )->check(
+
+      pritem           = VALUE #( (
+                           preq_item  = '00010'
+                           plant      = '1010'
+                           acctasscat = 'U'
+                           currency   = OnlineOrder-Currency
+                           deliv_date = OnlineOrder-DeliveryDate
+                           material   = 'ZPRINTER01'
+                           matl_group = 'A001'
+                           preq_price = OnlineOrder-Price
+                           quantity   = OnlineOrder-OrderQuantity
+                           unit       = 'ST'
+                           pur_group = '001'
+                           purch_org = '1010'
+                           short_text =  OnlineOrder-OrderedItem
+                         ) ).
+
+      pritemx           = VALUE #( (
+                        preq_item  = '00010'
+                        plant      = 'X'
+                        acctasscat = 'X'
+                        currency   = 'X'
+                        deliv_date = 'X'
+                        material   = 'X'
+                        matl_group = 'X'
+                        preq_price = 'X'
+                        quantity   = 'X'
+                        unit       = 'X'
+                        pur_group = 'X'
+                        purch_org = 'X'
+                        short_text = 'X'
+                      ) ).
+
+
+      zcl_f_wrap_bapi_pr_###=>create_instance( )->bapi_pr_create(  
           EXPORTING
-            pr_header        = VALUE zif_wrap_bapi_pr_create_###=>pr_header( pr_type = 'NB' )
-            pr_items         = VALUE zif_wrap_bapi_pr_create_###=>pr_items( (
-              preq_item  = '00010'
-              plant      = '1010'
-              acctasscat = 'U'
-              currency   = OnlineOrder-Currency
-              deliv_date = OnlineOrder-DeliveryDate
-              material   = 'ZPRINTER01'
-              matl_group = 'A001'
-              preq_price = OnlineOrder-Price
-              quantity   = OnlineOrder-OrderQuantity
-              unit       = 'ST'
-              pur_group = '001'
-              purch_org = '1010'
-              short_text = OnlineOrder-OrderedItem
-            ) )
-        ).
- 
-      LOOP AT pr_returns INTO DATA(pr_return_msg) WHERE type = 'E' OR type = 'W'.
+            prheader = prheader
+            prheaderx = prheaderx
+            testrun = abap_true
+          IMPORTING
+            number   = number
+            prheaderexp = prheaderexp
+          CHANGING
+            pritem          = pritem
+            pritemx         = pritemx
+            return          = return
+            )
+        .
+
+      LOOP AT return INTO DATA(pr_return_msg) WHERE type = 'E' OR type = 'W'.
         APPEND VALUE #(
           orderuuid = OnlineOrder-OrderUUID
           %msg = new_message(
@@ -202,13 +243,14 @@ Save and activate it. Then place the cursor on the newly created validation and 
           %element-purchaserequisition = if_abap_behv=>mk-on
           %action-createPurchRqnBAPISave = if_abap_behv=>mk-on
            ) TO reported-shoppingcart.
- 
+
         APPEND VALUE #(
          orderuuid = OnlineOrder-OrderUUID
          %fail = VALUE #( cause = if_abap_behv=>cause-unspecific )
         ) TO failed-shoppingcart.
       ENDLOOP.
     ENDLOOP.
+
   ENDMETHOD.
 ```
 </details>
