@@ -552,31 +552,35 @@ Enhance the BO behavior implementation according to the enhancements done in the
           RESULT DATA(OnlineOrders).
 
         DATA(creation_date) = cl_abap_context_info=>get_system_date(  ).
-        "raise msg if 0 > qty <= 10
-        LOOP AT OnlineOrders INTO DATA(online_order).
 
+        "raise msg if delivery date is not ok
+    LOOP AT OnlineOrders INTO DATA(online_order).
+      APPEND VALUE #(  %tky           = Online_Order-%tky
+                       %state_area    = 'VALIDATE_DELIVERYDATE'
+                    ) TO reported-ShoppingCart.
 
-          IF online_order-DeliveryDate IS INITIAL OR online_order-DeliveryDate = ' '.
-            APPEND VALUE #( %tky = online_order-%tky ) TO failed-ShoppingCart.
-            APPEND VALUE #( %tky         = online_order-%tky
-                            %state_area   = 'VALIDATE_DELIVERYDATE'
-                            %msg          = new_message_with_text(
-                                    severity = if_abap_behv_message=>severity-error
-                                    text     = 'Delivery Date cannot be initial' )
-                          ) TO reported-ShoppingCart.
+      IF online_order-DeliveryDate IS INITIAL OR online_order-DeliveryDate = ' '.
+        APPEND VALUE #( %tky = online_order-%tky ) TO failed-ShoppingCart.
+        APPEND VALUE #( %tky         = online_order-%tky
+                        %state_area   = 'VALIDATE_DELIVERYDATE'
+                        %msg          = new_message_with_text(
+                                severity = if_abap_behv_message=>severity-error
+                                text     = 'Delivery Date cannot be initial' )
+                        %element-deliverydate  = if_abap_behv=>mk-on
+                      ) TO reported-ShoppingCart.
 
-          ELSEIF  ( ( online_order-DeliveryDate ) - creation_date ) < 14.
-            APPEND VALUE #(  %tky = online_order-%tky ) TO failed-ShoppingCart.
-            APPEND VALUE #(  %tky          = online_order-%tky
-                            %state_area   = 'VALIDATE_DELIVERYDATE'
-                            %msg          = new_message_with_text(
-                                    severity = if_abap_behv_message=>severity-error
-                                    text     = 'Delivery Date should be atleast 14 days after the creation date'  )
+      ELSEIF  ( ( online_order-DeliveryDate ) - creation_date ) < 14.
+        APPEND VALUE #(  %tky = online_order-%tky ) TO failed-ShoppingCart.
+        APPEND VALUE #(  %tky          = online_order-%tky
+                        %state_area   = 'VALIDATE_DELIVERYDATE'
+                        %msg          = new_message_with_text(
+                                severity = if_abap_behv_message=>severity-error
+                                text     = 'Delivery Date should be atleast 14 days after the creation date'  )
+                        %element-deliverydate  = if_abap_behv=>mk-on
+                      ) TO reported-ShoppingCart.
+      ENDIF.
+    ENDLOOP.
 
-                            %element-orderquantity  = if_abap_behv=>mk-on
-                          ) TO reported-ShoppingCart.
-          ENDIF.
-        ENDLOOP.
       ENDMETHOD.
 
       METHOD checkOrderedQuantity.
