@@ -175,7 +175,7 @@ This approach has the advantage of a clear control of when and where an instance
 
   2. Click on **Next** and then **Next** again. Select a suitable transport request (or create a new one if needed) and then click on **Finish**.
 
-  <!--   
+     <!--   
   
   1.  Select **ZLOCAL** > **New** > **ABAP Package**.
 
@@ -206,7 +206,7 @@ This approach has the advantage of a clear control of when and where an instance
 
        Click **Finish**.
 
--->   
+       -->   
       
 </details>
 
