@@ -79,7 +79,7 @@ In this step we will add validations, determinations and side effects.
   4. Check your behavior definition:
 
      <details>
-      <summary>🟡📄 Click to expand and view or copy the source code!</summary>
+      <summary>🟡📄 Click to expand and view or copy the source code!</summary>    
   
       ```
       
