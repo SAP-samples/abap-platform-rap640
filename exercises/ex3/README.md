@@ -54,7 +54,7 @@ In this step we will add validations, determinations and side effects.
         ``` 
         draft determine action Prepare { validation checkOrderedQuantity;  validation checkDeliveryDate;}
         determination setInitialOrderValues on modify { create; }
-        determination calculateTotalPrice on modify { create; field Price; } 
+        determination calculateTotalPrice on modify { create; field Price, OrderQuantity; } 
         validation checkOrderedQuantity on save { create; field OrderQuantity; }
         validation checkDeliveryDate on save { create; field DeliveryDate; }
         ```
