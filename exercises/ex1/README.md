@@ -27,6 +27,7 @@ In a later exercise you will then create a Shopping Cart RAP business object for
 
 ## You will learn
 - How to generate a wrapper interface, a wrapper class and a factory class for the `BAPI_PR_CREATE` using transaction ACO_PROXY.
+- How to create an ABAP package on tier 1 (superpackage: `ZLOCAL`)   
 - How to test that the wrapper objects have been released for consumption in tier 1.
 
 > **Reminder:**   
