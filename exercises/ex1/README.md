@@ -157,7 +157,7 @@ This approach has the advantage of a clear control of when and where an instance
 
 ## Step 4: Test wrapper with console application in tier 1
 
-The wrapper you just created is released for consumption in tier 1. You can test this by creating a console application in tier 1 to call the wrapper. We suggest to create a dedicated package under in tier 1 by using `ZTIER1` as the super-package of your package in your SAP S/4HANA System for this test.
+The wrapper you just created is released for consumption in tier 1. You can test this by creating a console application in tier 1 to call the wrapper. We suggest to create a dedicated package **`Z_PURCHASE_REQ_TEST_###`** under in tier 1 by using **`ZLOCAL`** as the super-package of your package in your SAP S/4HANA System for this test.
 
 <details>
   <summary>🔵 Click to expand</summary>  
