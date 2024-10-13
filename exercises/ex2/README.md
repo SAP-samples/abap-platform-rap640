@@ -168,7 +168,7 @@ The generated code has to be adapted so that additional fields are made _read-on
    ```
    
    <!-- ![projection](images/bdef3x.png) -->
-   <img alt="projection" src="images/bdef3x.png" width="70%">
+   <img alt="adapt BDEF" src="images/bdef3x.png" width="40%">
 
   2. Check your behavior definition:
 
