@@ -175,38 +175,7 @@ This approach has the advantage of a clear control of when and where an instance
 
   2. Click on **Next** and then **Next** again. Select a suitable transport request (or create a new one if needed) and then click on **Finish**.
 
-     <!--   
-  
-  1.  Select **ZLOCAL** > **New** > **ABAP Package**.
-
-      <!-- ![package](images/packagenew.png) -->
-      <img alt="package" src="images/packagenew.png" width="70%">
-
-  2.  Create new **ABAP package**:
-       - Name: **`Z_PURCHASE_REQ_###`**
-       - Description: Package ###
-       - Check **Add to favorite packages**
-
-      <!-- ![package](images/packagenew2.png) -->
-      <img alt="package" src="images/packagenew2.png" width="70%">
-
-       Click **Next >**.
-
-  3. Click **Next >**.
-
-      <!-- ![package](images/packagenew3.png) -->
-      <img alt="package" src="images/packagenew3.png" width="70%">
-
-
-  4.  Create a new request:
-      -  Request Description: TR12345
-
-      <!-- ![package](images/packagenew4.png) -->
-      <img alt="package" src="images/packagenew4.png" width="70%">
-
-       Click **Finish**.
-
-       -->   
+    
       
 </details>
 
