@@ -359,8 +359,8 @@ You can  use the app **Manage Purchase Requisition - Professional** to check the
 [^Top of page](#)
 
 Now that you've... 
-- created a wrapper interface and implement a wrapper class for the BAPI_PR_CREATE, and
-- released the wrapper for consumption in tier 1,
+- created a wrapper interface, a factory class and an implementing wrapper class for the BAPI_PR_CREATE, and
+- have tested the C1-released wrapper for consumption in tier 1,
 
 you can continue with the next exercise - **[Exercise 2 - Create a Shopping Cart Business Object](../ex2/README.md)**.
 
