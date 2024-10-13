@@ -103,15 +103,17 @@ You will now use a wizard to generate all repository objects required for your R
   1. Right-click your database table **`ZASHOPCART_###`** and select **Generate ABAP Repository Objects**.
 
       <!-- ![cds](images/generator.png) -->
-      <img alt="cds" src="images/generator.png" width="70%">
+      <img alt="Generate Repository Objects" src="images/generator.png" width="70%">
 
   2. In the **Enter Package** screen enter the name of your Tier 1 package **`Z_PURCHASE_REQ_###`** and click **Next >**.
 
+     <img alt="Enter package name" src="images/generator_enter_package_name.png" width="70%">
+ 
   2. In the **Select Generator** screen choose the generator:    
      - Generator: **ABAP RESTful Application Programming Model: UI Service**
 
       <!-- ![cds](images/generator2.png) -->
-      <img alt="cds" src="images/generator2.png" width="70%">
+      <img alt="Select Generator" src="images/generator_select_ui_generator.png" width="70%">
 
        Click **Next >**.
 
