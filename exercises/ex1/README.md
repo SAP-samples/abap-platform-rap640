@@ -7,7 +7,7 @@ Now that you're connected to your SAP S/4HANA system, go ahead with this exercis
 
 The [ABAP Cloud API Enablement Guidelines for SAP S/4HANA Cloud Private Edition and SAP S/4HANA](https://www.sap.com/documents/2023/05/b0bd8ae6-747e-0010-bca6-c68f7e60039b.html) recommend using a BAPI as an alternative to a released API, wrapping it, and then releasing the wrapper for consumption in tier 1. 
 
-In a later exercise you will then create a Shopping Cart RAP business object for a Fiori elements online shopping app and integrate this wrapper to create purchase requisitions.
+In a later exercise you will then create a Shopping Cart RAP business object for a Fiori elements online shopping app in Tier 1 and integrate this wrapper to create purchase requisitions.
 
 - [You will learn](#you-will-learn)
 - [Summary & Next Exercise](#summary--next-exercise)  
