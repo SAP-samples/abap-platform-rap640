@@ -174,6 +174,8 @@ This approach has the advantage of a clear control of when and where an instance
      <img alt="Create test package" src="images/new_package_zlocal.png" width="70%">
 
   2. Click on **Next** and then **Next** again. Select a suitable transport request (or create a new one if needed) and then click on **Finish**.
+
+  <!--   
   
   1.  Select **ZLOCAL** > **New** > **ABAP Package**.
 
@@ -203,6 +205,9 @@ This approach has the advantage of a clear control of when and where an instance
       <img alt="package" src="images/packagenew4.png" width="70%">
 
        Click **Finish**.
+
+-->   
+      
 </details>
 
 ## Step 5: Test wrapper with console application in tier 1
