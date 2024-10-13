@@ -64,9 +64,9 @@ In this step we will add validations, determinations and side effects.
 
   3. Add side effects to update the field **TotalPrice**.   
 
-     Add this code-snippet before the `mapping` statement.   
+     Add this code-snippet before the `mapping` statement.    
 
-      ``` 
+     ``` 
       //  side effects
       side effects
       {
