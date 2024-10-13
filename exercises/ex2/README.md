@@ -11,7 +11,6 @@ This RAP business object will than be enhanced later in Exercise 3 such, that a 
 
 
 ## You will learn  
-- How to create an ABAP package on tier 1 (superpackage: `ZLOCAL`),
 - How to create a database table
 - How to generate a transactional UI service
 - How to enhance the behavior definition of a data model 
