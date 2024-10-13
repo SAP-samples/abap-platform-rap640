@@ -87,6 +87,9 @@ You now want to wrap the API `BAPI_PR_CREATE`. For this we use the transaction *
 
 In the following we will explain in short the best practices that are behind the options you will have to choose when using transaction **ACO_PROXY**.  
 
+<details>
+  <summary>🔵 Click to expand</summary>
+
 > **The interface:**     
 > Depending on your specific use-case, you normally would need to access only certain specific functionalities and methods of the BAPI you want to expose. An ABAP Interface is the perfect development object for this purpose. The interface simplifies and restricts the usage of the underlying BAPI for the specific use-case, by exposing only the parameters that are needed. As a consequence, non-wrapped functionalities are forbidden.
 
@@ -154,6 +157,7 @@ This approach has the advantage of a clear control of when and where an instance
    <img alt="Select optional parameters 3" src="images/rap640_parameter_030.png" width="70%">
 
 </details>   
+</details>  
 
 ## Step 4: Test wrapper with console application in tier 1
 
