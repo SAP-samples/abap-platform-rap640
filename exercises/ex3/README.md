@@ -78,21 +78,22 @@ In this step we will add validations, determinations and side effects.
  
   4. Check your behavior definition:
 
-<details>
-  <summary>🟡📄 Click to expand and view or copy the source code!</summary>
+     <details>
+      <summary>🟡📄 Click to expand and view or copy the source code!</summary>
   
-   ```
-    managed implementation in class ZBP_SHOPCARTTP_### unique;
-    strict ( 2 );
-    with draft;
+      ```
+      
+      managed implementation in class ZBP_SHOPCARTTP_### unique;
+      strict ( 2 );
+      with draft;
 
-    define behavior for ZR_SHOPCARTTP_### alias ShoppingCart
-    persistent table zashopcart_###
-    draft table ZDSHOPCART_###
-    etag master LocalLastChangedAt
-    lock master total etag LastChangedAt
-    authorization master( global )
-    {
+      define behavior for ZR_SHOPCARTTP_### alias ShoppingCart
+      persistent table zashopcart_###
+      draft table ZDSHOPCART_###
+      etag master LocalLastChangedAt
+      lock master total etag LastChangedAt
+      authorization master( global )
+      {
       field ( readonly ) 
       OrderUUID,
       CreatedAt,
@@ -150,9 +151,10 @@ In this step we will add validations, determinations and side effects.
         PurchaseRequisition = purchase_requisition;
         PrCreationDate = pr_creation_date;
       }
-    }
-    **Hint:** Please replace **`###`** with your ID.
-   ```
+      }
+      **Hint:** Please replace **`###`** with your ID.
+      
+      ```
 </details>
     
    4. Save and activate. 
