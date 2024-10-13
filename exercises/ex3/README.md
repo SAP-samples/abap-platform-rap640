@@ -78,6 +78,7 @@ In this step we will add validations, determinations and side effects.
  
   4. Check your behavior definition:
 
+
      <details>
       <summary>🟡📄 Click to expand and view or copy the source code!</summary>    
   
@@ -176,7 +177,7 @@ In this step will activate the use of side effects so that the field **TotalPric
 
   2. Check your behavior projection:
 
-    <details>
+     <details>
       <summary>🟡📄 Click to expand and view or copy the source code!</summary>
   
        ```
@@ -204,7 +205,7 @@ In this step will activate the use of side effects so that the field **TotalPric
        }
 
        ```
-    </details>   
+     </details>   
     
 </details>   
 
