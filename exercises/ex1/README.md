@@ -60,7 +60,7 @@ In the **Tools** section you can click on the **Function Builder** and then clic
 
 </details>
 
-## Step 2: Create a development package
+## Step 2: Create a development package in Tier 2
 
 <!-- You will develop the wrapper in a dedicated package under the structure package `ZTIER2` in your SAP S/4HANA system. -->
 
@@ -160,7 +160,46 @@ This approach has the advantage of a clear control of when and where an instance
 </details>   
 </details>  
 
-## Step 4: Test wrapper with console application in tier 1
+## Step 4: Create a package in Tier 1   
+
+**Hint:** In case the CAL instance is not used, please set up for developer extensibility to get `ZLOCAL` package.
+ - Create software component for local cloud-ready development with `ZLOCAL`
+ - Create a structure package with `ZLOCAL`
+
+<details>
+  <summary>🔵 Click to expand</summary>
+  
+  1.  Select **ZLOCAL** > **New** > **ABAP Package**.
+
+      <!-- ![package](images/packagenew.png) -->
+      <img alt="package" src="images/packagenew.png" width="70%">
+
+  2.  Create new **ABAP package**:
+       - Name: **`Z_PURCHASE_REQ_###`**
+       - Description: Package ###
+       - Check **Add to favorite packages**
+
+      <!-- ![package](images/packagenew2.png) -->
+      <img alt="package" src="images/packagenew2.png" width="70%">
+
+       Click **Next >**.
+
+  3. Click **Next >**.
+
+      <!-- ![package](images/packagenew3.png) -->
+      <img alt="package" src="images/packagenew3.png" width="70%">
+
+
+  4.  Create a new request:
+      -  Request Description: TR12345
+
+      <!-- ![package](images/packagenew4.png) -->
+      <img alt="package" src="images/packagenew4.png" width="70%">
+
+       Click **Finish**.
+</details>
+
+## Step 5: Test wrapper with console application in tier 1
 
 The wrapper you just created is released for consumption in tier 1. You can test this by creating a console application in tier 1 to call the wrapper. We suggest to create a dedicated package **`Z_PURCHASE_REQ_TEST_###`** under in tier 1 by using **`ZLOCAL`** as the super-package of your package in your SAP S/4HANA System for this test.
 
