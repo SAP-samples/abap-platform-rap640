@@ -1,6 +1,18 @@
 # Exercise 1: Implement a Wrapper for the "Create Purchase Requisition" (BAPI_PR_CREATE) function module
 <!-- description --> Learn how to wrap the BAPI_PR_CREATE in your SAP S/4HANA system and release it for consumption in tier 1.
 
+## Prerequisites
+
+When you want to perform this script in your own SAP S/4HANA system the following prerequisites must be met:     
+
+- You have to have a system based on **SAP S/4HANA 2022 or 2023** on premise or private cloud.
+- You have to have enabled Developer extensibility as described in the [SAP Online Help](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b5670aaaa2364a29935f40b16499972d/31367ef6c3e947059e0d7c1cbfcaae93.html?q=set%20up%20developer%20extensibility&locale=en-US)   
+- You have to apply the following notes:  
+
+  - [SAP Note 3444292 - ACO Proxy creates unnecessary shadow types](https://me.sap.com/notes/3444292)  
+  - [SAP Note 3457580 - SAP ACO - Duplicate Types for Table Parameters](https://me.sap.com/notes/3457580)
+  - [SAP Note 3518177 - SAP ACO Proxy Improvements](https://me.sap.com/notes/3518177)
+  - [SAP Note 3519098 - F4: fix function module value help](https://me.sap.com/notes/3519098)   (only relevant for SAP S/4 HANA 2023)   
 
 ## Introduction
 Now that you're connected to your SAP S/4HANA system, go ahead with this exercise where you will learn how to deal with the situation where there is no convenient released SAP API for creating purchase requisitions. 
@@ -14,8 +26,8 @@ In a later exercise you will then create a Shopping Cart RAP business object for
 
 
 ## You will learn
-- How to generate a wrapper interface, a wrapper class and a factory class for the BAPI `BAPI_PR_CREATE`.
-- How to release the wrapper objects for consumption in tier 1.
+- How to generate a wrapper interface, a wrapper class and a factory class for the `BAPI_PR_CREATE` using transaction ACO_PROXY.
+- How to test that the wrapper objects have been released for consumption in tier 1.
 
 > **Reminder:**   
 > Don't forget to replace all occurences of the placeholder **`###`** with your assigned group number in the exercise steps below.  
