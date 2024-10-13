@@ -272,6 +272,7 @@ METHOD if_oo_adt_classrun~main.
       out->write( |bapi_return: { bapiret2_line-message } | ).
     ENDLOOP.
   ENDMETHOD.
+ENDCLASS.
 
 ```
 
