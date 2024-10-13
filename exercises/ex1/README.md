@@ -68,14 +68,14 @@ You will develop the wrapper in a dedicated package  `TEST_TIER2_###` in your SA
 <details>
   <summary>🔵 Click to expand</summary>
   
-In ADT, open your SAP S/4HANA system project folder, right click on it and select **New** > **ABAP Package** and input the Name `TEST_TIER2_###` leave the field superpackage empty and enter a Description, e.g. `Package Tier2`.   Don't forget to select the check box **Add to favorite packages**:   
+In ADT, open your SAP S/4HANA system project folder, right click on it and select **New** > **ABAP Package** and input the Name `TEST_TIER2_###` leave the field superpackage empty and enter a Description, e.g. `Package Tier2`.   Select **Add to favorite packages** for easy access later on. Keep the Package Type as **Development** and click on **Next**. Do not change anything in the following wizard window (where the software component HOME is selected), and click on **Next**.       
 
 <!-- ![Create Tier 2 package](images/create_tier2_package.png) -->
 <!--  <img alt="Create Tier 2 package" src="images/create_tier2_package_2.png" width="70%">  -->   
 
 <img alt="Create Tier 2 package" src="images/new_package_test_tier2.png" width="70%">   
 
-Select **Add to favorite packages** for easy access later on. Keep the Package Type as **Development** and click on **Next**. Do not change anything in the following wizard window (where the software component HOME is selected), and click on **Next**.
+
 
 Create a new transport request and give it a meaningful name such as `Tier2 development - Group ###` so that it can be more easily identified. Then click on **Finish**. The package will be created.
 
