@@ -32,7 +32,7 @@ We start the creation of the RAP business object with creating a database table.
 <details>
   <summary>🔵 Click to expand</summary>
 
-  1. Right-click your package `Z_PURCHASE_REQ_###` and select **New** > **Other ABAP Repository Object**.
+  1. Right-click your package **`Z_PURCHASE_REQ_###`** and select **New** > **Other ABAP Repository Object**.
 
       <!-- ![table](images//databasenew.png) -->
       <img alt="table" src="images//databasenew.png" width="70%">
@@ -100,12 +100,14 @@ You will now use a wizard to generate all repository objects required for your R
   <summary>🔵 Click to expand</summary>
 
 
-  1. Right-click your database table `ZASHOPCART_###` and select **Generate ABAP Repository Objects**.
+  1. Right-click your database table **`ZASHOPCART_###`** and select **Generate ABAP Repository Objects**.
 
       <!-- ![cds](images/generator.png) -->
       <img alt="cds" src="images/generator.png" width="70%">
 
-  2. Create new **ABAP repository object**:
+  2. In the **Enter Package** screen enter the name of your Tier 1 package **`Z_PURCHASE_REQ_###`** and click **Next >**.
+
+  2. In the **Select Generator** screen choose the generator:    
      - Generator: **ABAP RESTful Application Programming Model: UI Service**
 
       <!-- ![cds](images/generator2.png) -->
@@ -113,16 +115,14 @@ You will now use a wizard to generate all repository objects required for your R
 
        Click **Next >**.
 
-      > Please be aware that the screenshot above pertains to the SAP S/4HANA 2022 release. In the SAP S/4HANA 2023 release the wizard looks slightly different: you will first select the **Generator** and in the following wizard page you will see the Package information.
+      > Please be aware that the screenshot above pertains to the SAP S/4HANA 2023 release.   
 
   3. Maintain the required information on the **Configure Generator** dialog to provide the name of your data model and generate them.         
      
      For that, navigate through the wizard tree **(Business Objects, Data Model, etc...)**, maintain the artefact names provided in the table below, and press **Next >**.
 
      Verify the maintained entries and press **Next >** to confirm. The needed artifacts will be generated.
-
-     **Please note**: Error Invalid XML format.   
-     If you receive an error message **Invalid XML format of the response**, this may be due to a bug in version 1.26 of the ADT tools. An update of your ADT plugin to version 1.26.3 will fix this issue.
+     
 
    | **RAP Layer**                          | **Artefacts**           | **Artefact Names**                                  |
    |----------------------------------------|-------------------------|-----------------------------------------------------|
