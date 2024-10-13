@@ -9,10 +9,10 @@ Now that you've created your Shopping Cart RAP business object and a UI service 
 - [Summary & Next Exercise](#summary--next-exercise)  
 
 ## You will learn  
-- How to enhance a behavior definition
-- How to create a value help
-- How to enhance a behavior implementation
-- How to run the SAP Fiori Elements Preview
+- How to enhance a behavior definition to add validations, determinations and side effects   
+- How to create a value help   
+- How to enhance a behavior implementation  
+- How to run the SAP Fiori Elements Preview  
 
 > **Reminder:**   
 > Don't forget to replace all occurences of the placeholder **`###`** with your assigned group number in the exercise steps below.  
@@ -21,7 +21,7 @@ Now that you've created your Shopping Cart RAP business object and a UI service 
 
 ---
 
-## Step 1: Enhance behavior definition of data model
+## Step 1: Enhance behavior definition to add validations, determinations and side effects
 
 In this step we will add validations, determinations and side effects.   
 
