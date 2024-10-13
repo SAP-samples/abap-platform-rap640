@@ -23,46 +23,9 @@ This RAP business object will than be enhanced later in Exercise 3 such, that a 
 > If you don't have a group number, choose a 3-digit suffix and use it for all exercises.
 
 
-## Step 1: Create ABAP package
-
-**Hint:** In case the CAL instance is not used, please set up for developer extensibility to get `ZLOCAL` package.
- - Create software component for local cloud-ready development with `ZLOCAL`
- - Create a structure package with `ZLOCAL`
-
-<details>
-  <summary>🔵 Click to expand</summary>
-  
-  1.  Select **ZLOCAL** > **New** > **ABAP Package**.
-
-      <!-- ![package](images/packagenew.png) -->
-      <img alt="package" src="images/packagenew.png" width="70%">
-
-  2.  Create new **ABAP package**:
-       - Name: **`Z_PURCHASE_REQ_###`**
-       - Description: Package ###
-       - Check **Add to favorite packages**
-
-      <!-- ![package](images/packagenew2.png) -->
-      <img alt="package" src="images/packagenew2.png" width="70%">
-
-       Click **Next >**.
-
-  3. Click **Next >**.
-
-      <!-- ![package](images/packagenew3.png) -->
-      <img alt="package" src="images/packagenew3.png" width="70%">
 
 
-  4.  Create a new request:
-      -  Request Description: TR12345
-
-      <!-- ![package](images/packagenew4.png) -->
-      <img alt="package" src="images/packagenew4.png" width="70%">
-
-       Click **Finish**.
-</details>
-
-## Step 2: Create database table
+## Step 1: Create database table
 
 We start the creation of the RAP business object with creating a database table.   
 
@@ -129,7 +92,7 @@ We start the creation of the RAP business object with creating a database table.
 
 </details>
 
-## Step 3: Generate a transactional UI service
+## Step 2: Generate a transactional UI service
 
 You will now use a wizard to generate all repository objects required for your RAP business object based on the table you have just created.  
 
@@ -186,7 +149,7 @@ You will now use a wizard to generate all repository objects required for your R
 
 </details>
 
-## Step 4: Adapt the behavior definition of data model 
+## Step 3: Adapt the behavior definition of data model 
 
 The generated code has to be adapted so that additional fields are made _read-only_.   
 
@@ -276,7 +239,7 @@ The generated code has to be adapted so that additional fields are made _read-on
    3. Save and activate.  
 </details>
 
-## Step 5: Publish service binding and run SAP Fiori Elements preview
+## Step 4: Publish service binding and run SAP Fiori Elements preview
 
 What is left to do is to publish your service locally, so that it can be tested using the Fiori Elements preview.  
 
