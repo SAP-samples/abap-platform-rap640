@@ -209,7 +209,7 @@ In this step will activate the use of side effects so that the field **TotalPric
     
 </details>   
 
-## Step 3: Create data definition for products
+## Step 3: Create a value help for products
 
 This data definition is needed to create a value help for products.
 
