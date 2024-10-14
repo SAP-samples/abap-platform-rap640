@@ -41,9 +41,9 @@ In a later exercise you will then create a Shopping Cart RAP business object for
 <details>
   <summary>🔵 Click to expand!</summary>
   
-The first step is to look for a suitable non-released API to create purchase requisitions. You can use the BAPI Explorer for this purpose. Connect to the backend of your SAP S/4HANA system and start transaction **`BAPI`** by opening the embedded SAP GUI (**Ctrl+6**) and entering **`/nBAPI`** in the command field. 
+The first step is to look for a suitable non-released API to create purchase requisitions. You can use the BAPI Explorer for this purpose. Connect to the backend of your SAP S/4HANA system and start transaction **`BAPI`** by opening the embedded SAP GUI (**Ctrl+6**) and entering **`/nBAPI`** in the command field. For the purpose of this tutorial, we will use the non-released BAPI **`BAPI_PR_CREATE`**.
 
-For the purpose of this tutorial, we will use the non-released BAPI **`BAPI_PR_CREATE`**: switch to the **Alphabetical** view (1), look for the Business Object `PurchaseRequisition` (2), find and click on the method `CreateFromData1` (3). You can see that its function module is the `BAPI_PR_CREATE` (4).
+For that, switch to the **Alphabetical** view (1), look for the Business Object **`PurchaseRequisition`** (2), find and click on the method **`CreateFromData1`** (3). You can see that its function module is the **`BAPI_PR_CREATE`** (4).
 
 <!-- ![BAPI explorer](images/bapi_explorer.png) -->
 <img alt="BAPI explorer" src="images/bapi_explorer.png" width="70%">
