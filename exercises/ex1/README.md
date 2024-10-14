@@ -135,7 +135,7 @@ This approach has the advantage of a clear control of when and where an instance
 
   
 
-3. Press the green check mark <img alt="Start ACO_PROXY" src="images/create_button.png" width="100%"> or **F8** to continue
+3. Press the green check mark <span style="color:green">**✔**</span> or  **F8** to continue
    
 4. Select optional values
 
