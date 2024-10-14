@@ -133,9 +133,9 @@ This approach has the advantage of a clear control of when and where an instance
       - Check the check box **C1 Release**       
       - Check the check box **Create Private Methods**          
 
-  and press F3 to continue.
+  
 
-3. Press the green check mark or **F8** to continue
+3. Press the green check mark <img alt="Start ACO_PROXY" src="images/create_button.png" width="100%"> or **F8** to continue
    
 4. Select optional values
 
