@@ -135,7 +135,7 @@ This approach has the advantage of a clear control of when and where an instance
 
   
 
-3. Press the green check mark <span style="color:green">**✔**</span> or  **F8** to continue
+3. Press the green check mark <code style="color : name_color">**✔**</code>  or  **F8** to continue
    
 4. Select optional values
 
