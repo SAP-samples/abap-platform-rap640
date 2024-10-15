@@ -311,7 +311,7 @@ You will now adjust the CDS projection view `ZC_SHOPCARTTP_###` of your Fiori el
 
     ```ABAP
       @Consumption.valueHelpDefinition: [{ entity: 
-                 {name: 'ZI_PRODUCTS_900' , element: 'ProductText' },
+                 {name: 'ZI_PRODUCTS_###' , element: 'ProductText' },
                  additionalBinding: [{ localElement: 'Price', element: 'Price', usage: #RESULT },
                                      { localElement: 'Currency', element: 'Currency', usage: #RESULT }
                                                                        ]
