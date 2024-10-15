@@ -294,6 +294,40 @@ This data definition is needed to create a value help for products.
 
 </details>
 
+## Step 4: Add value helps in the CDS projection view
+
+You will now adjust the CDS projection view `ZC_SHOPCARTTP_###` of your Fiori elements app by adding the value help you have just created.
+
+<details>
+  <summary>🔵 Click to expand</summary>
+
+ 1. In the _Project Explorer_ navigate to the CDS projection view **`ZC_SHOPCARTTP_###`**.   
+    
+    <img alt="product value help" src="images/select_projection_view.png" width="70%">  
+
+ 2. Here add the following code above the fields **OrderedItem** and **Currenccy** :
+
+    <img alt="product value help" src="images/add_value_helps.png" width="70%">
+
+    ```ABAP
+      @Consumption.valueHelpDefinition: [{ entity: 
+                 {name: 'ZI_PRODUCTS_900' , element: 'ProductText' },
+                 additionalBinding: [{ localElement: 'Price', element: 'Price', usage: #RESULT },
+                                     { localElement: 'Currency', element: 'Currency', usage: #RESULT }
+                                                                       ]
+                 }]  
+      OrderedItem,
+    ```
+
+    and
+
+    ```ABAP
+      @Consumption.valueHelpDefinition: [ { entity: { name: 'I_Currency', element: 'Currency' } } ]  
+      Currency,
+    ```   
+
+</details>
+
 ## Step 4: Enhance metadata extension
 
 You will now adjust the UI semantics of your Fiori elements app by enhancing the CDS metadata extension `ZC_SHOPCARTTP_###`.
