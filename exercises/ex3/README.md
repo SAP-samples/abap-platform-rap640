@@ -328,6 +328,8 @@ You will now adjust the CDS projection view `ZC_SHOPCARTTP_###` of your Fiori el
 
 </details>
 
+<!--   
+
 ## Step 4: Enhance metadata extension
 
 You will now adjust the UI semantics of your Fiori elements app by enhancing the CDS metadata extension `ZC_SHOPCARTTP_###`.
@@ -511,7 +513,9 @@ You will now adjust the UI semantics of your Fiori elements app by enhancing the
  2. Save and activate.
 
    </details>
-   
+
+-->   
+  
 ## Step 5: Enhance behavior implementation
 
 Enhance the BO behavior implementation according to the enhancements done in the BO behavior definition.
