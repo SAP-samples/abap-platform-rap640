@@ -537,209 +537,212 @@ Enhance the BO behavior implementation according to the enhancements done in the
     <summary>🟡📄 Click to expand and view or copy the source code!</summary>
 
    ```ABAP
-    CLASS lhc_shopcart DEFINITION INHERITING FROM cl_abap_behavior_handler.
-      PRIVATE SECTION.
-        CONSTANTS:
-          BEGIN OF c_overall_status,
-            new       TYPE string VALUE 'New / Composing',
-            submitted TYPE string VALUE 'Submitted / Approved',
-            cancelled TYPE string VALUE 'Cancelled',
-          END OF c_overall_status.
-        METHODS:
-          get_global_authorizations FOR GLOBAL AUTHORIZATION
-            IMPORTING
-            REQUEST requested_authorizations FOR ShoppingCart
-            RESULT result,
-          get_instance_features FOR INSTANCE FEATURES
-            IMPORTING keys REQUEST requested_features FOR ShoppingCart RESULT result.
 
-        METHODS calculateTotalPrice FOR DETERMINE ON MODIFY
-          IMPORTING keys FOR ShoppingCart~calculateTotalPrice.
+ CLASS lhc_shopcart DEFINITION INHERITING FROM cl_abap_behavior_handler.
+   PRIVATE SECTION.
+     CONSTANTS:
+       BEGIN OF c_overall_status,
+         new       TYPE string VALUE 'New / Composing',
+         submitted TYPE string VALUE 'Submitted / Approved',
+         cancelled TYPE string VALUE 'Cancelled',
+       END OF c_overall_status.
+     METHODS:
+       get_global_authorizations FOR GLOBAL AUTHORIZATION
+         IMPORTING
+         REQUEST requested_authorizations FOR ShoppingCart
+         RESULT result,
+       get_instance_features FOR INSTANCE FEATURES
+         IMPORTING keys REQUEST requested_features FOR ShoppingCart RESULT result.
 
-        METHODS setInitialOrderValues FOR DETERMINE ON MODIFY
-          IMPORTING keys FOR ShoppingCart~setInitialOrderValues.
+     METHODS calculateTotalPrice FOR DETERMINE ON MODIFY
+       IMPORTING keys FOR ShoppingCart~calculateTotalPrice.
 
-        METHODS checkDeliveryDate FOR VALIDATE ON SAVE
-          IMPORTING keys FOR ShoppingCart~checkDeliveryDate.
+     METHODS setInitialOrderValues FOR DETERMINE ON MODIFY
+       IMPORTING keys FOR ShoppingCart~setInitialOrderValues.
 
-        METHODS checkOrderedQuantity FOR VALIDATE ON SAVE
-          IMPORTING keys FOR ShoppingCart~checkOrderedQuantity.
-    ENDCLASS.
+     METHODS checkDeliveryDate FOR VALIDATE ON SAVE
+       IMPORTING keys FOR ShoppingCart~checkDeliveryDate.
 
-    CLASS lhc_shopcart IMPLEMENTATION.
-      METHOD get_global_authorizations.
-      ENDMETHOD.
-      METHOD get_instance_features.
+     METHODS checkOrderedQuantity FOR VALIDATE ON SAVE
+       IMPORTING keys FOR ShoppingCart~checkOrderedQuantity.
+ ENDCLASS.
 
-        " read relevant olineShop instance data
-        READ ENTITIES OF zr_shopcarttp_### IN LOCAL MODE
-          ENTITY ShoppingCart
-            FIELDS ( OverallStatus )
-            WITH CORRESPONDING #( keys )
-          RESULT DATA(OnlineOrders)
-          FAILED failed.
+ CLASS lhc_shopcart IMPLEMENTATION.
+   METHOD get_global_authorizations.
+   ENDMETHOD.
+   METHOD get_instance_features.
 
-        " evaluate condition, set operation state, and set result parameter
-        " update and checkout shall not be allowed as soon as purchase requisition has been created
-        result = VALUE #( FOR OnlineOrder IN OnlineOrders
-                          ( %tky                   = OnlineOrder-%tky
-                            %features-%update
-                              = COND #( WHEN OnlineOrder-OverallStatus = c_overall_status-submitted  THEN if_abap_behv=>fc-o-disabled
-                                        WHEN OnlineOrder-OverallStatus = c_overall_status-cancelled THEN if_abap_behv=>fc-o-disabled
-                                        ELSE if_abap_behv=>fc-o-enabled   )
-                            %action-Edit
-                              = COND #( WHEN OnlineOrder-OverallStatus = c_overall_status-submitted THEN if_abap_behv=>fc-o-disabled
-                                        WHEN OnlineOrder-OverallStatus = c_overall_status-cancelled THEN if_abap_behv=>fc-o-disabled
-                                        ELSE if_abap_behv=>fc-o-enabled   )
+     " read relevant olineShop instance data
+     READ ENTITIES OF zr_shopcart_### IN LOCAL MODE
+       ENTITY ShoppingCart
+         FIELDS ( OverallStatus )
+         WITH CORRESPONDING #( keys )
+       RESULT DATA(OnlineOrders)
+       FAILED failed.
 
-                            ) ).
-      ENDMETHOD.
+     " evaluate condition, set operation state, and set result parameter
+     " update and checkout shall not be allowed as soon as purchase requisition has been created
+     result = VALUE #( FOR OnlineOrder IN OnlineOrders
+                       ( %tky                   = OnlineOrder-%tky
+                         %features-%update
+                           = COND #( WHEN OnlineOrder-OverallStatus = c_overall_status-submitted  THEN if_abap_behv=>fc-o-disabled
+                                     WHEN OnlineOrder-OverallStatus = c_overall_status-cancelled THEN if_abap_behv=>fc-o-disabled
+                                     ELSE if_abap_behv=>fc-o-enabled   )
+                         %action-Edit
+                           = COND #( WHEN OnlineOrder-OverallStatus = c_overall_status-submitted THEN if_abap_behv=>fc-o-disabled
+                                     WHEN OnlineOrder-OverallStatus = c_overall_status-cancelled THEN if_abap_behv=>fc-o-disabled
+                                     ELSE if_abap_behv=>fc-o-enabled   )
 
-      METHOD calculateTotalPrice.
-        DATA total_price TYPE zr_shopcarttp_###-TotalPrice.
+                         ) ).
+   ENDMETHOD.
 
-        " read transfered instances
-        READ ENTITIES OF zr_shopcarttp_### IN LOCAL MODE
-          ENTITY ShoppingCart
-            FIELDS ( OrderID TotalPrice )
-            WITH CORRESPONDING #( keys )
-          RESULT DATA(OnlineOrders).
+   METHOD calculateTotalPrice.
+     DATA total_price TYPE zr_shopcart_###-TotalPrice.
 
-        LOOP AT OnlineOrders ASSIGNING FIELD-SYMBOL(<OnlineOrder>).
-          " calculate total value
-          <OnlineOrder>-TotalPrice = <OnlineOrder>-Price * <OnlineOrder>-OrderQuantity.
-        ENDLOOP.
+     " read transfered instances
+     READ ENTITIES OF zr_shopcart_### IN LOCAL MODE
+       ENTITY ShoppingCart
+         FIELDS ( OrderID TotalPrice )
+         WITH CORRESPONDING #( keys )
+       RESULT DATA(OnlineOrders).
 
-        "update instances
-        MODIFY ENTITIES OF zr_shopcarttp_### IN LOCAL MODE
-          ENTITY ShoppingCart
-            UPDATE FIELDS ( TotalPrice )
-            WITH VALUE #( FOR OnlineOrder IN OnlineOrders (
-                              %tky       = OnlineOrder-%tky
-                              TotalPrice = <OnlineOrder>-TotalPrice
-                            ) ).
-      ENDMETHOD.
+     LOOP AT OnlineOrders ASSIGNING FIELD-SYMBOL(<OnlineOrder>).
+       " calculate total value
+       <OnlineOrder>-TotalPrice = <OnlineOrder>-Price * <OnlineOrder>-OrderQuantity.
+     ENDLOOP.
 
-      METHOD setInitialOrderValues.
+     "update instances
+     MODIFY ENTITIES OF zr_shopcart_### IN LOCAL MODE
+       ENTITY ShoppingCart
+         UPDATE FIELDS ( TotalPrice )
+         WITH VALUE #( FOR OnlineOrder IN OnlineOrders (
+                           %tky       = OnlineOrder-%tky
+                           TotalPrice = <OnlineOrder>-TotalPrice
+                         ) ).
+   ENDMETHOD.
 
-        DATA delivery_date TYPE I_PurchaseReqnItemTP-DeliveryDate.
-        DATA(creation_date) = cl_abap_context_info=>get_system_date(  ).
-        "set delivery date proposal
-        delivery_date = cl_abap_context_info=>get_system_date(  ) + 14.
-        "read transfered instances
-        READ ENTITIES OF ZR_shopcarttp_### IN LOCAL MODE
-          ENTITY ShoppingCart
-            FIELDS ( OrderID OverallStatus  DeliveryDate )
-            WITH CORRESPONDING #( keys )
-          RESULT DATA(OnlineOrders).
+   METHOD setInitialOrderValues.
 
-        "delete entries with assigned order ID
-        DELETE OnlineOrders WHERE OrderID IS NOT INITIAL.
-        CHECK OnlineOrders IS NOT INITIAL.
+     DATA delivery_date TYPE I_PurchaseReqnItemTP-DeliveryDate.
+     DATA(creation_date) = cl_abap_context_info=>get_system_date(  ).
+     "set delivery date proposal
+     delivery_date = cl_abap_context_info=>get_system_date(  ) + 14.
+     "read transfered instances
+     READ ENTITIES OF ZR_shopcart_### IN LOCAL MODE
+       ENTITY ShoppingCart
+         FIELDS ( OrderID OverallStatus  DeliveryDate )
+         WITH CORRESPONDING #( keys )
+       RESULT DATA(OnlineOrders).
 
-        " **Dummy logic to determine order IDs**
-        " get max order ID from the relevant active and draft table entries
-        SELECT MAX( order_id ) FROM zashopcart_### INTO @DATA(max_order_id). "active table
-        SELECT SINGLE FROM zdshopcart_### FIELDS MAX( orderid ) INTO @DATA(max_orderid_draft). "draft table
-        IF max_orderid_draft > max_order_id.
-          max_order_id = max_orderid_draft.
-        ENDIF.
+     "delete entries with assigned order ID
+     DELETE OnlineOrders WHERE OrderID IS NOT INITIAL.
+     CHECK OnlineOrders IS NOT INITIAL.
 
-        "set initial values of new instances
-        MODIFY ENTITIES OF ZR_SHOPCARTTP_### IN LOCAL MODE
-          ENTITY ShoppingCart
-            UPDATE FIELDS ( OrderID OverallStatus  DeliveryDate Price  )
-            WITH VALUE #( FOR order IN OnlineOrders INDEX INTO i (
-                              %tky          = order-%tky
-                              OrderID       = max_order_id + i
-                              OverallStatus = c_overall_status-new  "'New / Composing'
-                              DeliveryDate  = delivery_date
-                              CreatedAt     = creation_date
-                            ) ).
-        .
-      ENDMETHOD.
+     " **Dummy logic to determine order IDs**
+     " get max order ID from the relevant active and draft table entries
+     SELECT MAX( order_id ) FROM zshopcart_### INTO @DATA(max_order_id). "active table
+     SELECT SINGLE FROM zshopcart_###_d FIELDS MAX( orderid ) INTO @DATA(max_orderid_draft). "draft table
+     IF max_orderid_draft > max_order_id.
+       max_order_id = max_orderid_draft.
+     ENDIF.
 
-      METHOD checkDeliveryDate.
+     "set initial values of new instances
+     MODIFY ENTITIES OF zr_shopcart_### IN LOCAL MODE
+       ENTITY ShoppingCart
+         UPDATE FIELDS ( OrderID OverallStatus  DeliveryDate Price  )
+         WITH VALUE #( FOR order IN OnlineOrders INDEX INTO i (
+                           %tky          = order-%tky
+                           OrderID       = max_order_id + i
+                           OverallStatus = c_overall_status-new  "'New / Composing'
+                           DeliveryDate  = delivery_date
+                           CreatedAt     = creation_date
+                         ) ).
+     .
+   ENDMETHOD.
 
-   *   " read transfered instances
-        READ ENTITIES OF zr_shopcarttp_### IN LOCAL MODE
-          ENTITY ShoppingCart
-            FIELDS ( DeliveryDate )
-            WITH CORRESPONDING #( keys )
-          RESULT DATA(OnlineOrders).
+   METHOD checkDeliveryDate.
 
-        DATA(creation_date) = cl_abap_context_info=>get_system_date(  ).
+*   " read transfered instances
+     READ ENTITIES OF zr_shopcart_### IN LOCAL MODE
+       ENTITY ShoppingCart
+         FIELDS ( DeliveryDate )
+         WITH CORRESPONDING #( keys )
+       RESULT DATA(OnlineOrders).
 
-        "raise msg if delivery date is not ok
-    LOOP AT OnlineOrders INTO DATA(online_order).
-      APPEND VALUE #(  %tky           = Online_Order-%tky
-                       %state_area    = 'VALIDATE_DELIVERYDATE'
-                    ) TO reported-ShoppingCart.
+     DATA(creation_date) = cl_abap_context_info=>get_system_date(  ).
 
-      IF online_order-DeliveryDate IS INITIAL OR online_order-DeliveryDate = ' '.
-        APPEND VALUE #( %tky = online_order-%tky ) TO failed-ShoppingCart.
-        APPEND VALUE #( %tky         = online_order-%tky
-                        %state_area   = 'VALIDATE_DELIVERYDATE'
-                        %msg          = new_message_with_text(
-                                severity = if_abap_behv_message=>severity-error
-                                text     = 'Delivery Date cannot be initial' )
-                        %element-deliverydate  = if_abap_behv=>mk-on
-                      ) TO reported-ShoppingCart.
+     "raise msg if delivery date is not ok
+     LOOP AT OnlineOrders INTO DATA(online_order).
+       APPEND VALUE #(  %tky           = Online_Order-%tky
+                        %state_area    = 'VALIDATE_DELIVERYDATE'
+                     ) TO reported-ShoppingCart.
 
-      ELSEIF  ( ( online_order-DeliveryDate ) - creation_date ) < 14.
-        APPEND VALUE #(  %tky = online_order-%tky ) TO failed-ShoppingCart.
-        APPEND VALUE #(  %tky          = online_order-%tky
-                        %state_area   = 'VALIDATE_DELIVERYDATE'
-                        %msg          = new_message_with_text(
-                                severity = if_abap_behv_message=>severity-error
-                                text     = 'Delivery Date should be atleast 14 days after the creation date'  )
-                        %element-deliverydate  = if_abap_behv=>mk-on
-                      ) TO reported-ShoppingCart.
-      ENDIF.
-    ENDLOOP.
+       IF online_order-DeliveryDate IS INITIAL OR online_order-DeliveryDate = ' '.
+         APPEND VALUE #( %tky = online_order-%tky ) TO failed-ShoppingCart.
+         APPEND VALUE #( %tky         = online_order-%tky
+                         %state_area   = 'VALIDATE_DELIVERYDATE'
+                         %msg          = new_message_with_text(
+                                 severity = if_abap_behv_message=>severity-error
+                                 text     = 'Delivery Date cannot be initial' )
+                         %element-deliverydate  = if_abap_behv=>mk-on
+                       ) TO reported-ShoppingCart.
 
-      ENDMETHOD.
+       ELSEIF  ( ( online_order-DeliveryDate ) - creation_date ) < 14.
+         APPEND VALUE #(  %tky = online_order-%tky ) TO failed-ShoppingCart.
+         APPEND VALUE #(  %tky          = online_order-%tky
+                         %state_area   = 'VALIDATE_DELIVERYDATE'
+                         %msg          = new_message_with_text(
+                                 severity = if_abap_behv_message=>severity-error
+                                 text     = 'Delivery Date should be atleast 14 days after the creation date'  )
+                         %element-deliverydate  = if_abap_behv=>mk-on
+                       ) TO reported-ShoppingCart.
+       ENDIF.
+     ENDLOOP.
 
-      METHOD checkOrderedQuantity.
+   ENDMETHOD.
 
-        "read relevant order instance data
-        READ ENTITIES OF zr_shopcarttp_### IN LOCAL MODE
-        ENTITY ShoppingCart
-        FIELDS ( OrderID OrderedItem OrderQuantity )
-        WITH CORRESPONDING #( keys )
-        RESULT DATA(OnlineOrders).
+   METHOD checkOrderedQuantity.
 
-        "raise msg if 0 > qty <= 10
-        LOOP AT OnlineOrders INTO DATA(OnlineOrder).
-          APPEND VALUE #(  %tky           = OnlineOrder-%tky
-                          %state_area    = 'VALIDATE_QUANTITY'
-                        ) TO reported-ShoppingCart.
+     "read relevant order instance data
+     READ ENTITIES OF zr_shopcart_### IN LOCAL MODE
+     ENTITY ShoppingCart
+     FIELDS ( OrderID OrderedItem OrderQuantity )
+     WITH CORRESPONDING #( keys )
+     RESULT DATA(OnlineOrders).
 
-          IF OnlineOrder-OrderQuantity IS INITIAL OR OnlineOrder-OrderQuantity = ' '.
-            APPEND VALUE #( %tky = OnlineOrder-%tky ) TO failed-ShoppingCart.
-            APPEND VALUE #( %tky          = OnlineOrder-%tky
-                            %state_area   = 'VALIDATE_QUANTITY'
-                            %msg          = new_message_with_text(
-                                    severity = if_abap_behv_message=>severity-error
-                                    text     = 'Quantity cannot be empty' )
-                            %element-orderquantity = if_abap_behv=>mk-on
-                          ) TO reported-ShoppingCart.
+     "raise msg if 0 > qty <= 10
+     LOOP AT OnlineOrders INTO DATA(OnlineOrder).
+       APPEND VALUE #(  %tky           = OnlineOrder-%tky
+                       %state_area    = 'VALIDATE_QUANTITY'
+                     ) TO reported-ShoppingCart.
 
-          ELSEIF OnlineOrder-OrderQuantity > 10.
-            APPEND VALUE #(  %tky = OnlineOrder-%tky ) TO failed-ShoppingCart.
-            APPEND VALUE #(  %tky          = OnlineOrder-%tky
-                            %state_area   = 'VALIDATE_QUANTITY'
-                            %msg          = new_message_with_text(
-                                    severity = if_abap_behv_message=>severity-error
-                                    text     = 'Quantity should be below 10' )
+       IF OnlineOrder-OrderQuantity IS INITIAL OR OnlineOrder-OrderQuantity = ' '.
+         APPEND VALUE #( %tky = OnlineOrder-%tky ) TO failed-ShoppingCart.
+         APPEND VALUE #( %tky          = OnlineOrder-%tky
+                         %state_area   = 'VALIDATE_QUANTITY'
+                         %msg          = new_message_with_text(
+                                 severity = if_abap_behv_message=>severity-error
+                                 text     = 'Quantity cannot be empty' )
+                         %element-orderquantity = if_abap_behv=>mk-on
+                       ) TO reported-ShoppingCart.
 
-                            %element-orderquantity  = if_abap_behv=>mk-on
-                          ) TO reported-ShoppingCart.
-          ENDIF.
-        ENDLOOP.
-      ENDMETHOD.
-    ENDCLASS.
-  ```
+       ELSEIF OnlineOrder-OrderQuantity > 10.
+         APPEND VALUE #(  %tky = OnlineOrder-%tky ) TO failed-ShoppingCart.
+         APPEND VALUE #(  %tky          = OnlineOrder-%tky
+                         %state_area   = 'VALIDATE_QUANTITY'
+                         %msg          = new_message_with_text(
+                                 severity = if_abap_behv_message=>severity-error
+                                 text     = 'Quantity should be below 10' )
+
+                         %element-orderquantity  = if_abap_behv=>mk-on
+                       ) TO reported-ShoppingCart.
+       ENDIF.
+     ENDLOOP.
+   ENDMETHOD.
+ ENDCLASS.
+
+
+   ```
   </details>
 
 2. Save and activate.
