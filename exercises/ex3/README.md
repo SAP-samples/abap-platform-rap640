@@ -175,7 +175,7 @@ In this step will activate the use of side effects so that the field **TotalPric
 <details>
   <summary>🔵 Click to expand</summary>
 
-  1. Open your behavior definition **`ZC_SHOPCARTTP_###`** to enhance it. Add the following statements to your behavior projection:
+  1. Open your behavior definition **`ZC_SHOPCART_###`** to enhance it. Add the following statements to your behavior projection:
 
       ```   
       use side effects;      
@@ -302,12 +302,12 @@ This data definition is needed to create a value help for products.
 
 ## Step 4: Add value helps in the CDS projection view
 
-You will now adjust the CDS projection view `ZC_SHOPCARTTP_###` of your Fiori elements app by adding the value help you have just created.
+You will now adjust the CDS projection view `ZC_SHOPCART_###` of your Fiori elements app by adding the value help you have just created.
 
 <details>
   <summary>🔵 Click to expand</summary>
 
- 1. In the _Project Explorer_ navigate to the CDS projection view **`ZC_SHOPCARTTP_###`**.   
+ 1. In the _Project Explorer_ navigate to the CDS projection view **`ZC_SHOPCART_###`**.   
     
     <img alt="product value help" src="images/select_projection_view.png" width="70%">  
 
