@@ -129,7 +129,7 @@ This approach has the advantage of a clear control of when and where an instance
       - Check the check box **C1 Release**       
       - Check the check box **Create Private Methods**          
 
-    <!-- ![Start ACO_PROXY](images/start_aco_proxy_2.png) -->
+    
     <img alt="Start ACO_PROXY" src="images/start_aco_proxy_2.png" width="100%"> 
 
 3. Press the green check mark <code style="color : name_color">**✔**</code> in the upper left corner or  **F8** to continue
