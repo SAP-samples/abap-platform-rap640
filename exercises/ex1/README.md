@@ -118,11 +118,12 @@ This approach has the advantage of a clear control of when and where an instance
         
    **B. Specify repository object names**    
       - **Name of a proxy class**: Enter a name for the wrapper class, e.g. `ZCL_WRAP_BAPI_PR_###`.   
-      - **Package**: Select `TEST_TIER2_###`.     ⚠️⚠️⚠️  (We use a package TEST_TIER2_### instead of ZTIER2_### as a workaround due to a bug in ACO_PROXY)   
+      - **Package**: Select `ZTIER2_###`.       
       - **Create Interface**: Check the check box and choose a name for the interface, e.g. `ZIF_WRAP_BAPI_PR_###`  
       - **Create Factory Class**: Check the check box and choose a name for the factory class, e.g. `ZCL_F_WRAP_BAPI_PR_###`   
 
    **C. Options**   
+      - Leave the default value **Pass destination via Constructor**  checked.   
       - Choose the radio-button **Class-Based Exceptions**       
       - Check the check box **Do not create Shadows of C1 Released Types**       
       - Check the check box **C1 Release**       
