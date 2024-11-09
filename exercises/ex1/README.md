@@ -109,13 +109,7 @@ In the following we will explain in short the best practices that are behind the
 This approach has the advantage of a clear control of when and where an instance of the wrapper class is created, and in the event in which several wrapper classes are needed all their instantiations could be handled inside one single factory class.  Also, in case of wrapper classes this has the advantage that in case the wrapper class is changed throughout it's software lifecycle, at a later point in time a different class could be initialized, without changes to the consumer implementation. In this tutorial we follow the [clean code best practices](https://blogs.sap.com/2022/05/05/how-to-enable-clean-code-checks-for-abap/) for ABAP development. For example: the wrapper class is ready for ABAP Unit Tests and [ABAP Doc](https://blogs.sap.com/2013/04/29/abap-doc/) is implemented.
 
 
-<details>
-  <summary>🔵 Click to expand</summary>
-
-1. To create the interface, the class and the factory class for your BAPI start transaction ACO_PROXY.
-
-    <!-- ![Start ACO_PROXY](images/start_aco_proxy_2.png) -->
-    <img alt="Start ACO_PROXY" src="images/start_aco_proxy_2.png" width="100%"> 
+1. To create the interface, the class and the factory class for your BAPI start transaction **ACO_PROXY**.  
 
 2. Enter the following values
 
@@ -134,7 +128,8 @@ This approach has the advantage of a clear control of when and where an instance
       - Check the check box **C1 Release**       
       - Check the check box **Create Private Methods**          
 
-  
+    <!-- ![Start ACO_PROXY](images/start_aco_proxy_2.png) -->
+    <img alt="Start ACO_PROXY" src="images/start_aco_proxy_2.png" width="100%"> 
 
 3. Press the green check mark <code style="color : name_color">**✔**</code> in the upper left corner or  **F8** to continue
    
@@ -160,7 +155,7 @@ This approach has the advantage of a clear control of when and where an instance
 
    <img alt="Select optional parameters 3" src="images/rap640_parameter_030.png" width="70%">
 
-</details>   
+ 
 </details>  
 
 ## Step 4: Create a package in Tier 1   
