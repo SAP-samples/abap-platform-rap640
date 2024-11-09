@@ -169,7 +169,7 @@ Save and activate it. Then place the cursor on the newly created validation and 
     DATA  return  TYPE zif_wrap_bapi_pr_###=>_bapiret2 .
 
     "read relevant order instance data
-    READ ENTITIES OF zr_shopcarttp_### IN LOCAL MODE
+    READ ENTITIES OF zr_shopcart_### IN LOCAL MODE
       ENTITY ShoppingCart
         ALL FIELDS WITH
         CORRESPONDING #( keys )
