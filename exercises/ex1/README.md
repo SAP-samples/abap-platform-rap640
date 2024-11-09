@@ -79,7 +79,7 @@ Select **Add to favorite packages** for easy access later on. Keep the Package T
 
 Do not change anything in the following wizard window (where the software component HOME is selected), and click on **Next**.       
 
-<img alt="Create Tier 2 package" src="start_aco_proxy_2.png" width="70%">    
+  <img alt="Create Tier 2 package" src="start_aco_proxy_2.png" width="70%">    
 
 Create a new transport request and give it a meaningful name such as `Tier2 development - Group ###` so that it can be more easily identified. Then click on **Finish**. The package will be created.
 
@@ -130,7 +130,7 @@ This approach has the advantage of a clear control of when and where an instance
       - Check the check box **Create Private Methods**          
 
     
-    <img alt="Start ACO_PROXY" src="images/start_aco_proxy_2.png" width="100%"> 
+      <img alt="Start ACO_PROXY" src="images/start_aco_proxy_2.png" width="100%"> 
 
 3. Press the green check mark <code style="color : name_color">**✔**</code> in the upper left corner or  **F8** to continue
    
