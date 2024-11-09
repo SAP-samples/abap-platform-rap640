@@ -81,7 +81,7 @@ This will automatically create an empty method implementation in the `lhc_shopca
 ``` ABAP
   METHOD createPurchRqnBAPISave.
   "read transfered order instances
-  READ ENTITIES OF zr_shopcarttp_### IN LOCAL MODE
+  READ ENTITIES OF zr_shopcart_### IN LOCAL MODE
     ENTITY ShoppingCart
       ALL FIELDS WITH
       CORRESPONDING #( keys )
