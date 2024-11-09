@@ -71,10 +71,15 @@ You will develop the wrapper in a dedicated package  **`TEST_TIER2_###`** in you
 <details>
   <summary>🔵 Click to expand</summary>
   
-In ADT, open your SAP S/4HANA system project folder, right click on it and select **New** > **ABAP Package** and input the Name `TEST_TIER2_###` leave the field superpackage empty and enter a Description, e.g. `Package Tier2`.   Select **Add to favorite packages** for easy access later on. Keep the Package Type as **Development** and click on **Next**. Do not change anything in the following wizard window (where the software component HOME is selected), and click on **Next**.       
+In ADT, open your SAP S/4HANA system project folder, right click on it and select **New** > **ABAP Package** and enter the following values:   
+Name:  **`ZTIER2_###`**   
+Superpackage **`ZTIER2`**      
+Description: **`Group ### - Tier2`.**      
+Select **Add to favorite packages** for easy access later on. Keep the Package Type as **Development** and click on **Next**.  
+Do not change anything in the following wizard window (where the software component HOME is selected), and click on **Next**.       
 
 <!-- ![Create Tier 2 package](images/create_tier2_package.png) -->
-<!--  <img alt="Create Tier 2 package" src="images/create_tier2_package_2.png" width="70%">  -->   
+<!--  <img alt="Create Tier 2 package" src="images/Group 000 - Tier2.png" width="70%">  -->   
 
 <img alt="Create Tier 2 package" src="images/new_package_test_tier2.png" width="70%">   
 
