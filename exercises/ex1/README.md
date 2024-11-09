@@ -70,9 +70,10 @@ You will develop the wrapper in a dedicated package under the structure package 
   <summary>🔵 Click to expand</summary>
   
 In ADT, open your SAP S/4HANA system project folder, right click on it and select **New** > **ABAP Package** and enter the following values:   
-Name:  **`ZTIER2_###`**   
-Superpackage **`ZTIER2`**      
-Description: **`Group ### - Tier2`.**      
+
+Name:         **`ZTIER2_###`**   
+Superpackage: **`ZTIER2`**      
+Description:  **`Group ### - Tier2`.**      
 
 Select **Add to favorite packages** for easy access later on. Keep the Package Type as **Development** and click on **Next**.  
 
