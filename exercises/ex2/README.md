@@ -43,7 +43,7 @@ We start the creation of the RAP business object with creating a database table.
       <img alt="table" src="images//databasenew2.png" width="70%">
 
   3. Create new database table:
-     - Name: `ZASHOPCART_### `
+     - Name: `ZSHOPCART_### `
      - Description: Shopping cart table
 
       <!-- ![table](images//databasenew3.png) -->
@@ -64,14 +64,14 @@ We start the creation of the RAP business object with creating a database table.
     @AbapCatalog.tableCategory : #TRANSPARENT
     @AbapCatalog.deliveryClass : #A
     @AbapCatalog.dataMaintenance : #RESTRICTED
-    define table zashopcart_### {
+    define table zshopcart_### {
     key client            : abap.clnt not null;
     key order_uuid        : sysuuid_x16 not null;
     order_id              : abap.numc(8) not null;
     ordered_item          : abap.char(40) not null;
-    @Semantics.amount.currencyCode : 'zashopcart_###.currency'
+    @Semantics.amount.currencyCode : 'zshopcart_###.currency'
     price                 : abap.curr(11,2);
-    @Semantics.amount.currencyCode : 'zashopcart_###.currency'
+    @Semantics.amount.currencyCode : 'zshopcart_###.currency'
     total_price           : abap.curr(11,2);
     currency              : abap.cuky;
     order_quantity        : abap.numc(4);
@@ -100,15 +100,11 @@ You will now use a wizard to generate all repository objects required for your R
   <summary>🔵 Click to expand</summary>
 
 
-  1. Right-click your database table **`ZASHOPCART_###`** and select **Generate ABAP Repository Objects**.
+  1. Right-click your database table **`ZSHOPCART_###`** and select **Generate ABAP Repository Objects**.
 
       <!-- ![cds](images/generator.png) -->
       <img alt="Generate Repository Objects" src="images/generator.png" width="70%">
-
-  2. In the **Enter Package** screen enter the name of your Tier 1 package **`Z_PURCHASE_REQ_###`** and click **Next >**.
-
-     <img alt="Enter package name" src="images/generator_enter_package_name.png" width="70%">
- 
+  
   2. In the **Select Generator** screen choose the generator:    
      - Generator: **ABAP RESTful Application Programming Model: UI Service**
 
@@ -119,7 +115,12 @@ You will now use a wizard to generate all repository objects required for your R
 
       > Please be aware that the screenshot above pertains to the SAP S/4HANA 2023 release.   
 
-  3. Maintain the required information on the **Configure Generator** dialog to provide the name of your data model and generate them.         
+  3. In the **Enter Package** screen enter the name of your Tier 1 package **`Z_PURCHASE_REQ_TEST_###`** and click **Next >**.
+
+     <img alt="Enter package name" src="images/generator_enter_package_name.png" width="70%">
+ 
+
+  4. Maintain the required information on the **Configure Generator** dialog to provide the name of your data model and generate them.         
      
      For that, navigate through the wizard tree **(Business Objects, Data Model, etc...)**, maintain the artefact names provided in the table below, and press **Next >**.
 
@@ -129,14 +130,14 @@ You will now use a wizard to generate all repository objects required for your R
    | **RAP Layer**                          | **Artefacts**           | **Artefact Names**                                  |
    |----------------------------------------|-------------------------|-----------------------------------------------------|
    | **Business Object**                    |                         |                                                     |
-   |                                        | **Data Model**          | Data Definition Name: **`ZR_SHOPCARTTP_###`**     |
+   |                                        | **Data Model**          | Data Definition Name: **`ZR_SHOPCART_###`**     |
    |                                        |                         | Alias Name: **`ShoppingCart`**                        |  
-   |                                        | **Behavior**            | Implementation Class: **`ZBP_SHOPCARTTP_###`**    |
-   |                                        |                         | Draft Table Name: **`ZDSHOPCART_###`**            |  
-   | **Service Projection (BO Projection)** |                         | Name: **`ZC_SHOPCARTTP_###`**                     |
+   |                                        | **Behavior**            | Implementation Class: **`ZBP_R_SHOPCART_###`**    |
+   |                                        |                         | Draft Table Name: **`ZSHOPCART_###_D`**            |  
+   | **Service Projection (BO Projection)** |                         | Name: **`ZC_SHOPCART_###`**                     |
    | **Business Services**                  |                         |                                                     |
-   |                                        | **Service Definition**  | Name: **`ZUI_SHOPCART_###`**                      |
-   |                                        | **Service Binding**     | Name: **`ZUI_SHOPCART_O4_###`**                   |
+   |                                        | **Service Definition**  | Name: **`ZUI_SHOPCART_###_O4`**                      |
+   |                                        | **Service Binding**     | Name: **`ZUI_SHOPCART_###_O4`**                   |
    |                                        |                         | Binding Type: **`OData V4 - UI`**                   |
 
 <!-- ![cds](images/generator3.png) -->
@@ -144,7 +145,7 @@ You will now use a wizard to generate all repository objects required for your R
 
    Click **Next >**.
 
-  4. Click **Finish**.
+  5. Click **Finish**.
 
 <!-- ![cds](images/generator4.png) -->
 <img alt="cds" src="images/generator4.png" width="70%">
