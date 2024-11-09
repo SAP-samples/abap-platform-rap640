@@ -395,7 +395,7 @@ DATA : prheader    TYPE zif_wrap_bapi_pr_000=>bapimereqheader,
 
         DATA(creation_date) = cl_abap_context_info=>get_system_date(  ).
 
-        UPDATE zashopcart_000
+        UPDATE zshopcart_000
         SET purchase_requisition = @number,
             pr_creation_date = @creation_date
         WHERE order_uuid = @OnlineOrder-OrderUUID.
