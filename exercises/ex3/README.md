@@ -156,9 +156,12 @@ In this step we will add validations, determinations and side effects.
             PrCreationDate      = pr_creation_date;
           }
       }   
-      **Hint:** Please replace **`###`** with your ID.
+      
       
       ```
+  
+      **Hint:** Please replace **`###`** with your group number .     
+      
 </details>
     
    4. Save and activate. 
