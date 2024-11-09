@@ -414,13 +414,19 @@ The `save_modified` method implementation should now look as follows:
   METHOD save_modified.
 
     IF create-shoppingcart IS NOT INITIAL.
-      INSERT zashopcart_### FROM TABLE @create-shoppingcart  MAPPING FROM ENTITY .
+      INSERT zshopcart_### FROM TABLE @create-shoppingcart  MAPPING FROM ENTITY .
     ENDIF.
 
     IF update IS NOT INITIAL.
-      UPDATE zashopcart_### FROM TABLE @update-shoppingcart
+      UPDATE zshopcart_### FROM TABLE @update-shoppingcart
          INDICATORS SET STRUCTURE %control MAPPING FROM ENTITY.
     ENDIF.
+
+    LOOP AT delete-shoppingcart INTO DATA(shoppingcart_delete) WHERE OrderUUID IS NOT INITIAL.
+      DELETE FROM zshopcart_### WHERE order_uuid = @shoppingcart_delete-OrderUUID.
+      DELETE FROM zshopcart_###_d WHERE orderuuid = @shoppingcart_delete-OrderUUID.
+    ENDLOOP.
+
 
     DATA : prheader    TYPE zif_wrap_bapi_pr_###=>bapimereqheader,
            prheaderx   TYPE zif_wrap_bapi_pr_###=>bapimereqheaderx,
@@ -437,7 +443,7 @@ The `save_modified` method implementation should now look as follows:
       LOOP AT update-shoppingcart INTO DATA(OnlineOrder) WHERE %control-OverallStatus = if_abap_behv=>mk-on.
 
         pritem           = VALUE #( (
-                              preq_item  = '00010'
+                              preq_item  = '###10'
                               plant      = '1010'
                               acctasscat = 'U'
                               currency   = OnlineOrder-Currency
@@ -453,7 +459,7 @@ The `save_modified` method implementation should now look as follows:
                             ) ).
 
         pritemx           = VALUE #( (
-                          preq_item  = '00010'
+                          preq_item  = '###10'
                           plant      = 'X'
                           acctasscat = 'X'
                           currency   = 'X'
@@ -489,7 +495,7 @@ The `save_modified` method implementation should now look as follows:
 
         DATA(creation_date) = cl_abap_context_info=>get_system_date(  ).
 
-        UPDATE zashopcart_###
+        UPDATE zshopcart_###
         SET purchase_requisition = @number,
             pr_creation_date = @creation_date
         WHERE order_uuid = @OnlineOrder-OrderUUID.
@@ -497,11 +503,10 @@ The `save_modified` method implementation should now look as follows:
       ENDLOOP.
     ENDIF.
 
-    LOOP AT delete-shoppingcart INTO DATA(shoppingcart_delete) WHERE OrderUUID IS NOT INITIAL.
-      DELETE FROM zashopcart_### WHERE order_uuid = @shoppingcart_delete-OrderUUID.
-      DELETE FROM zdshopcart_### WHERE orderuuid = @shoppingcart_delete-OrderUUID.
-    ENDLOOP.
+
+
   ENDMETHOD.
+
 ```
 </details>
 
@@ -525,7 +530,7 @@ You will now expose the newly created action. To do this, you will modify the *M
 <details>
   <summary>🔵 Click to expand</summary>
   
-Open the Metadata Extension `ZC_SHOPCARTTP_###` and substitute all the metadata content referring to the action `PurchaseRequisition` with the following code snippet referring to the new action:
+Open the Metadata Extension `ZC_SHOPCART_###` and substitute all the metadata content referring to the action `PurchaseRequisition` with the following code snippet referring to the new action:
 
 ```ABAP
   @UI.lineItem: [ {
@@ -545,7 +550,7 @@ Your metadata implementation should look like this:
 
 Save and activate it.
 
-Open the Behavior Definition `ZC_SHOPCARTTP_###` and expose the new action with the code snippet:
+Open the Behavior Definition `ZC_SHOPCART_###` and expose the new action with the code snippet:
 
 ```ABAP
   use action createPurchRqnBAPISave;
@@ -557,8 +562,9 @@ The Behavior Definition should now look as follows:
   projection;
   strict ( 1 );
   use draft;
+  use side effects;  
 
-  define behavior for ZC_SHOPCARTTP_### alias ShoppingCart
+  define behavior for ZC_SHOPCART_### alias ShoppingCart
   use etag
 
   {
