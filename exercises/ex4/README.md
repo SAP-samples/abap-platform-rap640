@@ -277,7 +277,7 @@ In our scenario, we want to call the wrapper during the save sequence and theref
 Open the behavior definition `ZR_SHOPCART_###`, **delete** or **comment out** the following line:
 
 ```ABAP
-//persistent table zashopcart_### 
+//persistent table zshopcart_### 
 ```
 and **add** the unmanaged save statement:
 
