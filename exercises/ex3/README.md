@@ -84,75 +84,78 @@ In this step we will add validations, determinations and side effects.
   
       ```
       
-      managed implementation in class ZBP_SHOPCARTTP_### unique;
-      strict ( 2 );
-      with draft;
+      managed implementation in class ZBP_R_SHOPCART_### unique;  
+      strict ( 2 );  
+ with draft;  
 
-      define behavior for ZR_SHOPCARTTP_### alias ShoppingCart
-      persistent table zashopcart_###
-      draft table ZDSHOPCART_###
+      define behavior for ZR_SHOPCART_### alias ShoppingCart    
+      persistent table zshopcart_###
+      draft table zshopcart_###_d
       etag master LocalLastChangedAt
       lock master total etag LastChangedAt
-      authorization master( global )
+      authorization master ( global )
+
       {
-      field ( readonly ) 
-      OrderUUID,
-      CreatedAt,
-      CreatedBy,
-      LastChangedAt,
-      LastChangedBy,
-      LocalLastChangedAt,
-      PurchaseRequisition,
-      PrCreationDate,
-      OverallStatus;
+        field ( readonly )
+        OrderUUID,
+        CreatedAt,
+        CreatedBy,
+        LastChangedAt,
+        LastChangedBy,
+        LocalLastChangedAt
+        ,
+        PurchaseRequisition,
+        PrCreationDate,
+        OverallStatus;
 
-      field ( numbering : managed )
-      OrderUUID;
 
-      create;
-      update(features: instance) ;
-      delete;
 
-      draft action(features: instance) Edit;
-      draft action Activate;
-      draft action Discard; 
-      draft action Resume;
-      draft determine action Prepare { validation checkOrderedQuantity;  validation checkDeliveryDate;}
+        field ( numbering : managed )
+        OrderUUID;
+
+
+        create;
+        update ( features : instance );
+        delete;
+
+        draft action ( features : instance ) Edit;
+        draft action Activate optimized;
+        draft action Discard;
+        draft action Resume;
+        draft determine action Prepare { validation checkOrderedQuantity; validation checkDeliveryDate; }
         determination setInitialOrderValues on modify { create; }
         determination calculateTotalPrice on modify { create; field Price, OrderQuantity; }
-      validation checkOrderedQuantity on save { create; field OrderQuantity; }
-      validation checkDeliveryDate on save { create; field DeliveryDate; }
+        validation checkOrderedQuantity on save { create; field OrderQuantity; }
+        validation checkDeliveryDate on save { create; field DeliveryDate; }
 
+        //  side effects
+        side effects
+        {
+          field Price affects field TotalPrice;
+          field OrderQuantity affects field TotalPrice;
+        }
 
-      //  side effects
-      side effects
-      {
-        field Price affects field TotalPrice;
-        field OrderQuantity affects field TotalPrice;
+        mapping for zshopcart_###
+          {
+            OrderUUID           = order_uuid;
+            OrderID             = order_id;
+            OrderedItem         = ordered_item;
+            Price               = price;
+            TotalPrice          = total_price;
+            Currency            = currency;
+            OrderQuantity       = order_quantity;
+           DeliveryDate        = delivery_date;
+            OverallStatus       = overall_status;
+            Notes               = notes;
+            CreatedBy           = created_by;
+            CreatedAt           = created_at;
+            LastChangedBy       = last_changed_by;
+            LastChangedAt       = last_changed_at;
+            LocalLastChangedAt  = local_last_changed_at;
+            PurchaseRequisition = purchase_requisition;
+            PrCreationDate      = pr_creation_date;
+          }
       }   
-
- 
-      mapping for ZASHOPCART_### 
-      {
-        OrderUUID = order_uuid;
-        OrderID = order_id;
-        OrderedItem = ordered_item;
-        Price = price;
-        TotalPrice = total_price;
-        Currency = currency;
-        OrderQuantity = order_quantity;
-        DeliveryDate = delivery_date;
-        OverallStatus = overall_status;
-        Notes = notes;
-        CreatedBy = created_by;
-        CreatedAt = created_at;
-        LastChangedBy = last_changed_by;
-        LastChangedAt = last_changed_at;
-        LocalLastChangedAt = local_last_changed_at;
-        PurchaseRequisition = purchase_requisition;
-        PrCreationDate = pr_creation_date;
-      }
-      }
       **Hint:** Please replace **`###`** with your ID.
       
       ```
