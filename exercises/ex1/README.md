@@ -111,9 +111,9 @@ This approach has the advantage of a clear control of when and where an instance
 
 1. To create the interface, the class and the factory class for your BAPI start transaction **ACO_PROXY**.  
 
-2. Enter the following values
+2. Enter the following values:   
 
-  **A. Function Modules**    
+   **A. Function Modules**    
       - Here you can select one or more function modules that will be wrapped by one single class. Please enter here only `BAPI_PR_CREATE`.  
         
    **B. Specify repository object names**    
@@ -130,7 +130,7 @@ This approach has the advantage of a clear control of when and where an instance
       - Check the check box **Create Private Methods**          
 
     
-      <img alt="Start ACO_PROXY" src="images/start_aco_proxy_2.png" width="100%"> 
+   <img alt="Start ACO_PROXY" src="images/start_aco_proxy_2.png" width="100%"> 
 
 3. Press the green check mark <code style="color : name_color">**✔**</code> in the upper left corner or  **F8** to continue
    
