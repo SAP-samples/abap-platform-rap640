@@ -1,4 +1,4 @@
-# Exercise 1: Implement a Wrapper for the "Create Purchase Requisition" (BAPI_PR_CREATE) function module
+ # Exercise 1: Implement a Wrapper for the "Create Purchase Requisition" (BAPI_PR_CREATE) function module
 <!-- description --> Learn how to wrap the BAPI_PR_CREATE in your SAP S/4HANA system and release it for consumption in tier 1.
 
 ## Prerequisites
@@ -71,9 +71,9 @@ You will develop the wrapper in a dedicated package under the structure package 
   
 In ADT, open your SAP S/4HANA system project folder, right click on it and select **New** > **ABAP Package** and enter the following values:   
 
-Name:         **`ZTIER2_###`**   
-Superpackage: **`ZTIER2`**      
-Description:  **`Group ### - Tier2`.**      
+- Name:         **`ZTIER2_###`**   
+- Superpackage: **`ZTIER2`**      
+- Description:  **`Group ### - Tier2`.**      
 
 Select **Add to favorite packages** for easy access later on. Keep the Package Type as **Development** and click on **Next**.  
 
@@ -169,9 +169,9 @@ This approach has the advantage of a clear control of when and where an instance
   1. In ADT, open your SAP S/4HANA system project folder, right click on it and select **New** > **ABAP Package**.
   2. Enter the following values:         
 
-     Name:         **`ZTIER2_###`**
-     Superpackage: **`ZTIER2`**
-     Description:  **`Group ### - Tier2`.**      
+     - Name:         **`ZTIER2_###`**
+     - Superpackage: **`ZTIER2`**
+     - Description:  **`Group ### - Tier2`.**      
 
      Selec t **Add to favorite packages** for easy access later on. Keep the Package Type as **Development** and click on **Next**.    
 
