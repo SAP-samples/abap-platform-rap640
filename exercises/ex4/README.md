@@ -47,7 +47,7 @@ Connect to your system via ADT and navigate to the package `Z_PURCHASE_REQ_###` 
 
 Save and activate it.
 
-Open the behavior definition `ZC_SHOPCARTTP_###` and change to `strict(1)` mode there as well:
+Open the behavior definition `ZC_SHOPCART_###` and change to `strict(1)` mode there as well:
 
 ![Switch strict mode](images/switch_strict_mode2.png)
 
@@ -57,7 +57,7 @@ Save and activate it.
 
 ## Step 2: Implement new action `createPurchRqnBAPISave`
 
-You will now create a whole new action in the RAP BO, called `createPurchRqnBAPISave`. Open the behavior definition `ZR_SHOPCARTTP_###` and define a new action with the following code snippet:
+You will now create a whole new action in the RAP BO, called `createPurchRqnBAPISave`. Open the behavior definition `ZR_SHOPCART_###` and define a new action with the following code snippet:
 
 <details>
   <summary>🔵 Click to expand</summary>
@@ -86,7 +86,7 @@ This will automatically create an empty method implementation in the `lhc_shopca
       CORRESPONDING #( keys )
     RESULT DATA(OnlineOrders).
  
-  MODIFY ENTITIES OF zr_shopcarttp_### IN LOCAL MODE
+  MODIFY ENTITIES OF zr_shopcart_### IN LOCAL MODE
      ENTITY ShoppingCart
         UPDATE FIELDS ( OverallStatus )
            WITH VALUE #( FOR key IN keys (
@@ -95,7 +95,7 @@ This will automatically create an empty method implementation in the `lhc_shopca
          ) ).
  
   "Read the changed data for action result
-  READ ENTITIES OF zr_shopcarttp_### IN LOCAL MODE
+  READ ENTITIES OF zr_shopcart_### IN LOCAL MODE
     ENTITY ShoppingCart
       ALL FIELDS WITH
       CORRESPONDING #( keys )
@@ -136,7 +136,7 @@ As seen in the previous tutorial of this series, certain BAPIs have a test mode 
 <details>
   <summary>🔵 Click to expand</summary>
   
-Open the behavior definition `ZR_SHOPCARTTP_###` and implement a new validation called `checkPurchaseRequisition`:
+Open the behavior definition `ZR_SHOPCART_###` and implement a new validation called `checkPurchaseRequisition`:
 
 Add the following statement so that the validation will be executed also in draft mode.  
 
@@ -273,7 +273,7 @@ In our scenario, we want to call the wrapper during the save sequence and theref
 <details>
   <summary>🔵 Click to expand</summary>
   
-Open the behavior definition `ZR_SHOPCARTTP_###`, **delete** or **comment out** the following line:
+Open the behavior definition `ZR_SHOPCART_###`, **delete** or **comment out** the following line:
 
 ```ABAP
 //persistent table zashopcart_### 
