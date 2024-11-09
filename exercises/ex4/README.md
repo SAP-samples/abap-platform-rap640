@@ -294,17 +294,17 @@ Save and activate it. Position the cursor on the `with unmanaged save` statement
   METHOD save_modified.
 
     IF create-shoppingcart IS NOT INITIAL.
-      INSERT zashopcart_### FROM TABLE @create-shoppingcart  MAPPING FROM ENTITY .
+      INSERT zshopcart_### FROM TABLE @create-shoppingcart  MAPPING FROM ENTITY .
     ENDIF.
 
     IF update IS NOT INITIAL.
-      UPDATE zashopcart_### FROM TABLE @update-shoppingcart
+      UPDATE zshopcart_### FROM TABLE @update-shoppingcart
          INDICATORS SET STRUCTURE %control MAPPING FROM ENTITY.
     ENDIF.
 
     LOOP AT delete-shoppingcart INTO DATA(shoppingcart_delete) WHERE OrderUUID IS NOT INITIAL.
-      DELETE FROM zashopcart_### WHERE order_uuid = @shoppingcart_delete-OrderUUID.
-      DELETE FROM zdshopcart_### WHERE orderuuid = @shoppingcart_delete-OrderUUID.
+      DELETE FROM zshopcart_### WHERE order_uuid = @shoppingcart_delete-OrderUUID.
+      DELETE FROM zshopcart_###_d WHERE orderuuid = @shoppingcart_delete-OrderUUID.
     ENDLOOP.
   ENDMETHOD.
 
