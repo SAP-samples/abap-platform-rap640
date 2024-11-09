@@ -86,7 +86,7 @@ In this step we will add validations, determinations and side effects.
       
       managed implementation in class ZBP_R_SHOPCART_### unique;  
       strict ( 2 );  
- with draft;  
+      with draft;  
 
       define behavior for ZR_SHOPCART_### alias ShoppingCart    
       persistent table zshopcart_###
@@ -189,7 +189,7 @@ In this step will activate the use of side effects so that the field **TotalPric
        use draft;
        use side effects;
 
-       define behavior for ZC_SHOPCARTTP_### alias ShoppingCart
+       define behavior for ZC_SHOPCART_### alias ShoppingCart
        use etag
 
 
