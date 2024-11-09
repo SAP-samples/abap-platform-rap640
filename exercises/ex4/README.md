@@ -74,7 +74,7 @@ Your behavior definition should look as follows:
 
 Save and activate it.
 
-Position the cursor on the newly defined action and use the shortcut `ctrl + 1` to load the quick assist proposals, then double-click on `add method for action createPurchRqnBAPISave of entity zr_shopcarttp_### in local class lhc_shopcart`. 
+Position the cursor on the newly defined action and use the shortcut `ctrl + 1` to load the quick assist proposals, then double-click on `add method for action createPurchRqnBAPISave of entity zr_shopcart_### in local class lhc_shopcart`. 
 
 This will automatically create an empty method implementation in the `lhc_shopcart` class. Implement the method as follows:
 
