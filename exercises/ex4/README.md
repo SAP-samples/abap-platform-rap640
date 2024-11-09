@@ -41,7 +41,8 @@ For this reason, we will switch to `strict(1)` mode. For more information, see [
 <details>
   <summary>🔵 Click to expand</summary>
   
-Connect to your system via ADT and navigate to the package `Z_PURCHASE_REQ_###` containing the RAP BO. Open the behavior definition `ZR_SHOPCARTTP_###` and change to `strict(1)` mode:
+Connect to your system via ADT and navigate to the package `Z_PURCHASE_REQ_###` containing the RAP BO.   
+Open the behavior definition `ZR_SHOPCART_###` and change to `strict(1)` mode:   
 
 ![Switch strict mode](images/switch_strict_mode.png)
 
