@@ -166,13 +166,16 @@ This approach has the advantage of a clear control of when and where an instance
 <details>
   <summary>🔵 Click to expand</summary>
 
-  1. In ADT, open your SAP S/4HANA system project folder, right click on it and select **New** > **ABAP Package** and input the Name **`Z_PURCHASE_REQ_TEST_###`** and a Description. Choose **`ZTIER1`** as the superpackage:
+  1. In ADT, open your SAP S/4HANA system project folder, right click on it and select **New** > **ABAP Package**.
+  2. Enter the following values:         
 
-     <!-- ![Create test package](images/create_test_package.png) -->
-     <!-- <img alt="Create test package" src="images/create_test_package.png" width="70%">   --> 
-     <img alt="Create test package" src="images/new_package_zlocal.png" width="70%">
+     Name:         **`ZTIER2_###`**
+     Superpackage: **`ZTIER2`**
+     Description:  **`Group ### - Tier2`.**      
 
-  2. Click on **Next** and then **Next** again. Select a suitable transport request (or create a new one if needed) and then click on **Finish**.
+     Selec t **Add to favorite packages** for easy access later on. Keep the Package Type as **Development** and click on **Next**.    
+
+  7. Click on **Next** and then **Next** again. Select a suitable transport request (or create a new one if needed) and then click on **Finish**.
 
     
       
