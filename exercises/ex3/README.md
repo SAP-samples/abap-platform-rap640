@@ -28,7 +28,7 @@ In this step we will add validations, determinations and side effects.
 <details>
   <summary>🔵 Click to expand</summary>
   
-  1. Open your behavior definition **`ZR_SHOPCARTTP_###`** to enhance it. Add the following statements to your behavior definition:
+  1. Open your behavior definition **`ZR_SHOPCART_###`** to enhance it. Add the following statements to your behavior definition:
 
       ```   
       update (features: instance);    
