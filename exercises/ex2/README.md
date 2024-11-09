@@ -159,7 +159,7 @@ The generated code has to be adapted so that additional fields are made _read-on
  <details>
   <summary>🔵 Click to expand</summary>
   
-  1. Open your behavior definition **`ZR_SHOPCARTTP_###`** to enhance it. Add the following read-only fields to your behavior definition:
+  1. Open your behavior definition **`ZR_SHOPCART_###`** to enhance it. Add the following read-only fields to your behavior definition:
 
    ```
     ,   
@@ -177,64 +177,67 @@ The generated code has to be adapted so that additional fields are made _read-on
   <summary>🟡📄 Click to expand and view and compare the source code!</summary>
 
    ```
-    managed implementation in class ZBP_SHOPCARTTP_### unique;
-    strict ( 2 );
-    with draft;
+managed implementation in class ZBP_R_SHOPCART_### unique;
+strict ( 2 );
+with draft;
 
-    define behavior for ZR_SHOPCARTTP_### alias ShoppingCart
-    persistent table zashopcart_###
-    draft table ZDSHOPCART_###
-    etag master LocalLastChangedAt
-    lock master total etag LastChangedAt
-    authorization master( global )
+define behavior for ZR_SHOPCART_### alias ShoppingCart
+persistent table zshopcart_###
+draft table zshopcart_###_d
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master ( global )
 
+{
+  field ( readonly )
+  OrderUUID,
+  CreatedAt,
+  CreatedBy,
+  LastChangedAt,
+  LastChangedBy,
+  LocalLastChangedAt
+  ,
+  PurchaseRequisition,
+  PrCreationDate,
+  OverallStatus;
+
+
+
+  field ( numbering : managed )
+  OrderUUID;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for zshopcart_###
     {
-    field ( readonly )
-       OrderUUID,
-       CreatedAt,
-       CreatedBy,
-       LastChangedAt,
-       LastChangedBy,
-       LocalLastChangedAt,
-       PurchaseRequisition,
-       PrCreationDate,
-       OverallStatus;
-
-    field ( numbering : managed )
-       OrderUUID;
-
-
-    create;
-    update;
-    delete;
-
-    draft action Edit;
-    draft action Activate;
-    draft action Discard;
-    draft action Resume;
-    draft determine action Prepare;
-
-    mapping for ZASHOPCART_###
-    {
-       OrderUUID = ORDER_UUID;
-       OrderID = ORDER_ID;
-       OrderedItem = ORDERED_ITEM;
-       Price = PRICE;
-       TotalPrice = TOTAL_PRICE;
-       Currency = CURRENCY;
-       OrderQuantity = ORDER_QUANTITY;
-       DeliveryDate = DELIVERY_DATE;
-       OverallStatus = OVERALL_STATUS;
-       Notes = NOTES;
-       CreatedBy = CREATED_BY;
-       CreatedAt = CREATED_AT;
-       LastChangedBy = LAST_CHANGED_BY;
-       LastChangedAt = LAST_CHANGED_AT;
-       LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
-       PurchaseRequisition = PURCHASE_REQUISITION;
-       PrCreationDate = PR_CREATION_DATE;
+      OrderUUID           = order_uuid;
+      OrderID             = order_id;
+      OrderedItem         = ordered_item;
+      Price               = price;
+      TotalPrice          = total_price;
+      Currency            = currency;
+      OrderQuantity       = order_quantity;
+      DeliveryDate        = delivery_date;
+      OverallStatus       = overall_status;
+      Notes               = notes;
+      CreatedBy           = created_by;
+      CreatedAt           = created_at;
+      LastChangedBy       = last_changed_by;
+      LastChangedAt       = last_changed_at;
+      LocalLastChangedAt  = local_last_changed_at;
+      PurchaseRequisition = purchase_requisition;
+      PrCreationDate      = pr_creation_date;
     }
-    }    
+}  
    ```
 
 </details>
