@@ -79,8 +79,8 @@ Select **Add to favorite packages** for easy access later on. Keep the Package T
 
 Do not change anything in the following wizard window (where the software component HOME is selected), and click on **Next**.       
 
-<!-- ![Create Tier 2 package](images/create_tier2_package.png) -->
-<!--  <img alt="Create Tier 2 package" src="images/Group 000 - Tier2.png" width="70%">  -->   
+<img alt="Create Tier 2 package" src="start_aco_proxy_2.png" width="70%">    
+
 Create a new transport request and give it a meaningful name such as `Tier2 development - Group ###` so that it can be more easily identified. Then click on **Finish**. The package will be created.
 
 </details>  
