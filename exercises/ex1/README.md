@@ -84,10 +84,6 @@ You will develop the wrapper in a dedicated package under the structure package 
   4. Create a new transport request and give it a meaningful name such as `Tier2 development - Group ###` so that it can be more easily identified. 
      Then click on **Finish**. The package will be created.   
 
-  5. Check the generated artefacts.
-
-      <img alt="generated artefacts" src="images/ex1_step3_generated_artefacts.png" width="70%">    
-
 
 </details>  
 
@@ -161,6 +157,12 @@ This approach has the advantage of a clear control of when and where an instance
    <img alt="Select optional parameters 2" src="images/rap640_parameter_020.png" width="70%">
 
    <img alt="Select optional parameters 3" src="images/rap640_parameter_030.png" width="70%">
+
+
+5. Check the generated artefacts.
+
+   <img alt="generated artefacts" src="images/ex1_step3_generated_artefacts.png" width="70%">    
+   
 
  
 </details>  
