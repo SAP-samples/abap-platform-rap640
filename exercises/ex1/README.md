@@ -81,7 +81,13 @@ You will develop the wrapper in a dedicated package under the structure package 
 
      <img alt="Create Tier 2 package" src="images/create_tier2_package_2.png" width="70%">    
 
-  4. Create a new transport request and give it a meaningful name such as `Tier2 development - Group ###` so that it can be more easily identified. Then click on **Finish**. The package will be created.
+  4. Create a new transport request and give it a meaningful name such as `Tier2 development - Group ###` so that it can be more easily identified. 
+     Then click on **Finish**. The package will be created.   
+
+  5. Check the generated artefacts.
+
+      <img alt="generated artefacts" src="images/ex1_step3_generated_artefacts.png" width="70%">    
+
 
 </details>  
 
