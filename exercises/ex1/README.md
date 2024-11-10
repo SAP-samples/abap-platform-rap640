@@ -177,9 +177,9 @@ This approach has the advantage of a clear control of when and where an instance
   1. In ADT, open your SAP S/4HANA system project folder, right click on it and select **New** > **ABAP Package**.
   2. Enter the following values:         
 
-     - Name:         **`ZTIER2_###`**
-     - Superpackage: **`ZTIER2`**
-     - Description:  **`Group ### - Tier2`.**      
+     - Name:         **`Z_PURCHASE_REQ_TEST_###`**
+     - Superpackage: **`ZTIER1`**
+     - Description:  **`Group ### - Tier1`.**      
 
      Selec t **Add to favorite packages** for easy access later on. Keep the Package Type as **Development** and click on **Next**.    
 
