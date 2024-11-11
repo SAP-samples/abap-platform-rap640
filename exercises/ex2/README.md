@@ -53,9 +53,6 @@ We start the creation of the RAP business object with creating a database table.
 
   4. Click **Finish**.
 
-      <!-- ![table](images//databasenew4.png) -->
-      <img alt="table" src="images//databasenew4.png" width="70%">
-
   5. Replace your code with following:
    
    ```
