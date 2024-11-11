@@ -186,8 +186,8 @@ Save and activate it. Then place the cursor on the newly created validation and 
                            acctasscat = 'U'
                            currency   = OnlineOrder-Currency
                            deliv_date = OnlineOrder-DeliveryDate
-                           material   = 'ZPRINTER01'
-                           matl_group = 'A001'
+                           material    = OnlineOrder-OrderedItem "'ZPRINTER01'
+                           matl_group  = 'L001'
                            preq_price = OnlineOrder-Price
                            quantity   = OnlineOrder-OrderQuantity
                            unit       = 'ST'
