@@ -317,7 +317,7 @@ You will now adjust the CDS projection view `ZC_SHOPCART_###` of your Fiori elem
 
     ```ABAP
       @Consumption.valueHelpDefinition: [{ entity: 
-                 {name: 'ZI_PRODUCTS_###' , element: 'ProductText' },
+                 {name: 'ZI_PRODUCTS_###' , element: 'Product' },
                  additionalBinding: [{ localElement: 'Price', element: 'Price', usage: #RESULT },
                                      { localElement: 'Currency', element: 'Currency', usage: #RESULT }
                                                                        ]
@@ -402,7 +402,7 @@ You will now adjust the UI semantics of your Fiori elements app by enhancing the
         label: 'OrderedItem'
       } ]
       @Consumption.valueHelpDefinition: [{ entity: 
-                    {name: 'ZI_PRODUCTS_###' , element: 'ProductText' },
+                    {name: 'ZI_PRODUCTS_###' , element: 'Product' },
                     additionalBinding: [{ localElement: 'Price', element: 'Price', usage: #RESULT },
                                         { localElement: 'Currency', element: 'Currency', usage: #RESULT }
                                                                           ]
