@@ -198,7 +198,7 @@ For this you have created a dedicated package **`Z_PURCHASE_REQ_###`** under in 
 <details>
   <summary>🔵 Click to expand</summary>  
    
-4. Create a class for the console application. Right click on the newly created package **`Z_PURCHASE_REQ_TEST_###`** and select **New** > **ABAP Class** and input the Name **`ZCL_BAPI_WRAP_TEST_###`** and a Description:
+4. Create a class for the console application. Right click on the newly created package **`Z_PURCHASE_REQ_###`** and select **New** > **ABAP Class** and input the Name **`ZCL_BAPI_WRAP_TEST_###`** and a Description:
 
 <!-- ![Create test class](images/create_test_class.png) -->
 <img alt="Create test class" src="images/create_test_class.png" width="70%">
