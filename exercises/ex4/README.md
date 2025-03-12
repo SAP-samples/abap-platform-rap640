@@ -328,13 +328,13 @@ Open the `lsc_zr_shopcarttp_###` class of the behavior implementation and naviga
 
 ```ABAP
 
-DATA : prheader    TYPE zif_wrap_bapi_pr_000=>bapimereqheader,
-           prheaderx   TYPE zif_wrap_bapi_pr_000=>bapimereqheaderx,
-           number      TYPE zif_wrap_bapi_pr_000=>banfn,
-           pritem      TYPE zif_wrap_bapi_pr_000=>_bapimereqitemimp,
-           pritemx     TYPE zif_wrap_bapi_pr_000=>_bapimereqitemx,
-           prheaderexp TYPE zif_wrap_bapi_pr_000=>bapimereqheader,
-           pr_return   TYPE zif_wrap_bapi_pr_000=>_bapiret2.
+DATA : prheader    TYPE zif_wrap_bapi_pr_###=>bapimereqheader,
+           prheaderx   TYPE zif_wrap_bapi_pr_###=>bapimereqheaderx,
+           number      TYPE zif_wrap_bapi_pr_###=>banfn,
+           pritem      TYPE zif_wrap_bapi_pr_###=>_bapimereqitemimp,
+           pritemx     TYPE zif_wrap_bapi_pr_###=>_bapimereqitemx,
+           prheaderexp TYPE zif_wrap_bapi_pr_###=>bapimereqheader,
+           pr_return   TYPE zif_wrap_bapi_pr_###=>_bapiret2.
 
     prheader = VALUE #( pr_type = 'NB' ).
     prheaderx = VALUE #( pr_type = 'X' ).
@@ -375,7 +375,7 @@ DATA : prheader    TYPE zif_wrap_bapi_pr_000=>bapimereqheader,
                         ) ).
 
 
-        DATA(myclass) = zcl_f_wrap_bapi_pr_000=>create_instance( ).
+        DATA(myclass) = zcl_f_wrap_bapi_pr_XXX=>create_instance( ).
 
         myclass->bapi_pr_create(
           EXPORTING
@@ -395,7 +395,7 @@ DATA : prheader    TYPE zif_wrap_bapi_pr_000=>bapimereqheader,
 
         DATA(creation_date) = cl_abap_context_info=>get_system_date(  ).
 
-        UPDATE zshopcart_000
+        UPDATE zshopcart_XXX
         SET purchase_requisition = @number,
             pr_creation_date = @creation_date
         WHERE order_uuid = @OnlineOrder-OrderUUID.
