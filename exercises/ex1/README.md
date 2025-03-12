@@ -198,19 +198,19 @@ For this you have created a dedicated package **`Z_PURCHASE_REQ_###`** under in 
 <details>
   <summary>🔵 Click to expand</summary>  
    
-4. Create a class for the console application. Right click on the newly created package **`Z_PURCHASE_REQ_###`** and select **New** > **ABAP Class** and input the Name **`ZCL_BAPI_WRAP_TEST_###`** and a Description:
+1. Create a class for the console application. Right click on the newly created package **`Z_PURCHASE_REQ_###`** and select **New** > **ABAP Class** and input the Name **`ZCL_BAPI_WRAP_TEST_###`** and a Description:
 
 <!-- ![Create test class](images/create_test_class.png) -->
 <img alt="Create test class" src="images/create_test_class.png" width="70%">
 
-3. Click on **Next**, select a suitable transport request (or create a new one if needed) and then click on **Finish**.
+2. Click on **Next**, select a suitable transport request (or create a new one if needed) and then click on **Finish**.
 
-4. You can check that the newly created class is a tier 1 class by checking that the **ABAP Language Version** is `ABAP Language for Cloud Development` in the **Properties** > **General** tab:
+3. You can check that the newly created class is a tier 1 class by checking that the **ABAP Language Version** is `ABAP Language for Cloud Development` in the **Properties** > **General** tab:
 
 <!-- ![Console application language](images/console_application_language.png) -->
 <img alt="Console application language" src="images/console_application_language.png" width="70%">
 
-5. Implement the newly created class as shown below. The class calls the wrapper factory class and, given some input parameter values like the delivery date and the item price, creates a purchase requisition for that specific item and prints the information to the console.   
+4. Implement the newly created class as shown below. The class calls the wrapper factory class and, given some input parameter values like the delivery date and the item price, creates a purchase requisition for that specific item and prints the information to the console.   
          
  <details>
   <summary>🟡📄 Click to expand and view or copy the source code!</summary>
@@ -308,11 +308,11 @@ ENDCLASS.
 
  </details>   
 
-6. Save and activate your changes.   
+5. Save and activate your changes.   
 
-7. Now run this class  by pressing F9.   
+6. Now run this class  by pressing F9.   
 
-8. You shall see an output as follows:
+7. You shall see an output as follows:
 
    <img alt="Console output test class" src="images/console_output_test_class.png" width="70%">   
    
