@@ -117,12 +117,19 @@ You will now use a wizard to generate all repository objects required for your R
      <img alt="Enter package name" src="images/generator_enter_package_name.png" width="70%">
  
 
-  4. Maintain the required information on the **Configure Generator** dialog to provide the name of your data model and generate them.         
-     
-     For that, navigate through the wizard tree **(Business Objects, Data Model, etc...)**, maintain the artefact names provided in the table below, and press **Next >**.
+  4. In the **Configure Generator** dialog navigate to the section **Business Object** and then click on **Data Model**.
+     Here you have to provide the name of the alias.
+
+     Alias Name: `ShoppingCart`    
+
+   <img alt="Enter package name" src="images/generator_enter_alias_name.png" width="70%">
+    
+  
 
      Verify the maintained entries and press **Next >** to confirm. The needed artifacts will be generated.
-     
+
+      <details>
+       <summary>🔵 Click to expand the list of repository objects that will be generated</summary>
 
    | **RAP Layer**                          | **Artefacts**           | **Artefact Names**                                  |
    |----------------------------------------|-------------------------|-----------------------------------------------------|
@@ -137,6 +144,9 @@ You will now use a wizard to generate all repository objects required for your R
    |                                        | **Service Binding**     | Name: **`ZUI_SHOPCART_###_O4`**                   |
    |                                        |                         | Binding Type: **`OData V4 - UI`**                   |
 
+
+     </details>   
+     
 <!-- ![cds](images/generator3.png) -->
 <img alt="cds" src="images/generator3.png" width="70%">
 
