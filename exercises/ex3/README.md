@@ -168,361 +168,8 @@ In this step we will add validations, determinations and side effects.
 
 </details>
 
-## Step 2: Activate use of side effects in the behavior projection
 
-In this step will activate the use of side effects so that the field **TotalPrice** will be updated immediately once the price or the number of ordered items has been changed.   
-
-<details>
-  <summary>🔵 Click to expand</summary>
-
-  1. Open your behavior definition **`ZC_SHOPCART_###`** to enhance it. Add the following statements to your behavior projection:
-
-      ```   
-      use side effects;      
-      ```   
-
-  2. Check your behavior projection:
-
-     <details>
-      <summary>🟡📄 Click to expand and view or copy the source code!</summary>
-  
-       ```
-       projection;
-       strict ( 2 );
-       use draft;
-       use side effects;
-
-       define behavior for ZC_SHOPCART_### alias ShoppingCart
-       use etag
-
-
-
-       {
-         use create;
-         use update;
-         use delete;
-
-         use action Edit;
-         use action Activate;
-         use action Discard;
-         use action Resume;
-         use action Prepare;
- 
-       }
-
-       ```
-     </details>   
-    
-</details>   
-
-## Step 3: Create a value help for products
-
-This data definition is needed to create a value help for products.
-
-<details>
-  <summary>🔵 Click to expand</summary>
-
- 1. Right-click **Data Definitions** and select **New Data Definition**.
-  
-    <!-- ![projection](images/products.png) -->
-    <img alt="projection" src="images/products.png" width="70%">
-
-
- 2. Create a new data definition:
-    - Name: `ZI_Products_###`
-    - Description: `data definition for products`
-  
-      Click **Next >**.
-
-      <!-- ![projection](images/products2.png) -->
-      <img alt="projection" src="images/products2.png" width="70%">
-  
- 3. Click **Finish**.  
-   
-      <!--![projection](images/products3.png) -->
-      <img alt="projection" src="images/products3.png" width="70%">
-
- 4. In your data definition **`ZI_Products_###`** replace your code with following:
-
-<details>
-  <summary>🟡📄 Click to expand and view or copy the source code!</summary>
-  
-   ```
-    @AbapCatalog.viewEnhancementCategory: [#NONE]
-    @AccessControl.authorizationCheck: #NOT_REQUIRED
-    @EndUserText.label: 'Value Help for I_PRODUCT'
-    @Metadata.ignorePropagatedAnnotations: true
-    @ObjectModel.usageType:{
-      serviceQuality: #X,
-      sizeCategory: #S,
-      dataClass: #MIXED
-    }
-    define view entity ZI_PRODUCTS_###
-      as select from I_Product
-    {
-      key Product                                                 as Product,
-          _Text[1: Language=$session.system_language].ProductName as ProductText,
-          @Semantics.amount.currencyCode: 'Currency'
-          case
-            when Product = 'D001' then cast ( 1000.00 as abap.dec(16,2) ) 
-            when Product = 'D002' then cast ( 499.00 as abap.dec(16,2) ) 
-            when Product = 'D003' then cast ( 799.00 as abap.dec(16,2) ) 
-            when Product = 'D004' then cast ( 249.00 as abap.dec(16,2) )
-            when Product = 'D005' then cast ( 1500.00 as abap.dec(16,2) ) 
-            when Product = 'D006' then cast ( 30.00 as abap.dec(16,2) ) 
-            else cast ( 100000.00 as abap.dec(16,2) ) 
-          end                                                     as Price,
-          
-          @UI.hidden: true
-          cast ( 'EUR' as abap.cuky( 5 ) )                        as Currency,
-
-          @UI.hidden: true
-          ProductGroup                                            as ProductGroup,
-
-          @UI.hidden: true
-          BaseUnit                                                as BaseUnit
-
-    }
-    where
-        Product = 'D001'
-      or Product = 'D002'
-      or Product = 'D003'
-      or Product = 'D004'
-      or Product = 'D005'
-      or Product = 'D006'
-   ```
-
-</details>
-    
- 5. Save and activate.
-
- 6. You can test your CDS view entity by pressing F8 to start the _Data Preview_.   
-
-</details>
-
-## Step 4: Add value helps in the CDS projection view
-
-You will now adjust the CDS projection view `ZC_SHOPCART_###` of your Fiori elements app by adding the value help you have just created.
-
-<details>
-  <summary>🔵 Click to expand</summary>
-
- 1. In the _Project Explorer_ navigate to the CDS projection view **`ZC_SHOPCART_###`**.   
-    
-    <img alt="product value help" src="images/select_projection_view.png" width="70%">  
-
- 2. Here add the following code above the fields **OrderedItem** and **Currenccy** :
-
-    <img alt="product value help" src="images/add_value_helps.png" width="70%">
-
-    ```ABAP
-      @Consumption.valueHelpDefinition: [{ entity: 
-                 {name: 'ZI_PRODUCTS_###' , element: 'Product' },
-                 additionalBinding: [{ localElement: 'Price', element: 'Price', usage: #RESULT },
-                                     { localElement: 'Currency', element: 'Currency', usage: #RESULT }
-                                                                       ]
-                 }]  
-      OrderedItem,
-    ```
-
-    and
-
-    ```ABAP
-      @Consumption.valueHelpDefinition: [ { entity: { name: 'I_Currency', element: 'Currency' } } ]  
-      Currency,
-    ```   
-
-</details>
-
-<!--   
-
-## Step 4: Enhance metadata extension
-
-You will now adjust the UI semantics of your Fiori elements app by enhancing the CDS metadata extension `ZC_SHOPCARTTP_###`.
-
-<details>
-  <summary>🔵 Click to expand</summary>
-  
- 1. In your metadata extension **`ZC_SHOPCARTTP_###`** replace your code with following:
-
-  <details>
-    <summary>🟡📄 Click to expand and view or copy the source code!</summary> 
-  
-   ```ABAP
-    @Metadata.layer: #CORE
-    @UI: {
-      headerInfo: {
-        typeName: 'ShoppingCart', 
-        typeNamePlural: 'ShoppingCarts'
-      , title: {
-          type: #STANDARD,
-          label: 'ShoppingCart',
-          value: 'orderid'
-        }
-      },
-      presentationVariant: [ {
-        sortOrder: [ {
-          by: 'OrderID',
-          direction: #DESC
-        } ],
-        visualizations: [ {
-          type: #AS_LINEITEM
-        } ]
-      } ]
-    }
-    annotate view ZC_SHOPCARTTP_### with
-    {
-      @UI.facet: [ {
-        id: 'idIdentification', 
-        type: #IDENTIFICATION_REFERENCE, 
-        label: 'ShoppingCart', 
-        position: 10 
-      } ]
-      @UI.hidden: true
-      OrderUUID;
-      
-      @UI.lineItem: [ {
-        position: 10 , 
-        importance: #MEDIUM, 
-        label: 'OrderID'
-      } ]
-      @UI.identification: [ {
-        position: 10 , 
-        label: 'OrderID'
-      } ]
-      OrderID;
-      
-      @UI.lineItem: [ {
-        position: 20 , 
-        importance: #MEDIUM, 
-        label: 'OrderedItem'
-      } ]
-      @UI.identification: [ {
-        position: 20 , 
-        label: 'OrderedItem'
-      } ]
-      @Consumption.valueHelpDefinition: [{ entity: 
-                    {name: 'ZI_PRODUCTS_###' , element: 'Product' },
-                    additionalBinding: [{ localElement: 'Price', element: 'Price', usage: #RESULT },
-                                        { localElement: 'Currency', element: 'Currency', usage: #RESULT }
-                                                                          ]
-                    }]  
-      OrderedItem;
-      
-      @UI.lineItem: [ {
-        position: 30 , 
-        importance: #MEDIUM, 
-        label: 'Price'
-      } ]
-      @UI.identification: [ {
-        position: 30 , 
-        label: 'Price'
-      } ]
-      Price;
-      
-      @UI.lineItem: [ {
-        position: 40 , 
-        importance: #MEDIUM, 
-        label: 'TotalPrice'
-      } ]
-      @UI.identification: [ {
-        position: 40 , 
-        label: 'TotalPrice'
-      } ]
-      TotalPrice;
-      
-      @UI.lineItem: [ {
-        position: 50 , 
-        importance: #MEDIUM, 
-        label: 'Currency'
-      } ]
-      @UI.identification: [ {
-        position: 50 , 
-        label: 'Currency'
-      } ]
-      @Consumption.valueHelpDefinition: [ { entity: { name: 'I_Currency', element: 'Currency' } } ]  
-      Currency;
-      
-      @UI.lineItem: [ {
-        position: 60 , 
-        importance: #MEDIUM, 
-        label: 'OrderQuantity'
-      } ]
-      @UI.identification: [ {
-        position: 60 , 
-        label: 'OrderQuantity'
-      } ]
-      OrderQuantity;
-      
-      @UI.lineItem: [ {
-        position: 70 , 
-        importance: #MEDIUM, 
-        label: 'DeliveryDate'
-      } ]
-      @UI.identification: [ {
-        position: 70 , 
-        label: 'DeliveryDate'
-      } ]
-      DeliveryDate;
-      
-      @UI.lineItem: [ {
-        position: 80 , 
-        importance: #MEDIUM, 
-        label: 'OverallStatus'
-      } ]
-      @UI.identification: [ {
-        position: 80 , 
-        label: 'OverallStatus'
-      } ]
-      OverallStatus;
-      
-      @UI.lineItem: [ {
-        position: 90 , 
-        importance: #MEDIUM, 
-        label: 'Notes'
-      } ]
-      @UI.identification: [ {
-        position: 90 , 
-        label: 'Notes'
-      } ]
-      Notes;
-      
-      @UI.hidden: true
-      LocalLastChangedAt;
-      
-      @UI.lineItem: [ {
-        position: 100 , 
-        importance: #MEDIUM, 
-        label: 'PurchaseRequisition'
-      },
-      { type: #FOR_ACTION, dataAction: 'createPurchRqnBAPISave', label: 'Create PR via BAPI in SAVE' } ]
-      @UI.identification: [ {
-        position: 100 , 
-        label: 'PurchaseRequisition'
-      }, { type: #FOR_ACTION, dataAction: 'createPurchRqnBAPISave', label: 'Create PR via BAPI in SAVE' }  ]
-      PurchaseRequisition;
-      
-      @UI.lineItem: [ {
-        position: 110 , 
-        importance: #MEDIUM, 
-        label: 'PrCreationDate'
-      } ]
-      @UI.identification: [ {
-        position: 110 , 
-        label: 'PrCreationDate'
-      } ]
-      PrCreationDate;
-    }
-   ```
-  </details>
-    
- 2. Save and activate.
-
-   </details>
-
--->   
-  
-## Step 5: Enhance behavior implementation
+## Step 2: Enhance behavior implementation
 
 Enhance the BO behavior implementation according to the enhancements done in the BO behavior definition.
 
@@ -751,6 +398,362 @@ Enhance the BO behavior implementation according to the enhancements done in the
 
 </details>
 
+
+
+## Step 3: Activate use of side effects in the behavior projection
+
+In this step will activate the use of side effects so that the field **TotalPrice** will be updated immediately once the price or the number of ordered items has been changed.   
+
+<details>
+  <summary>🔵 Click to expand</summary>
+
+  1. Open your behavior definition **`ZC_SHOPCART_###`** to enhance it. Add the following statements to your behavior projection:
+
+      ```   
+      use side effects;      
+      ```   
+
+  2. Check your behavior projection:
+
+     <details>
+      <summary>🟡📄 Click to expand and view or copy the source code!</summary>
+  
+       ```
+       projection;
+       strict ( 2 );
+       use draft;
+       use side effects;
+
+       define behavior for ZC_SHOPCART_### alias ShoppingCart
+       use etag
+
+
+
+       {
+         use create;
+         use update;
+         use delete;
+
+         use action Edit;
+         use action Activate;
+         use action Discard;
+         use action Resume;
+         use action Prepare;
+ 
+       }
+
+       ```
+     </details>   
+    
+</details>   
+
+## Step 4: Create a value help for products
+
+This data definition is needed to create a value help for products.
+
+<details>
+  <summary>🔵 Click to expand</summary>
+
+ 1. Right-click **Data Definitions** and select **New Data Definition**.
+  
+    <!-- ![projection](images/products.png) -->
+    <img alt="projection" src="images/products.png" width="70%">
+
+
+ 2. Create a new data definition:
+    - Name: `ZI_Products_###`
+    - Description: `data definition for products`
+  
+      Click **Next >**.
+
+      <!-- ![projection](images/products2.png) -->
+      <img alt="projection" src="images/products2.png" width="70%">
+  
+ 3. Click **Finish**.  
+   
+      <!--![projection](images/products3.png) -->
+      <img alt="projection" src="images/products3.png" width="70%">
+
+ 4. In your data definition **`ZI_Products_###`** replace your code with following:
+
+<details>
+  <summary>🟡📄 Click to expand and view or copy the source code!</summary>
+  
+   ```
+    @AbapCatalog.viewEnhancementCategory: [#NONE]
+    @AccessControl.authorizationCheck: #NOT_REQUIRED
+    @EndUserText.label: 'Value Help for I_PRODUCT'
+    @Metadata.ignorePropagatedAnnotations: true
+    @ObjectModel.usageType:{
+      serviceQuality: #X,
+      sizeCategory: #S,
+      dataClass: #MIXED
+    }
+    define view entity ZI_PRODUCTS_###
+      as select from I_Product
+    {
+      key Product                                                 as Product,
+          _Text[1: Language=$session.system_language].ProductName as ProductText,
+          @Semantics.amount.currencyCode: 'Currency'
+          case
+            when Product = 'D001' then cast ( 1000.00 as abap.dec(16,2) ) 
+            when Product = 'D002' then cast ( 499.00 as abap.dec(16,2) ) 
+            when Product = 'D003' then cast ( 799.00 as abap.dec(16,2) ) 
+            when Product = 'D004' then cast ( 249.00 as abap.dec(16,2) )
+            when Product = 'D005' then cast ( 1500.00 as abap.dec(16,2) ) 
+            when Product = 'D006' then cast ( 30.00 as abap.dec(16,2) ) 
+            else cast ( 100000.00 as abap.dec(16,2) ) 
+          end                                                     as Price,
+          
+          @UI.hidden: true
+          cast ( 'EUR' as abap.cuky( 5 ) )                        as Currency,
+
+          @UI.hidden: true
+          ProductGroup                                            as ProductGroup,
+
+          @UI.hidden: true
+          BaseUnit                                                as BaseUnit
+
+    }
+    where
+        Product = 'D001'
+      or Product = 'D002'
+      or Product = 'D003'
+      or Product = 'D004'
+      or Product = 'D005'
+      or Product = 'D006'
+   ```
+
+</details>
+    
+ 5. Save and activate.
+
+ 6. You can test your CDS view entity by pressing F8 to start the _Data Preview_.   
+
+</details>
+
+## Step 5: Add value helps in the CDS projection view
+
+You will now adjust the CDS projection view `ZC_SHOPCART_###` of your Fiori elements app by adding the value help you have just created.
+
+<details>
+  <summary>🔵 Click to expand</summary>
+
+ 1. In the _Project Explorer_ navigate to the CDS projection view **`ZC_SHOPCART_###`**.   
+    
+    <img alt="product value help" src="images/select_projection_view.png" width="70%">  
+
+ 2. Here add the following code above the fields **OrderedItem** and **Currenccy** :
+
+    <img alt="product value help" src="images/add_value_helps.png" width="70%">
+
+    ```ABAP
+      @Consumption.valueHelpDefinition: [{ entity: 
+                 {name: 'ZI_PRODUCTS_###' , element: 'Product' },
+                 additionalBinding: [{ localElement: 'Price', element: 'Price', usage: #RESULT },
+                                     { localElement: 'Currency', element: 'Currency', usage: #RESULT }
+                                                                       ]
+                 }]  
+      OrderedItem,
+    ```
+
+    and
+
+    ```ABAP
+      @Consumption.valueHelpDefinition: [ { entity: { name: 'I_Currency', element: 'Currency' } } ]  
+      Currency,
+    ```   
+
+</details>
+
+<!--   
+
+## Step 4: Enhance metadata extension
+
+You will now adjust the UI semantics of your Fiori elements app by enhancing the CDS metadata extension `ZC_SHOPCARTTP_###`.
+
+<details>
+  <summary>🔵 Click to expand</summary>
+  
+ 1. In your metadata extension **`ZC_SHOPCARTTP_###`** replace your code with following:
+
+  <details>
+    <summary>🟡📄 Click to expand and view or copy the source code!</summary> 
+  
+   ```ABAP
+    @Metadata.layer: #CORE
+    @UI: {
+      headerInfo: {
+        typeName: 'ShoppingCart', 
+        typeNamePlural: 'ShoppingCarts'
+      , title: {
+          type: #STANDARD,
+          label: 'ShoppingCart',
+          value: 'orderid'
+        }
+      },
+      presentationVariant: [ {
+        sortOrder: [ {
+          by: 'OrderID',
+          direction: #DESC
+        } ],
+        visualizations: [ {
+          type: #AS_LINEITEM
+        } ]
+      } ]
+    }
+    annotate view ZC_SHOPCARTTP_### with
+    {
+      @UI.facet: [ {
+        id: 'idIdentification', 
+        type: #IDENTIFICATION_REFERENCE, 
+        label: 'ShoppingCart', 
+        position: 10 
+      } ]
+      @UI.hidden: true
+      OrderUUID;
+      
+      @UI.lineItem: [ {
+        position: 10 , 
+        importance: #MEDIUM, 
+        label: 'OrderID'
+      } ]
+      @UI.identification: [ {
+        position: 10 , 
+        label: 'OrderID'
+      } ]
+      OrderID;
+      
+      @UI.lineItem: [ {
+        position: 20 , 
+        importance: #MEDIUM, 
+        label: 'OrderedItem'
+      } ]
+      @UI.identification: [ {
+        position: 20 , 
+        label: 'OrderedItem'
+      } ]
+      @Consumption.valueHelpDefinition: [{ entity: 
+                    {name: 'ZI_PRODUCTS_###' , element: 'Product' },
+                    additionalBinding: [{ localElement: 'Price', element: 'Price', usage: #RESULT },
+                                        { localElement: 'Currency', element: 'Currency', usage: #RESULT }
+                                                                          ]
+                    }]  
+      OrderedItem;
+      
+      @UI.lineItem: [ {
+        position: 30 , 
+        importance: #MEDIUM, 
+        label: 'Price'
+      } ]
+      @UI.identification: [ {
+        position: 30 , 
+        label: 'Price'
+      } ]
+      Price;
+      
+      @UI.lineItem: [ {
+        position: 40 , 
+        importance: #MEDIUM, 
+        label: 'TotalPrice'
+      } ]
+      @UI.identification: [ {
+        position: 40 , 
+        label: 'TotalPrice'
+      } ]
+      TotalPrice;
+      
+      @UI.lineItem: [ {
+        position: 50 , 
+        importance: #MEDIUM, 
+        label: 'Currency'
+      } ]
+      @UI.identification: [ {
+        position: 50 , 
+        label: 'Currency'
+      } ]
+      @Consumption.valueHelpDefinition: [ { entity: { name: 'I_Currency', element: 'Currency' } } ]  
+      Currency;
+      
+      @UI.lineItem: [ {
+        position: 60 , 
+        importance: #MEDIUM, 
+        label: 'OrderQuantity'
+      } ]
+      @UI.identification: [ {
+        position: 60 , 
+        label: 'OrderQuantity'
+      } ]
+      OrderQuantity;
+      
+      @UI.lineItem: [ {
+        position: 70 , 
+        importance: #MEDIUM, 
+        label: 'DeliveryDate'
+      } ]
+      @UI.identification: [ {
+        position: 70 , 
+        label: 'DeliveryDate'
+      } ]
+      DeliveryDate;
+      
+      @UI.lineItem: [ {
+        position: 80 , 
+        importance: #MEDIUM, 
+        label: 'OverallStatus'
+      } ]
+      @UI.identification: [ {
+        position: 80 , 
+        label: 'OverallStatus'
+      } ]
+      OverallStatus;
+      
+      @UI.lineItem: [ {
+        position: 90 , 
+        importance: #MEDIUM, 
+        label: 'Notes'
+      } ]
+      @UI.identification: [ {
+        position: 90 , 
+        label: 'Notes'
+      } ]
+      Notes;
+      
+      @UI.hidden: true
+      LocalLastChangedAt;
+      
+      @UI.lineItem: [ {
+        position: 100 , 
+        importance: #MEDIUM, 
+        label: 'PurchaseRequisition'
+      },
+      { type: #FOR_ACTION, dataAction: 'createPurchRqnBAPISave', label: 'Create PR via BAPI in SAVE' } ]
+      @UI.identification: [ {
+        position: 100 , 
+        label: 'PurchaseRequisition'
+      }, { type: #FOR_ACTION, dataAction: 'createPurchRqnBAPISave', label: 'Create PR via BAPI in SAVE' }  ]
+      PurchaseRequisition;
+      
+      @UI.lineItem: [ {
+        position: 110 , 
+        importance: #MEDIUM, 
+        label: 'PrCreationDate'
+      } ]
+      @UI.identification: [ {
+        position: 110 , 
+        label: 'PrCreationDate'
+      } ]
+      PrCreationDate;
+    }
+   ```
+  </details>
+    
+ 2. Save and activate.
+
+   </details>
+
+-->   
+  
 ## Step 6: Run SAP Fiori elements app preview and create first order
 Test the enhance _Shopping Cart_ app.
 
