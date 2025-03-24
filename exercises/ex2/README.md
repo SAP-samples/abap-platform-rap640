@@ -122,14 +122,12 @@ You will now use a wizard to generate all repository objects required for your R
 
      Alias Name: `ShoppingCart`    
 
-   <img alt="Enter package name" src="images/generator_enter_alias_name.png" width="70%">
+     <img alt="Enter package name" src="images/generator_enter_alias_name.png" width="70%">
     
   
 
      Verify the maintained entries and press **Next >** to confirm. The needed artifacts will be generated.
 
-      <details>
-       <summary>🔵 Click to expand the list of repository objects that will be generated</summary>
 
    | **RAP Layer**                          | **Artefacts**           | **Artefact Names**                                  |
    |----------------------------------------|-------------------------|-----------------------------------------------------|
@@ -144,8 +142,6 @@ You will now use a wizard to generate all repository objects required for your R
    |                                        | **Service Binding**     | Name: **`ZUI_SHOPCART_###_O4`**                   |
    |                                        |                         | Binding Type: **`OData V4 - UI`**                   |
 
-
-     </details>   
      
 <!-- ![cds](images/generator3.png) -->
 <img alt="cds" src="images/generator3.png" width="70%">
