@@ -391,7 +391,7 @@ DATA : prheader    TYPE zif_wrap_bapi_pr_###=>bapimereqheader,
                         ) ).
 
 
-        DATA(myclass) = zcl_f_wrap_bapi_pr_XXX=>create_instance( ).
+        DATA(myclass) = zcl_f_wrap_bapi_pr_###=>create_instance( ).
 
         myclass->bapi_pr_create(
           EXPORTING
@@ -411,7 +411,7 @@ DATA : prheader    TYPE zif_wrap_bapi_pr_###=>bapimereqheader,
 
         DATA(creation_date) = cl_abap_context_info=>get_system_date(  ).
 
-        UPDATE zshopcart_XXX
+        UPDATE zshopcart_###
         SET purchase_requisition = @number,
             pr_creation_date = @creation_date
         WHERE order_uuid = @OnlineOrder-OrderUUID.
