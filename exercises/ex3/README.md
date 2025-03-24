@@ -58,7 +58,10 @@ In this step we will add validations, determinations and side effects.
         validation checkOrderedQuantity on save { create; field OrderQuantity; }
         validation checkDeliveryDate on save { create; field DeliveryDate; }
         ```
+
+     > Ignore the warnings that the validations are not yet implemented. We will do this in the following step.  
    
+     
 <!--![projection](images/bdef5xx.png) -->
 <img alt="projection" src="images/bdef5xx.png" width="70%">
 
