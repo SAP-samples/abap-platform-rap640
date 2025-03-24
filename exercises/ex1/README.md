@@ -319,8 +319,14 @@ ENDCLASS.
 7. You shall see an output as follows:
 
    <img alt="Console output test class" src="images/console_output_test_class.png" width="70%">   
-   
+
+> Tip:
+> Add a breakpoint in the `main()` method of your coding where your wrapper class `zcl_bapi_wrap_test_###` is being called.   
+> `myclass->bapi_pr_create` 
+  
  </details>
+
+
  
 <!--    
 
