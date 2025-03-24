@@ -234,10 +234,14 @@ CLASS zcl_bapi_wrap_test_### IMPLEMENTATION.
 METHOD if_oo_adt_classrun~main.
 
     DATA pr_returns TYPE bapirettab.
+    DATA number  TYPE banfn  .
 
+    "if the data element banfn is not released for the use in cloud develoment in your system
+    "you have to use the shadow type zif_wrap_bapi_pr_###=>banfn
+
+    "DATA number  TYPE zif_wrap_bapi_pr_###=>banfn  .
     DATA prheader TYPE zif_wrap_bapi_pr_###=>bapimereqheader .
-    DATA prheaderx TYPE zif_wrap_bapi_pr_###=>bapimereqheaderx .
-    DATA number  TYPE zif_wrap_bapi_pr_###=>banfn  .
+    DATA prheaderx TYPE zif_wrap_bapi_pr_###=>bapimereqheaderx .       
     DATA pritem  TYPE zif_wrap_bapi_pr_###=>_bapimereqitemimp .
     DATA pritemx  TYPE zif_wrap_bapi_pr_###=>_bapimereqitemx  .
     DATA prheaderexp  TYPE zif_wrap_bapi_pr_###=>bapimereqheader .
