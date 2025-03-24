@@ -339,12 +339,18 @@ We will now add the code that will call the BAPI.
 ```ABAP
 
 DATA : prheader    TYPE zif_wrap_bapi_pr_###=>bapimereqheader,
-           prheaderx   TYPE zif_wrap_bapi_pr_###=>bapimereqheaderx,
-           number      TYPE zif_wrap_bapi_pr_###=>banfn,
+           prheaderx   TYPE zif_wrap_bapi_pr_###=>bapimereqheaderx,         
            pritem      TYPE zif_wrap_bapi_pr_###=>_bapimereqitemimp,
            pritemx     TYPE zif_wrap_bapi_pr_###=>_bapimereqitemx,
            prheaderexp TYPE zif_wrap_bapi_pr_###=>bapimereqheader,
            pr_return   TYPE zif_wrap_bapi_pr_###=>_bapiret2.
+
+    DATA number  TYPE banfn  .
+
+    "if the data element banfn is not released for the use in cloud develoment in your system
+    "you have to use the shadow type zif_wrap_bapi_pr_###=>banfn
+
+    "DATA number  TYPE zif_wrap_bapi_pr_###=>banfn  .
 
     prheader = VALUE #( pr_type = 'NB' ).
     prheaderx = VALUE #( pr_type = 'X' ).
@@ -439,12 +445,18 @@ The `save_modified` method implementation should now look as follows:
 
 
     DATA : prheader    TYPE zif_wrap_bapi_pr_###=>bapimereqheader,
-           prheaderx   TYPE zif_wrap_bapi_pr_###=>bapimereqheaderx,
-           number      TYPE zif_wrap_bapi_pr_###=>banfn,
+           prheaderx   TYPE zif_wrap_bapi_pr_###=>bapimereqheaderx,           
            pritem      TYPE zif_wrap_bapi_pr_###=>_bapimereqitemimp,
            pritemx     TYPE zif_wrap_bapi_pr_###=>_bapimereqitemx,
            prheaderexp TYPE zif_wrap_bapi_pr_###=>bapimereqheader,
            pr_return   TYPE zif_wrap_bapi_pr_###=>_bapiret2.
+
+    DATA number  TYPE banfn  .
+
+    "if the data element banfn is not released for the use in cloud develoment in your system
+    "you have to use the shadow type zif_wrap_bapi_pr_###=>banfn
+
+    "DATA number  TYPE zif_wrap_bapi_pr_###=>banfn  .****
 
     prheader = VALUE #( pr_type = 'NB' ).
     prheaderx = VALUE #( pr_type = 'X' ).
