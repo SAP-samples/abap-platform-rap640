@@ -161,12 +161,18 @@ Save and activate it. Then place the cursor on the newly created validation and 
   METHOD checkpurchaserequisition.
 
     DATA prheader TYPE zif_wrap_bapi_pr_###=>bapimereqheader .
-    DATA prheaderx TYPE zif_wrap_bapi_pr_###=>bapimereqheaderx .
-    DATA number  TYPE zif_wrap_bapi_pr_###=>banfn  .
+    DATA prheaderx TYPE zif_wrap_bapi_pr_###=>bapimereqheaderx .    
     DATA pritem  TYPE zif_wrap_bapi_pr_###=>_bapimereqitemimp .
     DATA pritemx  TYPE zif_wrap_bapi_pr_###=>_bapimereqitemx  .
     DATA prheaderexp  TYPE zif_wrap_bapi_pr_###=>bapimereqheader .
     DATA  return  TYPE zif_wrap_bapi_pr_###=>_bapiret2 .
+
+    DATA number  TYPE banfn  .
+
+    "if the data element banfn is not released for the use in cloud develoment in your system
+    "you have to use the shadow type zif_wrap_bapi_pr_000=>banfn
+
+    "DATA number  TYPE zif_wrap_bapi_pr_000=>banfn  .
 
     "read relevant order instance data
     READ ENTITIES OF zr_shopcart_### IN LOCAL MODE
