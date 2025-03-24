@@ -318,6 +318,8 @@ Save and activate it. Position the cursor on the `with unmanaged save` statement
 
 Save and activate it.
 
+> You should now test the implementation of the unmanaged save in your save_modified() method.
+
 > **Brief explanantion**:      
 > We use the unmanaged save option for our scenario, rather than the additional save option. This is because the additional save should only be used in case data needs to be saved in addition to BO data in a persistence outside the BO, as stated in the [Additional Save documentation](https://help.sap.com/docs/SAP_S4HANA_CLOUD/e5522a8a7b174979913c99268bc03f1a/ca7097c8ea404b11b1f1334fd54cdd15.html). Since this is not our use case (the purchase requisition is created and saved in the persistency of the shopping cart BO), we rely on the unmanaged save option.
 
@@ -330,7 +332,9 @@ As a final step, you now need to modify the `save_modified` method of the saver 
 <details>
   <summary>🔵 Click to expand</summary>
   
-Open the `lsc_zr_shopcarttp_###` class of the behavior implementation and navigate to the `save_modified` method. Add the following code snippet:
+Open the `lsc_zr_shopcarttp_###` class of the behavior implementation again and navigate to the `save_modified` method. Add the following code snippet after (!) the code that you have already added in the basic implementation before.
+
+We will now add the code that will call the BAPI.   
 
 ```ABAP
 
