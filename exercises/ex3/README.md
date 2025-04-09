@@ -179,7 +179,7 @@ Enhance the BO behavior implementation according to the enhancements done in the
 <details>
   <summary>🔵 Click to expand</summary>
 
-1. Open the behavior implementation **`ZBP_SHOPCART_###`**, add the constant `c_overall_status` to your behavior implementation. In your **Local Types**, replace your code with following:
+1. Open the behavior implementation **`ZBP_R_SHOPCART_###`**, add the constant `c_overall_status` to your behavior implementation. In your **Local Types**, replace your code with following:
   
    Do not forget to replace all occurences of the placeholder **`###`** with your suffix. 
  
