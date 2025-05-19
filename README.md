@@ -93,13 +93,13 @@ Follow these steps to build a custom wrapper for the ABAP Cloud enablement of an
 | [Exercise 2 - Create a Shopping Cart Business Object](exercises/ex2/README.md) | -- |
 | [Exercise 3 - Create Value Help, Enhance the Behavior Definition and Behavior Implementation of the Shopping Cart Business Object](exercises/ex3/README.md) | -- |
 | [Exercise 4 - Integrate the Wrapper into the Shopping Cart Business Object](exercises/ex4/README.md) | -- |
-| [Exercise 5 - Integrate with classic BOR events](exercises/ex4a/README.md) | -- |
+
 
 #### Optional Exercises 
 
 | Exercises | -- |
 | ------------- |  -- |
-| [Exercise 6 - Provide Authorizations to Users for Non-Released Authorization Objects checked by the "Create Purchase Requisition" (BAPI_PR_CREATE) function module](exercises/ex5/README.md) | -- |
+| [Exercise 5 - Provide Authorizations to Users for Non-Released Authorization Objects checked by the "Create Purchase Requisition" (BAPI_PR_CREATE) function module](exercises/ex5/README.md) | -- |
 
 
 ## 📤Solution Package
