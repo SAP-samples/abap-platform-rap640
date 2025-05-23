@@ -4,7 +4,7 @@
 ## Introduction
 Now that you have generated a custom wrapper for the non-released SAP API `BAPI_PR_CREATE` for the creation of purchase requisition and released it for the ABAP Cloud development in [exercise 1](../ex1/README.md), you will now create your _Shopping Cart_ RAP business object and a UI service on top it.   
 
-This RAP business object will than be enhanced later in Exercise 3 such, that a _purchase order_ will be created from the content of your _shopping cart_.
+This RAP business object will then be enhanced later in Exercise 3 such, that a _purchase requisition_ will be created from the content of your _shopping cart_.
 
 - [You will learn](#you-will-learn)
 - [Summary & Next Exercise](#summary--next-exercise) 
@@ -256,12 +256,17 @@ What is left to do is to publish your service locally, so that it can be tested 
   <summary>🔵 Click to expand</summary>
  
  
-  1. Open your service binding **`ZUI_SHOPCART_O4_###`** and click **Publish**.
-
+  1. Open your service binding **`ZUI_SHOPCART_###_O4`** and click **Publish**.
+ 
      ![binding](images/generator5.png)
      <img alt="" src="" width="70%">
 
   2. Select **`ShoppingCart`** in your service binding and click **Preview** to open SAP Fiori Elements preview.
+
+     > ⚠️ **Security Warning**      
+     > Since the demo systems for workshops usually use just a public IP adress      
+     > you will probably get a security warning at this point.   
+     > In Edge for example click on **Advanced** and then on **Continue to xxx.xxx.xxx.xxx (unsafe)**    
 
      ![preview](images/generator6.png)
      <img alt="" src="" width="70%">
