@@ -87,7 +87,7 @@ You will develop the wrapper in a dedicated package under the structure package 
 
 </details>  
 
-## Step 3: Create a wrapper class, interface and factory class
+## Step 3: Generate a technical wrapper class, interface and factory class
 
 You now want to wrap the API `BAPI_PR_CREATE`. For this we use the transaction **ACO_PROXY** which has been enhanced so that it will generate the boiler plate coding for you to build a wrapper class.   
 
@@ -102,8 +102,8 @@ In the following we will explain in short the best practices that are behind the
 > **The wrapper class:**    
 > In addition you need a class to wrap the BAPI (implementing the interface) and implement its methods. The wrapper class has a method defined in the private section, `call_bapi_pr_create`, which has access to all the parameters of the underlying BAPI. Having this type of central private method is best practice. Internally, the wrapper class has access to all the parameters and then the interface has virtual access to all of these parameters and exposes publicly only the ones that are needed depending on the specific use-case. 
 
-> **C1-release for use in cloud in cloud development:**    
-> Since we plan to access the wrapped BAPI in a different tier, it is good to provide the possibility to test it, and to keep wrapping-specific coding in tier 1 to a minimum. For this reason, the interface approach is recommended, and the wrapper class will not be released directly for consumption in tier 1, but rather will be accessible via a factory class that you will also be created.
+> **C1-release for use in cloud development:**    
+> Since we plan to access the wrapped BAPI in a different tier, it is good to provide the possibility to test it, and to keep wrapping-specific coding in tier 1 to a minimum. For this reason, the interface approach is recommended, and the wrapper class will not be released directly for consumption in tier 1, but rather will be accessible via a factory class that will also be created.
 
 > **The factory class:**
 > A factory class is used to control the instantiation of the wrapper class and in order to be able to use it in Tier1 it has to be released for use in tier 1. 
@@ -150,7 +150,9 @@ This approach has the advantage of a clear control of when and where an instance
    - PRITEMX  
    - RETURN  
 
-   and un-select all other optional parameters.   
+   and un-select all other optional parameters.
+
+   Finally you have to press **Enter** and you have to select a transport to start the generation of the repository objects.   
 
    <img alt="Select optional parameters 1" src="images/rap640_parameter_010.png" width="70%">
 
@@ -159,7 +161,7 @@ This approach has the advantage of a clear control of when and where an instance
    <img alt="Select optional parameters 3" src="images/rap640_parameter_030.png" width="70%">
 
 
-5. Check the generated artefacts.
+6. Check the generated artefacts.
 
    <img alt="generated artefacts" src="images/ex1_step3_generated_artefacts.png" width="70%">    
    
@@ -169,7 +171,7 @@ This approach has the advantage of a clear control of when and where an instance
 
 ## Step 4: Create a package in Tier 1   
 
-**Hint:** In case no CAL instance of a preconfigured SAP S/4HANA appliance is not used, please set up for developer extensibility to get `ZTIER1` package as described in section **Prerequisites**.    
+**Hint:** In case no CAL instance of a preconfigured SAP S/4HANA appliance is used, please set up for developer extensibility to get `ZTIER1` package as described in section **Prerequisites**.    
 
 <details>
   <summary>🔵 Click to expand</summary>
@@ -181,7 +183,7 @@ This approach has the advantage of a clear control of when and where an instance
      - Superpackage: **`ZTIER1`**
      - Description:  **`Group ### - Tier1`.**      
 
-     Selec t **Add to favorite packages** for easy access later on. Keep the Package Type as **Development** and click on **Next**.    
+     Select **Add to favorite packages** for easy access later on. Keep the Package Type as **Development** and click on **Next**.    
 
   7. Click on **Next** and then **Next** again. Select a suitable transport request (or create a new one if needed) and then click on **Finish**.
 
@@ -189,19 +191,21 @@ This approach has the advantage of a clear control of when and where an instance
       
 </details>
 
-## Step 5: Test wrapper with console application in tier 1
+## Step 5: Test the technical wrapper class with console application in tier 1
 
 The wrapper you just created is released for consumption in tier 1. You can test this by creating a console application in tier 1 to call the wrapper. 
 
-For this you have created a dedicated package **`Z_PURCHASE_REQ_###`** under in tier 1 by using **`ZTIER1`** as the super-package of your package in your SAP S/4HANA System for this test.
+We will use this class that calls the wrapper also to add a conversion functionality and to simplify the signature of the method that is used to create a purchase requistion as well. 
+
+For this you have created a dedicated package **`Z_PURCHASE_REQ_###`** for this test in tier 1 by using **`ZTIER1`** as the super-package of your package in your SAP S/4HANA System.
 
 <details>
   <summary>🔵 Click to expand</summary>  
    
-1. Create a class for the console application. Right click on the newly created package **`Z_PURCHASE_REQ_###`** and select **New** > **ABAP Class** and input the Name **`ZCL_BAPI_WRAP_TEST_###`** and a Description:
-
-<!-- ![Create test class](images/create_test_class.png) -->
-<img alt="Create test class" src="images/create_test_class.png" width="70%">
+1. Create a class for the console application.  
+   Right click on the newly created package **`Z_PURCHASE_REQ_###`** and select **New** > **ABAP Class** and enter the following values:  
+    - **Name**: **`zcl_wrap_purchase_req_bapi_###`**   
+    - **Description**: **Wrapper and test class**  
 
 2. Click on **Next**, select a suitable transport request (or create a new one if needed) and then click on **Finish**.
 
@@ -217,96 +221,215 @@ For this you have created a dedicated package **`Z_PURCHASE_REQ_###`** under in 
 
 ```ABAP
 
-CLASS zcl_bapi_wrap_test_### DEFINITION
+CLASS zcl_wrap_purchase_req_bapi_### DEFINITION
   PUBLIC
   FINAL
   CREATE PUBLIC .
 
   PUBLIC SECTION.
-  INTERFACES if_oo_adt_classrun .
+
+    INTERFACES if_oo_adt_classrun .
+
+    DATA use_conversions TYPE abap_boolean VALUE abap_true READ-ONLY.
+
+    METHODS bapi_pr_create
+      IMPORTING purchase_req_header TYPE zif_wrap_bapi_pr_###=>bapimereqheader
+                purchase_req_items  TYPE zif_wrap_bapi_pr_###=>_bapimereqitemimp
+                test_run            TYPE abap_bool
+      EXPORTING pr_return_msg       TYPE zif_wrap_bapi_pr_###=>_bapiret2
+      RETURNING VALUE(result)       TYPE banfn.
+
+
+
   PROTECTED SECTION.
   PRIVATE SECTION.
+
+
+
+
 ENDCLASS.
 
 
 
-CLASS zcl_bapi_wrap_test_### IMPLEMENTATION.
-METHOD if_oo_adt_classrun~main.
+CLASS zcl_wrap_purchase_req_bapi_### IMPLEMENTATION.
+  METHOD if_oo_adt_classrun~main.
 
     DATA pr_returns TYPE bapirettab.
-    DATA number  TYPE banfn  .
 
     "if the data element banfn is not released for the use in cloud develoment in your system
     "you have to use the shadow type zif_wrap_bapi_pr_###=>banfn
-
+    DATA number  TYPE banfn  .
     "DATA number  TYPE zif_wrap_bapi_pr_###=>banfn  .
-    DATA prheader TYPE zif_wrap_bapi_pr_###=>bapimereqheader .
-    DATA prheaderx TYPE zif_wrap_bapi_pr_###=>bapimereqheaderx .       
+
+    DATA purchase_req_header TYPE zif_wrap_bapi_pr_###=>bapimereqheader .
+    DATA purchase_req_items  TYPE zif_wrap_bapi_pr_###=>_bapimereqitemimp .
+
+    DATA test_run TYPE abap_boolean .
+
+    purchase_req_header = VALUE #( pr_type = 'NB' ).
+
+    purchase_req_items = VALUE #( (
+                              preq_item  = '00010'
+                              plant      = '1010'
+                              acctasscat = 'U'
+                              currency   = 'EUR'                              
+                              deliv_date = cl_abap_context_info=>get_system_date(  ) + 14   "format: yyyy-mm-dd (at least 10 days)
+                              material   = 'ZPRINTER01'
+                              matl_group = 'A001'
+                              preq_price = '100'
+                              quantity   = '1'
+                              unit       = 'ST'
+                              pur_group = '001'
+                              purch_org = '1010'
+                              short_text = 'ZPRINTER01'
+                    ) ).
+
+    "just for testing purposes "
+*    use_conversions = abap_false.
+*    purchase_req_items[ 1 ]-currency = 'JPY'.
+
+    "in addition you can try out to use the BAPI in the test mode
+*   test_run = abap_true.
+
+    bapi_pr_create(
+      EXPORTING
+        purchase_req_header     = purchase_req_header
+        purchase_req_items      = purchase_req_items
+        test_run                = test_run
+      IMPORTING
+        pr_return_msg = pr_returns
+      RECEIVING
+        result        = number
+    ).
+
+    COMMIT WORK AND WAIT.
+
+    IF test_run = abap_true.
+      out->write( | test_run | ).
+    ELSE.
+      out->write( |purchase requistion number: { number  } | ).
+
+      SELECT * FROM I_PurchaseRequisitionItemAPI01 WHERE PurchaseRequisition = @number
+                                         INTO TABLE @DATA(purchase_requisitions).
+
+      LOOP AT purchase_requisitions INTO DATA(purchase_requisition).
+        out->write( | Item: { purchase_requisition-PurchaseRequisitionItem } Amount { purchase_requisition-PurchaseRequisitionPrice }  { purchase_requisition-PurReqnItemCurrency }| ).
+      ENDLOOP.
+
+    ENDIF.
+
+    LOOP AT pr_returns INTO DATA(bapiret2_line).
+      out->write( |bapi_return { bapiret2_line-type } : { bapiret2_line-message } | ).
+    ENDLOOP.
+
+  ENDMETHOD.
+
+
+  METHOD bapi_pr_create.
+
+*    DATA prheader TYPE zif_wrap_bapi_pr_###=>bapimereqheader .
+    DATA prheaderx TYPE zif_wrap_bapi_pr_###=>bapimereqheaderx .
     DATA pritem  TYPE zif_wrap_bapi_pr_###=>_bapimereqitemimp .
     DATA pritemx  TYPE zif_wrap_bapi_pr_###=>_bapimereqitemx  .
+    DATA pritemx_line LIKE LINE OF pritemx.
     DATA prheaderexp  TYPE zif_wrap_bapi_pr_###=>bapimereqheader .
+    DATA conversion_message_line TYPE bapiret2.
 
-    DATA(myclass) = zcl_f_wrap_bapi_pr_###=>create_instance( ).
+    "if the data element banfn is not released for the use in cloud develoment in your system
+    "you have to use the shadow type zif_wrap_bapi_pr_###=>banfn
+    DATA number  TYPE banfn  .
+    "DATA number  TYPE zif_wrap_bapi_pr_###=>banfn  .
+    DATA conversion_messages TYPE bapirettab.
 
-    prheader = VALUE #( pr_type = 'NB' ).
     prheaderx = VALUE #( pr_type = 'X' ).
 
-    pritem           = VALUE #( (
-                      preq_item  = '00010'
-                      plant      = '1010'
-                      acctasscat = 'U'
-                      currency   = 'EUR'
-                      deliv_date = cl_abap_context_info=>get_system_date(  ) + 14   "format: yyyy-mm-dd (at least 10 days)
-                      material   = 'ZPRINTER01'
-                      matl_group = 'A001'
-                      preq_price = '100.00'
-                      quantity   = '1'
-                      unit       = 'ST'
-                      pur_group = '001'
-                      purch_org = '1010'
-                      short_text = 'ZPRINTER01'
-                    ) ).
+    "item data has to be converted
+    pritem = purchase_req_items.
 
-    pritemx           = VALUE #( (
-                      preq_item  = '00010'
-                      plant      = 'X'
-                      acctasscat = 'X'
-                      currency   = 'X'
-                      deliv_date = 'X'
-                      material   = 'X'
-                      matl_group = 'X'
-                      preq_price = 'X'
-                      quantity   = 'X'
-                      unit       = 'X'
-                      pur_group = 'X'
-                      purch_org = 'X'
-                      short_text = 'X'
-                    ) ).
+    LOOP AT pritem ASSIGNING FIELD-SYMBOL(<pritem_line>).
+
+      pritemx_line =
+                      VALUE #(
+                               preq_item  = '00010'
+                               plant      = 'X'
+                               acctasscat = 'X'
+                               currency   = 'X'
+                               deliv_date = 'X'
+                               material   = 'X'
+                               matl_group = 'X'
+                               preq_price = 'X'
+                               quantity   = 'X'
+                               unit       = 'X'
+                               pur_group  = 'X'
+                               purch_org  = 'X'
+                               short_text = 'X'
+                              ) .
+
+      APPEND pritemx_line TO pritemx.
+
+      IF use_conversions = abap_true.
+
+        TRY.
+
+            zcl_conversion_ext_int=>get_instance( )->currency_amount_int_to_ext(
+              EXPORTING
+                currency    = <pritem_line>-Currency
+                sap_amount  = CONV #( <pritem_line>-preq_price )
+              IMPORTING
+                bapi_amount = DATA(bapi_amount)
+            ).
+
+            zcl_conversion_ext_int=>get_instance( )->currency_code_int_to_ext(
+              EXPORTING
+                sap_code = <pritem_line>-Currency
+              IMPORTING
+                iso_code = DATA(bapi_currency)
+            ).
+
+            <pritem_line>-preq_price = bapi_amount.
+            <pritem_line>-Currency = bapi_currency.
+
+          CATCH zcx_conversion_ext_int INTO DATA(conversion_exception).
+
+            conversion_message_line-id = conversion_exception->if_t100_message~t100key-msgid.
+            conversion_message_line-number = conversion_exception->if_t100_message~t100key-msgno.
+            conversion_message_line-type = if_abap_behv_message=>severity-warning.
+            conversion_message_line-message_v1 = conversion_exception->attr1.
+            conversion_message_line-message_v2 = conversion_exception->attr2.
+            APPEND conversion_message_line TO conversion_messages.
+
+        ENDTRY.
+      ENDIF.
+    ENDLOOP.
 
     TRY.
-        myclass->bapi_pr_create(
-          EXPORTING
-            prheader = prheader
-            prheaderx = prheaderx
-            testrun = abap_false
-          IMPORTING
-            number   = number
-            prheaderexp = prheaderexp
-          CHANGING
-            pritem = pritem
-            pritemx = pritemx
-     )
-        .
-      CATCH cx_aco_application_exception cx_aco_communication_failure cx_aco_system_failure INTO DATA(call_wrapper_exception).
-        "handle exception
-        out->write( |Exception occured: { call_wrapper_exception->get_text(  ) }| ).
+        zcl_f_wrap_bapi_pr_###=>create_instance( )->bapi_pr_create(
+            EXPORTING
+              prheader  = purchase_req_header
+              prheaderx = prheaderx
+              testrun   = test_run
+            IMPORTING
+              number      = number
+              prheaderexp = prheaderexp
+            CHANGING
+              pritem          = pritem
+              pritemx         = pritemx
+              return          = pr_return_msg
+              )
+          .
+        result = number.
+
+        APPEND LINES OF conversion_messages TO pr_return_msg.
+
+      CATCH cx_aco_application_exception cx_aco_communication_failure cx_aco_system_failure.
+        "does not happen since there is no rfc call
+        ASSERT 1 = 2.
     ENDTRY.
-    out->write( |purchase requistion number: { number  } | ).
-    LOOP AT pr_returns INTO DATA(bapiret2_line).
-      out->write( |bapi_return: { bapiret2_line-message } | ).
-    ENDLOOP.
+
   ENDMETHOD.
+
 ENDCLASS.
+
 
 ```
 
@@ -320,11 +443,142 @@ ENDCLASS.
 
    <img alt="Console output test class" src="images/console_output_test_class.png" width="70%">   
 
-> Tip:
-> Add a breakpoint in the `main()` method of your coding where your wrapper class `zcl_bapi_wrap_test_###` is being called.   
-> `myclass->bapi_pr_create` 
+> Tip:  
+> Add a breakpoint in the `bapi_pr_create()` method of your coding where your technical wrapper class `zcl_f_wrap_bapi_pr_###` is being called.    
+> `zcl_f_wrap_bapi_pr_###=>create_instance( )->bapi_pr_create`   
   
  </details>
+
+
+
+## Step 6: Understand conversion problems
+
+### Introduction
+
+For historical reasons currency amounts in the SAP system, are all stored with two decimal places. Currency amounts thus have to be converted from an SAP system format to a format that can be understood externally, if a currency has a different number of decimal places. For example, a currency amount stored SAP internally as 100.00 may de-facto mean 10000 if it is about Japanese Yen.  
+
+Another use case where conversion takes place between the data format that is used externally and the data that is used withing an SAP system is the conversion of currency codes and unit codes between SAP internal and external (ISO) ones.   
+
+Since BAPI's have been designed as external API's they expect that data is provided in the external format. The data of the payload of an OData request that is accessible in the behavior implementation class has however already been converted to the SAP internal format.   
+
+This means that when calling a BAPI we have to convert data such as amounts back to the external format. In the ABAP language version **ABAP Standard** you would be able to use the function modules such as `currency_amount_sap_to_idoc` to perform this conversion.   
+
+Since this function module and other function modules that perform these conversions are however **not released** for the use in cloud development, a wrapper class is needed. For your convenience we have provided the class `zcl_conversion_ext_int` for this purpose that is available in systems that have been provided by SAP for hands-on workshops. It is planned to provide a class as part of the SAP standard in the near future as well. This class is also planned to be made available as SAP Note for lower releases.   
+
+<details>
+  <summary>🔵 Click to expand to check the conversion problem!</summary>
+  
+
+### Check the conversion problem  
+
+1. Open the class `zcl_wrap_purchase_req_bapi_###` in ADT.
+2. Start the class by pressing **F9**.
+3. Navigate to the `main` method
+4. Remove the comment **Ctrl+>** from the lines   
+
+   ```   
+   *   use_conversions = abap_false.`
+   *   purchase_req_items[ 1 ]-currency = 'JPY'.
+   ```  
+   <img alt="Change wrapper class I" src="images/06_000_adapt_wrapper_class.png" width="70%">   
+
+5. Your code should now look like as follows:   
+
+   <img alt="Change wrapper class I" src="images/06_010_adapt_wrapper_class.png" width="70%">   
+   
+8. Save and activate your changes.
+9. Start the class by pressing **F9**.  
+
+   <img alt="Change wrapper class I" src="images/06_020_adapt_wrapper_class.png" width="70%">   
+ 
+By setting the global variable `use_conversions` to `abap_false` for testing purposes you have changed the behavior of your wrapper class such, that:   
+- now Japanese Yen will be used to create the purchase requisition and that
+- in method `bapi_pr_create()` now the conversion class `zcl_conversion_ext_int` is not used anymore to convert the amount from the SAP internal format to the external format   
+
+As a result the value stored in the purchase requisition would be `1 JPY` instead of the intended amount `100 JPY`.   
+  
+</details>   
+
+## Step 7: Fix conversion problem using released conversion class
+
+Navigate to the method `bapi_pr_create()` in your wrapper class `zcl_wrap_purchase_req_bapi_###`.    
+
+Here you see that the wrapper class takes the values of the incoming payload stored in the import parameter `purchase_req_items` and moves it to the internal table `pritem` because the values of the import parameter are read-only.   
+
+Using the class C1-released class `zcl_conversion_ext_int` the content of the fields `amount` and `currency` are being converted from the SAP internal format to the external format expected by the BAPI.    
+
+The variable `use_conversions` is read-only and set to `abap_true` when instanticiating the class and has only been set to `abap_false` for testing purposes in the `main()` method.   
+
+<details>
+  <summary>🔵 Click to expand the source code!</summary>   
+  
+```
+
+    "item data has to be converted
+    pritem = purchase_req_items.
+
+    LOOP AT pritem ASSIGNING FIELD-SYMBOL(<pritem_line>).
+
+      pritemx_line =
+                      VALUE #(
+                               preq_item  = '00010'
+                               plant      = 'X'
+                               acctasscat = 'X'
+                               currency   = 'X'
+                               deliv_date = 'X'
+                               material   = 'X'
+                               matl_group = 'X'
+                               preq_price = 'X'
+                               quantity   = 'X'
+                               unit       = 'X'
+                               pur_group  = 'X'
+                               purch_org  = 'X'
+                               short_text = 'X'
+                              ) .
+
+      APPEND pritemx_line TO pritemx.
+
+      IF use_conversions = abap_true.
+
+        TRY.
+
+            zcl_conversion_ext_int=>get_instance( )->currency_amount_int_to_ext(
+              EXPORTING
+                currency    = <pritem_line>-Currency
+                sap_amount  = CONV #( <pritem_line>-preq_price )
+              IMPORTING
+                bapi_amount = DATA(bapi_amount)
+            ).
+
+            zcl_conversion_ext_int=>get_instance( )->currency_code_int_to_ext(
+              EXPORTING
+                sap_code = <pritem_line>-Currency
+              IMPORTING
+                iso_code = DATA(bapi_currency)
+            ).
+
+            <pritem_line>-preq_price = bapi_amount.
+            <pritem_line>-Currency = bapi_currency.
+
+          CATCH zcx_conversion_ext_int INTO DATA(conversion_exception).
+
+            conversion_message_line-id = conversion_exception->if_t100_message~t100key-msgid.
+            conversion_message_line-number = conversion_exception->if_t100_message~t100key-msgno.
+            conversion_message_line-type = if_abap_behv_message=>severity-warning.
+            conversion_message_line-message_v1 = conversion_exception->attr1.
+            conversion_message_line-message_v2 = conversion_exception->attr2.
+            APPEND conversion_message_line TO conversion_messages.
+
+        ENDTRY.
+      ENDIF.
+    ENDLOOP.
+
+
+
+```  
+
+</details>    
+
 
 
  
