@@ -70,7 +70,7 @@ To set the business context, the scenario is the following: This demo scenario s
 
 ### About the 3-Tier Extensibility Model
 
-You will learn how to apply the [Cloud API Enablement Guidelines for SAP S/4HANA Cloud Private Edition and and SAP S/4HANA](https://www.sap.com/documents/2023/05/b0bd8ae6-747e-0010-bca6-c68f7e60039b.html) to consume an unreleased SAP API. You will learn how to mitigate missing released SAP APIs in the 3-tier extensibility model when working with ABAP Cloud on these two products.
+You will learn how to apply the [ABAP Cloud API Enablement Guidelines for SAP S/4HANA Cloud Private Edition and SAP S/4HANA](https://www.sap.com/documents/2023/05/b0bd8ae6-747e-0010-bca6-c68f7e60039b.html) to consume an unreleased SAP API. You will learn how to mitigate missing released SAP APIs in the 3-tier extensibility model when working with ABAP Cloud on these two products.
 
 <img src="images/3-tier-extmodel.png" alt="3-tier extensibility model" width="80%">
 
@@ -93,13 +93,14 @@ Follow these steps to build a custom wrapper for the ABAP Cloud enablement of an
 | [Exercise 2 - Create a Shopping Cart Business Object](exercises/ex2/README.md) | -- |
 | [Exercise 3 - Create Value Help, Enhance the Behavior Definition and Behavior Implementation of the Shopping Cart Business Object](exercises/ex3/README.md) | -- |
 | [Exercise 4 - Integrate the Wrapper into the Shopping Cart Business Object](exercises/ex4/README.md) | -- |
+| [Exercise 5 - Integrate with classic BOR events](exercises/ex4a/README.md) | -- |
 
 
 #### Optional Exercises 
 
 | Exercises | -- |
 | ------------- |  -- |
-| [Exercise 5 - Provide Authorizations to Users for Non-Released Authorization Objects checked by the "Create Purchase Requisition" (BAPI_PR_CREATE) function module](exercises/ex5/README.md) | -- |
+| [Exercise 6 - Provide Authorizations to Users for Non-Released Authorization Objects checked by the "Create Purchase Requisition" (BAPI_PR_CREATE) function module](exercises/ex5/README.md) | -- |
 
 
 ## 📤Solution Package
