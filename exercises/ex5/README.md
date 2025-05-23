@@ -1,9 +1,9 @@
-# Exercise 5: Provide Authorizations to Users for non-Released Authorization Objects checked by the "Create Purchase Requisition" function module
+# Exercise 6: Provide Authorizations to Users for non-Released Authorization Objects checked by the "Create Purchase Requisition" function module
 <!-- description --> Learn how to provide a user with authorizations for your wrapper-enhanced RAP BO for both CHECK and DO NOT CHECK options.  
 
 ## Introduction
 
-In [exercise 4](../ex4/README.md), you've learned to integrate a custom wrapper into a RAP BO and implement a new action to call the custom wrapper during the save sequence phase of the RAP BO. You also learn how to expose an action via the service binding. To be able to develop the custom shopping cart RAP BO and the custom wrapper, your ABAP user should have full development authorization. 
+In [exercise 4](../ex4/README.md), you've learned to integrate a custom wrapper into a RAP BO and implement a new action to call the custom wrapper during the save sequence phase of the RAP BO. You have also learned how to expose an action via the service binding.   
 
 In this exercise we want to test two different authorization scenarios: the case in which we want authorizations to be checked upon the creation of a purchase requisition (so that only authorized users can perform this action), and the case in which we do not want any authorization check to be performed.
 
@@ -68,7 +68,7 @@ For demonstration purposes and to keep this exercise as modular as possible, you
 <details>
   <summary>🔵 Click to expand</summary>
  
-For that, connect to your system via ADT and navigate to the package `Z_PURCHASE_REQ_###` containing the RAP BO, right click on the Service Definition `ZUI_SHOPCART_###` and select **New Service Binding**, input the Name `ZUI_SHOPCART_WRAPPER_O4_###`and a Description, and choose the **Binding Type** = `OData V4 - UI`:
+For that, connect to your system via ADT and navigate to the package `Z_PURCHASE_REQ_###` containing the RAP BO, right click on the Service Definition `ZUI_SHOPCART_###_O4` and select **New Service Binding**, input the Name `ZUI_SHOPCART_WRAPPER_O4_###`and a Description, and choose the **Binding Type** = `OData V4 - UI`:
 
 <!-- ![Create service binding](images/create_service_binding_wrapper.png) -->
 <img alt="Create service binding" src="images/create_service_binding_wrapper.png" width="70%">
@@ -128,7 +128,7 @@ Open the service binding `ZUI_SHOPCART_WRAPPER_O4_###`: there should be no autho
 <!-- ![Create variant](images/create_variant.png) -->
 <img alt="Create variant" src="images/create_variant.png" width="70%">
 
-Input the name `ZUI_SHOPCART_WRAPPER_O4_###_V` and a description for the default variant (1) and then click on **Save** (2). You will be prompted to select a package: input the tier 2 package `$Z_PURCHASE_REQ_TIER2_###` (3) and save it (4):
+Input the name `ZUI_SHOPCART_WRAPPER_O4_###_V` and a description for the default variant (1) and then click on **Save** (2). You will be prompted to select a package: input the tier 2 package `ZTIER2_###` (3) and save it (4):
 
 <!-- ![Create variant - 2](images/create_variant_2.png) -->
 <img alt="Create variant - 2" src="images/create_variant_2.png" width="70%">
@@ -241,7 +241,7 @@ In this authorization scenario, you have decided that you do not want that any o
 <!-- ![Do not check option su22 not available](images/do_not_check_missing.png) -->
 <img alt="Do not check option su22 not available" src="images/do_not_check_missing.png" width="70%">
 
-To keep this exericise clear and modular, we will create a new service binding to test this scenario. This service binding exposes exactly the same service as the previous one. Logon to ADT using the developer user credentials and navigate to the package `Z_PURCHASE_REQ_###`. Right click on the service definition `ZUI_SHOPCART_###` and select **New Service Binding**, input the Name `ZUI_SHOPCART_WRP_NCK_O4_###` and a Description and select the Binding Type `OData V4 - UI`:
+To keep this exercise clear and modular, we will create a new service binding to test this scenario. This service binding exposes exactly the same service as the previous one. Logon to ADT using the developer user credentials and navigate to the package `Z_PURCHASE_REQ_###`. Right click on the service definition `ZUI_SHOPCART_###` and select **New Service Binding**, input the Name `ZUI_SHOPCART_WRP_NCK_O4_###` and a Description and select the Binding Type `OData V4 - UI`:
 
 <!-- ![Create Service Binding](images/create_service_binding.png) -->
 <img alt="Create Service Binding" src="images/create_service_binding.png" width="70%">
