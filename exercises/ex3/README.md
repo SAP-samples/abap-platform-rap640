@@ -477,7 +477,9 @@ This data definition is needed to create a value help for products.
       <!--![projection](images/products3.png) -->
       <img alt="projection" src="images/products3.png" width="70%">
 
- 4. In your data definition **`ZI_Products_###`** replace your code with following:
+ 4. In your data definition **`ZI_Products_###`** replace your code with following:   
+
+    > ℹ️ You can ignore the warnings that show up in your source code.   
 
 <details>
   <summary>🟡📄 Click to expand and view or copy the source code!</summary>
@@ -530,8 +532,10 @@ This data definition is needed to create a value help for products.
 </details>
     
  5. Save and activate.
+     
+    > ℹ️ You can ignore the warnings.  
 
- 6. You can test your CDS view entity by pressing F8 to start the _Data Preview_.   
+ 7. You can test your CDS view entity by pressing F8 to start the _Data Preview_.   
 
 </details>
 
@@ -568,6 +572,9 @@ You will now adjust the CDS projection view `ZC_SHOPCART_###` of your Fiori elem
     ```   
 
 </details>
+
+3. Save and activate  your changes.   
+
 
 <!--   
 
