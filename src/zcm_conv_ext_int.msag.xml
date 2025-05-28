@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>ZCM_CONV_EXT_INT</ARBGB>
+    <MASTERLANG>E</MASTERLANG>
+    <STEXT>ZCM_CONV_EXT_INT</STEXT>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCM_CONV_EXT_INT</ARBGB>
+     <MSGNR>000</MSGNR>
+     <TEXT>Incorrect BAPI amount.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCM_CONV_EXT_INT</ARBGB>
+     <MSGNR>010</MSGNR>
+     <TEXT>Value &amp;1 not found.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCM_CONV_EXT_INT</ARBGB>
+     <MSGNR>020</MSGNR>
+     <TEXT>No ISO code maintained for SAP code &amp;1.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCM_CONV_EXT_INT</ARBGB>
+     <MSGNR>030</MSGNR>
+     <TEXT>Other error: &amp;1 : &amp;2</TEXT>
+    </T100>
+   </T100>
+  </asx:values>
+ </asx:abap>
+</abapGit>
