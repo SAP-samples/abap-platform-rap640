@@ -1,6 +1,6 @@
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/abap-platform-rap640)](https://api.reuse.software/info/github.com/SAP-samples/abap-platform-rap640)
 
-# RAP640 - Using ABAP Cloud to Build Extensions for SAP S/4HANA Cloud, Private Edition - Mitigating Missing Released SAP APIs in the 3-tier Extensibility Model
+# RAP640 - Using ABAP Cloud to Build Extensions for SAP S/4HANA Cloud, Private Edition - Mitigating Missing Released SAP APIs
 <!-- Please include descriptive title -->
 
 <!--- Register repository https://api.reuse.software/register, then add REUSE badge:
@@ -10,7 +10,7 @@
 ## Description
 <!-- Please include SEO-friendly description -->
 
-This repository contains the material for the hands-on session **RAP640 - Mitigating Missing Released SAP APIs in the 3-tier Extensibility Model** which is about mitigating missing released SAP APIs in the 3-tier Extensibility Model when building apps, services, and extensions with the ABAP Cloud development model on SAP S/4HANA Cloud Private Edition and SAP S/4HANA. 
+This repository contains the material for the hands-on session **RAP640 - Mitigating Missing Released SAP APIs** which is about mitigating missing released SAP APIs when building apps, services, and extensions with the ABAP Cloud development model on SAP S/4HANA Cloud Private Edition and SAP S/4HANA. 
 
 **Table of Content**
 - [Requirements for attending this workshop](#requirements-for-attending-this-workshop)
@@ -68,9 +68,9 @@ The resulting app will look like this:
   
 To set the business context, the scenario is the following: This demo scenario shows a custom and SAP Fiori elements-based shopping cart app built on-stack with RAP. The custom app is integrated with the standard Purchase Requisition app in SAP S/4HANA Materials Management using a custom wrapper on top of the unreleased SAP API `BAPI_CREATE_PR`.
 
-### About the 3-Tier Extensibility Model
+### About building custom wrappers
 
-You will learn how to apply the [ABAP Cloud API Enablement Guidelines for SAP S/4HANA Cloud Private Edition and SAP S/4HANA](https://www.sap.com/documents/2023/05/b0bd8ae6-747e-0010-bca6-c68f7e60039b.html) to consume an unreleased SAP API. You will learn how to mitigate missing released SAP APIs in the 3-tier extensibility model when working with ABAP Cloud on these two products.
+You will learn how to apply the [ABAP Cloud API Enablement Guidelines for SAP S/4HANA Cloud Private Edition and SAP S/4HANA](https://www.sap.com/documents/2023/05/b0bd8ae6-747e-0010-bca6-c68f7e60039b.html) to consume an unreleased SAP API. You will learn how to mitigate missing released SAP APIs when working with ABAP Cloud on these two products.
 
 <img src="images/3-tier-extmodel.png" alt="3-tier extensibility model" width="80%">
 
@@ -116,7 +116,7 @@ You can import the solution package **`ZRAP640_SOL`** into your system* - i.e. a
 ## 🔁Recordings
 [^Top of page](#)
 
-Watch the replay of a webcast on cloud API enablement for the 3-tier extensibility model held during SAP's Devtoberfest in 2023. 
+Watch the replay of a webcast on cloud API enablement held during SAP's Devtoberfest in 2023. 
 
 📹 <a href="http://www.youtube.com/watch?feature=player_embedded&v=MThRxtNEHS0" target="_blank">Cloud API Enablement on SAP S/4HANA and SAP S/4HANA Cloud Private editions</a> 
 
