@@ -1,5 +1,5 @@
  # Exercise 1: Implement a Wrapper for the "Create Purchase Requisition" (BAPI_PR_CREATE) function module
-<!-- description --> Learn how to wrap the BAPI_PR_CREATE in your SAP S/4HANA system and release it for consumption in tier 1.
+<!-- description --> Learn how to wrap the BAPI_PR_CREATE in your SAP S/4HANA system and release it for consumption in ABAP for cloud development.
 
 ## Prerequisites
 
@@ -17,9 +17,10 @@ When you want to perform this script in your own SAP S/4HANA system the followin
 ## Introduction
 Now that you're connected to your SAP S/4HANA system, go ahead with this exercise where you will learn how to deal with the situation where there is no convenient released SAP API for creating purchase requisitions. 
 
-The [ABAP Cloud API Enablement Guidelines for SAP S/4HANA Cloud Private Edition and SAP S/4HANA](https://www.sap.com/documents/2023/05/b0bd8ae6-747e-0010-bca6-c68f7e60039b.html) recommend using a BAPI as an alternative to a released API, wrapping it, and then releasing the wrapper for consumption in tier 1. 
+The [ABAP Cloud API Enablement Guidelines for SAP S/4HANA Cloud Private Edition and SAP S/4HANA](https://www.sap.com/documents/2023/05/b0bd8ae6-747e-0010-bca6-c68f7e60039b.html) recommend using a _Classic API_ such as an appropriate BAPI as an alternative to a released API, wrapping it, and then releasing the wrapper for _use in cloud 
+development_. 
 
-In a later exercise you will then create a Shopping Cart RAP business object for a Fiori elements online shopping app in Tier 1 and integrate this wrapper to create purchase requisitions.
+In a later exercise you will then create a Shopping Cart RAP business object for a Fiori elements online shopping app using the ABAP Cloud development model and integrate this wrapper to create purchase requisitions.
 
 - [You will learn](#you-will-learn)
 - [Summary & Next Exercise](#summary--next-exercise)  
@@ -27,8 +28,9 @@ In a later exercise you will then create a Shopping Cart RAP business object for
 
 ## You will learn
 - How to generate a wrapper interface, a wrapper class and a factory class for the `BAPI_PR_CREATE` using transaction ACO_PROXY.
-- How to create an ABAP package on tier 1 (superpackage: `ZLOCAL`)   
-- How to test that the wrapper objects have been released for consumption in tier 1.
+- How to create an ABAP package in a software component with 
+language version ABAP for Cloud Development (superpackage: `ZLOCAL`)   
+- How to test that the wrapper objects have been released for for _use in cloud development_.
 
 > **Reminder:**   
 > Don't forget to replace all occurences of the placeholder **`###`** with your assigned group number in the exercise steps below.  
@@ -36,12 +38,12 @@ In a later exercise you will then create a Shopping Cart RAP business object for
 > If you don't have a group number, choose a 3-digit suffix and use it for all exercises.
 
 
-## Step 1: Get to know the BAPI_PR_CREATE via the BAPI Explorer
+## Step 1: Get to know the BAPI `BAPI_PR_CREATE` via the BAPI Explorer
 
 <details>
   <summary>🔵 Click to expand!</summary>
   
-The first step is to look for a suitable non-released API to create purchase requisitions. You can use the BAPI Explorer for this purpose. Connect to the backend of your SAP S/4HANA system and start transaction **`BAPI`** by opening the embedded SAP GUI (**Ctrl+6**) and entering **`/nBAPI`** in the command field. For the purpose of this tutorial, we will use the non-released BAPI **`BAPI_PR_CREATE`**.
+The first step is to look for a suitable classic API to create purchase requisitions. You can use the BAPI Explorer for this purpose. Connect to the backend of your SAP S/4HANA system and start transaction **`BAPI`** by opening the embedded SAP GUI (**Ctrl+6**) and entering **`/nBAPI`** in the command field. For the purpose of this tutorial, we will use the non-released BAPI **`BAPI_PR_CREATE`**.
 
 For that, switch to the **Alphabetical** view (1), look for the Business Object **`PurchaseRequisition`** (2), find and click on the method **`CreateFromData1`** (3). You can see that its function module is the **`BAPI_PR_CREATE`** (4).
 
@@ -62,7 +64,7 @@ In the **Tools** section you can click on the **Function Builder** and then clic
 
 </details>
 
-## Step 2: Create a development package in Tier 2
+## Step 2: Create a development package in HOME or an existing software component for classic ABAP
 
 You will develop the wrapper in a dedicated package under the structure package **`ZTIER2`** in your SAP S/4HANA system.   
 
@@ -81,7 +83,7 @@ You will develop the wrapper in a dedicated package under the structure package 
 
      <img alt="Create Tier 2 package" src="images/create_tier2_package_2.png" width="70%">    
 
-  4. Create a new transport request and give it a meaningful name such as `Tier2 development - Group ###` so that it can be more easily identified. 
+  4. Create a new transport request and give it a meaningful name such as `classic ABAP development - Group ###` so that it can be more easily identified. 
      Then click on **Finish**. The package will be created.   
 
 
@@ -103,10 +105,10 @@ In the following we will explain in short the best practices that are behind the
 > In addition you need a class to wrap the BAPI (implementing the interface) and implement its methods. The wrapper class has a method defined in the private section, `call_bapi_pr_create`, which has access to all the parameters of the underlying BAPI. Having this type of central private method is best practice. Internally, the wrapper class has access to all the parameters and then the interface has virtual access to all of these parameters and exposes publicly only the ones that are needed depending on the specific use-case. 
 
 > **C1-release for use in cloud development:**    
-> Since we plan to access the wrapped BAPI in a different tier, it is good to provide the possibility to test it, and to keep wrapping-specific coding in tier 1 to a minimum. For this reason, the interface approach is recommended, and the wrapper class will not be released directly for consumption in tier 1, but rather will be accessible via a factory class that will also be created.
+> Since we plan to access the wrapped BAPI using the ABAP Cloud development model, it is good to provide the possibility to test it, and to keep wrapping-specific coding using the ABAP Cloud development model to a minimum. For this reason, the interface approach is recommended, and the wrapper class will not be released directly for consumption in ABAP for cloud development, but rather will be accessible via a factory class that will also be created.
 
 > **The factory class:**
-> A factory class is used to control the instantiation of the wrapper class and in order to be able to use it in Tier1 it has to be released for use in tier 1. 
+> A factory class is used to control the instantiation of the wrapper class and in order to be able to use it in ABAP for cloud development it has to be released for use in ABAP for cloud development. 
 
 This approach has the advantage of a clear control of when and where an instance of the wrapper class is created, and in the event in which several wrapper classes are needed all their instantiations could be handled inside one single factory class.  Also, in case of wrapper classes this has the advantage that in case the wrapper class is changed throughout it's software lifecycle, at a later point in time a different class could be initialized, without changes to the consumer implementation. In this tutorial we follow the [clean code best practices](https://blogs.sap.com/2022/05/05/how-to-enable-clean-code-checks-for-abap/) for ABAP development. For example: the wrapper class is ready for ABAP Unit Tests and [ABAP Doc](https://blogs.sap.com/2013/04/29/abap-doc/) is implemented.
 
@@ -169,7 +171,7 @@ This approach has the advantage of a clear control of when and where an instance
  
 </details>  
 
-## Step 4: Create a package in Tier 1   
+## Step 4: Create a package in a software component with language version ABAP for Cloud Development   
 
 **Hint:** In case no CAL instance of a preconfigured SAP S/4HANA appliance is used, please set up for developer extensibility to get `ZTIER1` package as described in section **Prerequisites**.    
 
@@ -191,13 +193,13 @@ This approach has the advantage of a clear control of when and where an instance
       
 </details>
 
-## Step 5: Test the technical wrapper class with console application in tier 1
+## Step 5: Test the technical wrapper class with console application in ABAP for cloud development
 
-The wrapper you just created is released for consumption in tier 1. You can test this by creating a console application in tier 1 to call the wrapper. 
+The wrapper you just created is released for consumption in ABAP for cloud development. You can test this by creating a console application in ABAP for cloud development to call the wrapper. 
 
 We will use this class that calls the wrapper also to add a conversion functionality and to simplify the signature of the method that is used to create a purchase requistion as well. 
 
-For this you have created a dedicated package **`Z_PURCHASE_REQ_###`** for this test in tier 1 by using **`ZTIER1`** as the super-package of your package in your SAP S/4HANA System.
+For this you have created a dedicated package **`Z_PURCHASE_REQ_###`** for this test in ABAP for cloud development by using **`ZTIER1`** as the super-package of your package in your SAP S/4HANA System.
 
 <details>
   <summary>🔵 Click to expand</summary>  
@@ -209,7 +211,7 @@ For this you have created a dedicated package **`Z_PURCHASE_REQ_###`** for this 
 
 2. Click on **Next**, select a suitable transport request (or create a new one if needed) and then click on **Finish**.
 
-3. You can check that the newly created class is a tier 1 class by checking that the **ABAP Language Version** is `ABAP Language for Cloud Development` in the **Properties** > **General** tab:
+3. You can check that the newly created class is a ABAP for cloud development class by checking that the **ABAP Language Version** is `ABAP Language for Cloud Development` in the **Properties** > **General** tab:
 
 <!-- ![Console application language](images/console_application_language.png) -->
 <img alt="Console application language" src="images/console_application_language.png" width="70%">
@@ -654,7 +656,7 @@ You can  use the app **Manage Purchase Requisition - Professional** to check the
 
 Now that you've... 
 - created a wrapper interface, a factory class and an implementing wrapper class for the BAPI_PR_CREATE, and
-- have tested the C1-released wrapper for consumption in tier 1,
+- have tested the C1-released wrapper for consumption in ABAP for cloud development,
 
 you can continue with the next exercise - **[Exercise 2 - Create a Shopping Cart Business Object](../ex2/README.md)**.
 
