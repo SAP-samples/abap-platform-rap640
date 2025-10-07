@@ -112,7 +112,7 @@ You will now use a wizard to generate all repository objects required for your R
 
       > Please be aware that the screenshot above pertains to the SAP S/4HANA 2023 release.   
 
-  3. In the **Enter Package** screen enter the name of your Tier 1 package **`Z_PURCHASE_REQ_###`** and click **Next >**.
+  3. In the **Enter Package** screen enter the name of your package **`Z_PURCHASE_REQ_###`** and click **Next >**.
 
      <img alt="Enter package name" src="images/generator_enter_package_name.png" width="70%">
  

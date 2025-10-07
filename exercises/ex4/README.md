@@ -659,6 +659,6 @@ Now that you've...
 - implemented a new action in RAP BO to call the wrapper class and use it to create a purchase requisition, and 
 - exposed the action via service binding,
 
-you can continue with the next exercise - **[Exercise 5 - Provide Authorizations to Users for non-Released Authorization Objects checked by the "Create Purchase Requisition" function module](../ex5/README.md)**.
+you can continue with the next exercise - **[Exercise 5: Integrate with classic BOR Events](../ex4a/README.md)**.
 
 ---
