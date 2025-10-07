@@ -2,7 +2,7 @@
 <!-- description --> Create a shopping cart business object with SAP S/4HANA Cloud, ABAP Environment or SAP S/4HANA on-premise.
 
 ## Introduction
-Now that you have generated a custom wrapper for the non-released SAP API `BAPI_PR_CREATE` for the creation of purchase requisition and released it for the ABAP Cloud development in [exercise 1](../ex1/README.md), you will now create your _Shopping Cart_ RAP business object and a UI service on top it.   
+Now that you have generated a custom wrapper for the classic API `BAPI_PR_CREATE` for the creation of purchase requisition and released it for the ABAP Cloud development in [exercise 1](../ex1/README.md), you will now create your _Shopping Cart_ RAP business object and a UI service on top it.   
 
 This RAP business object will then be enhanced later in Exercise 3 such, that a _purchase requisition_ will be created from the content of your _shopping cart_.
 
@@ -277,7 +277,7 @@ What is left to do is to publish your service locally, so that it can be tested 
 [^Top of page](#)
 
 Now that you've... 
-- created an ABAP package on tier 1 (superpackage: `ZLOCAL`),
+- created an ABAP package in a software component with language version ABAP for Cloud Development(superpackage: `ZLOCAL`),
 - created a database table to store the shopping cart data,
 - generated a RAP BO and a transactional UI service,
 - enhanced the behavior definition of a data model,
