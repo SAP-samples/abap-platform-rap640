@@ -1,6 +1,6 @@
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/abap-platform-rap640)](https://api.reuse.software/info/github.com/SAP-samples/abap-platform-rap640)
 
-# RAP640 - Using ABAP Cloud to Build Extensions for SAP S/4HANA Cloud, Private Edition - Mitigating Missing Released SAP APIs
+# RAP640 - Using ABAP Cloud to Build Extensions for SAP S/4HANA Cloud, Private Edition - Mitigating missing released SAP APIs
 <!-- Please include descriptive title -->
 
 <!--- Register repository https://api.reuse.software/register, then add REUSE badge:
@@ -35,17 +35,14 @@ The requirements to follow the exercises in this repository are:
 2. [Adapt the Web Browser settings in your ADT installation](https://github.com/SAP-samples/abap-platform-rap-workshops/blob/main/requirements_rap_workshops.md#4-adapt-the-web-browser-settings-in-your-adt-installation)
 3. Have SAPGUI installed since you have to start transaction ACO_PROXY.
 
-> ℹ️ **Regarding SAP-led events such as "ABAP Developer Day" and "SAP CodeJam"**:   
-> → A dedicated ABAP system for the hands-on workshop participants will be provided.   
-> → Access to the system details for the workshop will be provided by the instructors during the session.
 
 </details>
 
-## System access (workshops provided by SAP)
+## System access (workshops provided by SAP)  
 
-In a workshop that is conducted by SAP a SAP S/4HANA 2023 preconfigured appliance system will be provided to the workshop participants. 
-
-The system details will be provided by the trainers. With the system details you can connect via ADT to the system as described in the following how-to-guide.   
+> ℹ️ **Regarding SAP-led events such as "ABAP Developer Day" and "SAP CodeJam"**:   
+> → A dedicated ABAP system for the hands-on workshop participants will be provided.   
+> → Access to the system details for the workshop will be provided by the instructors during the session. With these system details you can connect via ADT to the system as described in the following how-to-guide.   
 
 [How to connect with ADT to a preconfigured appliance system](https://github.com/SAP-samples/abap-platform-rap-workshops/blob/main/how_to_connect_with_adt_to_preconfigure_appliance.md)
 
@@ -53,24 +50,24 @@ The system details will be provided by the trainers. With the system details you
 [^Top of page](#)
 
 <!-- #### Current Business Scenario -->
-Learn about the current business scenario and the 3-tier extensibility model.
+Learn about the current business scenario and the clean core extensibility model based on the clean core level concept
  
 <details>
   <summary>Click to expand!</summary>
  
 ### About the Business Scenario 
   
-In this hands-on workshop, we will guide you through the development of a custom wrapper for the ABAP Cloud enablement of an unreleased SAP BAPI for creating purchase requisitions, then a custom RAP BO and UI service on top of it to develop a transactional, design-capable, Fiori Elements-based list report app using RAP. Finally, you'll use your custom API wrapper in your custom RAP BO to integrate your custom app with the standard professional SAP Purchase Requisition app.
+In this hands-on workshop, we will guide you through the development of a custom wrapper for the ABAP Cloud enablement of an classic API (a  BAPI) for creating purchase requisitions, then a custom RAP BO and UI service on top of it to develop a transactional, design-capable, Fiori Elements-based list report app using RAP. Finally, you'll use your custom API wrapper in your custom RAP BO to integrate your custom app with the standard professional SAP Purchase Requisition app.
 
 The resulting app will look like this:
 
 <img src="images/shoppingcart01.png" alt="Shopping Cart  App" width="100%">
   
-To set the business context, the scenario is the following: This demo scenario shows a custom and SAP Fiori elements-based shopping cart app built on-stack with RAP. The custom app is integrated with the standard Purchase Requisition app in SAP S/4HANA Materials Management using a custom wrapper on top of the unreleased SAP API `BAPI_CREATE_PR`.
+To set the business context, the scenario is the following: This demo scenario shows a custom and SAP Fiori elements-based shopping cart app built on-stack with RAP. The custom app is integrated with the standard Purchase Requisition app in SAP S/4HANA Materials Management using a custom wrapper on top of the classic API `BAPI_CREATE_PR`.
 
 ### About building custom wrappers
 
-You will learn how to apply the [ABAP Cloud API Enablement Guidelines for SAP S/4HANA Cloud Private Edition and SAP S/4HANA](https://www.sap.com/documents/2023/05/b0bd8ae6-747e-0010-bca6-c68f7e60039b.html) to consume an unreleased SAP API. You will learn how to mitigate missing released SAP APIs when working with ABAP Cloud on these two products.
+You will learn how to apply the [ABAP Cloud API Enablement Guidelines for SAP S/4HANA Cloud Private Edition and SAP S/4HANA](https://www.sap.com/documents/2023/05/b0bd8ae6-747e-0010-bca6-c68f7e60039b.html) to consume a classic API. You will learn how to mitigate missing released SAP APIs when working with ABAP Cloud on these two products.
 
 <img src="images/3-tier-extmodel.png" alt="3-tier extensibility model" width="80%">
 

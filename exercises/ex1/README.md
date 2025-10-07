@@ -38,7 +38,7 @@ language version ABAP for Cloud Development (superpackage: `ZLOCAL`)
 > If you don't have a group number, choose a 3-digit suffix and use it for all exercises.
 
 
-## Step 1: Get to know the BAPI `BAPI_PR_CREATE` via the BAPI Explorer
+## Step 1: Get to know the BAPI _`BAPI_PR_CREATE`_ via the BAPI Explorer
 
 <details>
   <summary>🔵 Click to expand!</summary>
@@ -60,7 +60,7 @@ In the **Tools** section you can click on the **Function Builder** and then clic
 <!-- ![BAPI explorer - Function Builder](images/bapi_explorer-function_builder.png) -->
 <img alt="BAPI explorer - Function Builder" src="images/bapi_explorer-function_builder.png" width="70%">
 
->The `BAPI_PR_CREATE` has a `TESTRUN` parameter that can be used to call the BAPI in validation mode. Some BAPI have a similar test mode that can be used to validate input data. It is best practice to make use of this test mode, if available, as we will address in more details in a later [tutorial](/exercises/ex5/Readme.md) of this group.
+>The `BAPI_PR_CREATE` has a `TESTRUN` parameter that can be used to call the BAPI in validation mode. Some BAPI have a similar test mode that can be used to validate input data. It is best practice to make use of this test mode, if available, as we will address in more details in a later [exercise](./exercises/ex5/Readme.md) of this hands-on.
 
 </details>
 
