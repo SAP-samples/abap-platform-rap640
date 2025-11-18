@@ -33,8 +33,6 @@ To complete the practical exercises in this workshop, you need the latest versio
 The requirements to follow the exercises in this repository are:
 1. [Install the latest Eclipse platform and the latest ABAP Development Tools (ADT) plugin](https://developers.sap.com/tutorials/abap-install-adt.html)
 2. [Adapt the Web Browser settings in your ADT installation](https://github.com/SAP-samples/abap-platform-rap-workshops/blob/main/requirements_rap_workshops.md#4-adapt-the-web-browser-settings-in-your-adt-installation)
-3. Have SAPGUI installed since you have to start transaction ACO_PROXY.
-
 
 </details>
 

@@ -7,12 +7,6 @@ When you want to perform this script in your own SAP S/4HANA system the followin
 
 - You have to have a system based on **SAP S/4HANA 2022 or 2023** on premise or private cloud.
 - You have to have enabled Developer extensibility as described in the [SAP Online Help](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b5670aaaa2364a29935f40b16499972d/31367ef6c3e947059e0d7c1cbfcaae93.html?q=set%20up%20developer%20extensibility&locale=en-US)   
-- You have to apply the following notes:  
-
-  - [SAP Note 3444292 - ACO Proxy creates unnecessary shadow types](https://me.sap.com/notes/3444292)  
-  - [SAP Note 3457580 - SAP ACO - Duplicate Types for Table Parameters](https://me.sap.com/notes/3457580)
-  - [SAP Note 3518177 - SAP ACO Proxy Improvements](https://me.sap.com/notes/3518177)
-  - [SAP Note 3519098 - F4: fix function module value help](https://me.sap.com/notes/3519098)   (only relevant for SAP S/4 HANA 2023)   
 
 ## Introduction
 Now that you're connected to your SAP S/4HANA system, go ahead with this exercise where you will learn how to deal with the situation where there is no convenient released SAP API for creating purchase requisitions. 
@@ -27,7 +21,7 @@ In a later exercise you will then create a Shopping Cart RAP business object for
 
 
 ## You will learn
-- How to generate a wrapper interface, a wrapper class and a factory class for the `BAPI_PR_CREATE` using transaction ACO_PROXY.
+- How to generate a wrapper interface, a wrapper class and a factory class for the `BAPI_PR_CREATE`.
 - How to create an ABAP package in a software component with 
 language version ABAP for Cloud Development (superpackage: `ZLOCAL`)   
 - How to test that the wrapper objects have been released for for _use in cloud development_.
@@ -91,9 +85,7 @@ You will develop the wrapper in a dedicated package under the structure package 
 
 ## Step 3: Generate a technical wrapper class, interface and factory class
 
-You now want to wrap the API `BAPI_PR_CREATE`. For this we use the transaction **ACO_PROXY** which has been enhanced so that it will generate the boiler plate coding for you to build a wrapper class.   
-
-In the following we will explain in short the best practices that are behind the options you will have to choose when using transaction **ACO_PROXY**.  
+You now want to wrap the API `BAPI_PR_CREATE`. For this we create an interface, a wrapper class and a factory class:
 
 <details>
   <summary>🔵 Click to expand</summary>
@@ -112,63 +104,550 @@ In the following we will explain in short the best practices that are behind the
 
 This approach has the advantage of a clear control of when and where an instance of the wrapper class is created, and in the event in which several wrapper classes are needed all their instantiations could be handled inside one single factory class.  Also, in case of wrapper classes this has the advantage that in case the wrapper class is changed throughout it's software lifecycle, at a later point in time a different class could be initialized, without changes to the consumer implementation. In this tutorial we follow the [clean code best practices](https://blogs.sap.com/2022/05/05/how-to-enable-clean-code-checks-for-abap/) for ABAP development. For example: the wrapper class is ready for ABAP Unit Tests and [ABAP Doc](https://blogs.sap.com/2013/04/29/abap-doc/) is implemented.
 
+**Create the wrapper interface**
 
-1. To create the interface, the class and the factory class for your BAPI start transaction **ACO_PROXY**.  
+In order to create the wrapper interface, right click on your previously created package `ZTIER2_###` and select **New > ABAP Interface** and input the Name `ZIF_WRAP_BAPI_PR_###`.
 
-2. Enter the following values:   
+Copy and paste the following code into your previously created interface:
 
-   **A. Function Modules**    
-      - Here you can select one or more function modules that will be wrapped by one single class. Please enter here only `BAPI_PR_CREATE`.  
-        
-   **B. Specify repository object names**    
-      - **Name of a proxy class**: Enter a name for the wrapper class, e.g. `ZCL_WRAP_BAPI_PR_###`.   
-      - **Package**: Select `ZTIER2_###`.       
-      - **Create Interface**: Check the check box and choose a name for the interface, e.g. `ZIF_WRAP_BAPI_PR_###`  
-      - **Create Factory Class**: Check the check box and choose a name for the factory class, e.g. `ZCL_F_WRAP_BAPI_PR_###`   
+<details>
+  <summary>🟡📄 Click to expand and view or copy the source code!</summary>
 
-   **C. Options**   
-      - Leave the default value **Pass destination via Constructor**  checked.   
-      - Choose the radio-button **Class-Based Exceptions**       
-      - Check the check box **Do not create Shadows of C1 Released Types**       
-      - Check the check box **C1 Release**       
-      - Check the check box **Create Private Methods**          
+```ABAP
 
-    
-   <img alt="Start ACO_PROXY" src="images/start_aco_proxy_2.png" width="100%"> 
+      INTERFACE ZIF_WRAP_BAPI_PR_###
+      PUBLIC.
 
-3. Press the green check mark <code style="color : name_color">**✔**</code> in the upper left corner or  **F8** to continue
-   
-4. Select optional values
+      TYPES:
+        BEGIN OF bapimereqheader,
+          preq_no         TYPE banfn,
+          pr_type         TYPE bsart,
+          ctrl_ind        TYPE bsakz,
+          general_release TYPE gsfrg,
+          create_ind      TYPE estkz,
+          item_intvl      TYPE pincr,
+          last_item       TYPE lponr,
+          auto_source     TYPE kzzuo,
+          memory          TYPE membf,
+          hold_complete   TYPE bapimereqpostflag,
+          hold_uncomplete TYPE bapimereqpostflag,
+          park_complete   TYPE bapimereqpostflag,
+          park_uncomplete TYPE bapimereqpostflag,
+          memorytype      TYPE memorytype,
+        END OF bapimereqheader.
 
-   Transaction **ACO_PROXY** offers you to un-select optional values that shall not be part of the public interface.
+      TYPES:
+        BEGIN OF bapimereqheaderx,
+          preq_no         TYPE bapiupdate,
+          pr_type         TYPE bapiupdate,
+          ctrl_ind        TYPE bapiupdate,
+          general_release TYPE bapiupdate,
+          create_ind      TYPE bapiupdate,
+          item_intvl      TYPE bapiupdate,
+          last_item       TYPE bapiupdate,
+          auto_source     TYPE bapiupdate,
+          memory          TYPE bapiupdate,
+          hold_complete   TYPE bapiupdate,
+          hold_uncomplete TYPE bapiupdate,
+          park_complete   TYPE bapiupdate,
+          park_uncomplete TYPE bapiupdate,
+          memorytype      TYPE bapiupdate,
+        END OF bapimereqheaderx.
+      TYPES:
+        char1             TYPE c LENGTH 000001.
 
-   Only leave the following optional parameters of the 'BAPI_PR_CREATE' selected
-   
-   - NUMBER  
-   - PRHEADEREXP  
-   - PRHEADER  
-   - PRHEADERX  
-   - TESTRUN  
-   - PRITEMX  
-   - RETURN  
+      TYPES:
+        _bapiparex        TYPE STANDARD TABLE OF bapiparex WITH DEFAULT KEY.
 
-   and un-select all other optional parameters.
+      TYPES:
+        BEGIN OF bapimereqaccountx,
+          preq_item        TYPE bnfpo,
+          serial_no        TYPE dzekkn,
+          preq_itemx       TYPE bapiupdate,
+          serial_nox       TYPE bapiupdate,
+          delete_ind       TYPE bapiupdate,
+          creat_date       TYPE bapiupdate,
+          quantity         TYPE bapiupdate,
+          distr_perc       TYPE bapiupdate,
+          net_value        TYPE bapiupdate,
+          gl_account       TYPE bapiupdate,
+          bus_area         TYPE bapiupdate,
+          costcenter       TYPE bapiupdate,
+          sd_doc           TYPE bapiupdate,
+          itm_number       TYPE bapiupdate,
+          sched_line       TYPE bapiupdate,
+          asset_no         TYPE bapiupdate,
+          sub_number       TYPE bapiupdate,
+          orderid          TYPE bapiupdate,
+          gr_rcpt          TYPE bapiupdate,
+          unload_pt        TYPE bapiupdate,
+          co_area          TYPE bapiupdate,
+          costobject       TYPE bapiupdate,
+          profit_ctr       TYPE bapiupdate,
+          wbs_element      TYPE bapiupdate,
+          network          TYPE bapiupdate,
+          rl_est_key       TYPE bapiupdate,
+          part_acct        TYPE bapiupdate,
+          cmmt_item        TYPE bapiupdate,
+          rec_ind          TYPE bapiupdate,
+          funds_ctr        TYPE bapiupdate,
+          fund             TYPE bapiupdate,
+          func_area        TYPE bapiupdate,
+          ref_date         TYPE bapiupdate,
+          tax_code         TYPE bapiupdate,
+          taxjurcode       TYPE bapiupdate,
+          nond_itax        TYPE bapiupdate,
+          acttype          TYPE bapiupdate,
+          co_busproc       TYPE bapiupdate,
+          res_doc          TYPE bapiupdate,
+          res_item         TYPE bapiupdate,
+          activity         TYPE bapiupdate,
+          grant_nbr        TYPE bapiupdate,
+          cmmt_item_long   TYPE bapiupdate,
+          func_area_long   TYPE bapiupdate,
+          budget_period    TYPE bapiupdate,
+          service_doc      TYPE bapiupdate,
+          service_item     TYPE bapiupdate,
+          service_doc_type TYPE bapiupdate,
+        END OF bapimereqaccountx.
+      TYPES:
+        _bapimereqaccountx TYPE STANDARD TABLE OF bapimereqaccountx WITH DEFAULT KEY.
 
-   Finally you have to press **Enter** and you have to select a transport to start the generation of the repository objects.   
+      TYPES:
+        BEGIN OF bapimereqitemimp ,
+          preq_item                     TYPE bnfpo,
+          ctrl_ind                      TYPE bsakz,
+          delete_ind                    TYPE eloek,
+          pur_group                     TYPE ekgrp,
+          preq_name                     TYPE afnam,
+          short_text                    TYPE txz01,
+          material                      TYPE matnr18,
+          material_external             TYPE mgv_material_external,
+          material_guid                 TYPE mgv_material_guid,
+          material_version              TYPE mgv_material_version,
+          pur_mat                       TYPE ematn18,
+          pur_mat_external              TYPE mgv_pur_mat_external,
+          pur_mat_guid                  TYPE mgv_pur_mat_guid,
+          pur_mat_version               TYPE mgv_pur_mat_version,
+          plant                         TYPE ewerk,
+          store_loc                     TYPE lgort_d,
+          trackingno                    TYPE bednr,
+          matl_group                    TYPE matkl,
+          suppl_plnt                    TYPE reswk,
+          quantity                      TYPE bamng,
+          unit                          TYPE bamei,
+          preq_unit_iso                 TYPE bamei_iso,
+          preq_date                     TYPE badat,
+          del_datcat_ext                TYPE lpein,
+          deliv_date                    TYPE eindt,
+          rel_date                      TYPE frgdt,
+          gr_pr_time                    TYPE webaz,
+          preq_price                    TYPE bapicurext,
+          price_unit                    TYPE epein,
+          item_cat                      TYPE pstyp,
+          acctasscat                    TYPE knttp,
+          distrib                       TYPE vrtkz,
+          part_inv                      TYPE twrkz,
+          gr_ind                        TYPE wepos,
+          gr_non_val                    TYPE weunb,
+          ir_ind                        TYPE repos,
+          des_vendor                    TYPE wlief,
+          fixed_vend                    TYPE flief,
+          purch_org                     TYPE ekorg,
+          agreement                     TYPE konnr,
+          agmt_item                     TYPE ktpnr,
+          info_rec                      TYPE infnr,
+          mrp_ctrler                    TYPE dispo,
+          bomexpl_no                    TYPE sernr,
+          val_type                      TYPE bwtar_d,
+          commitment                    TYPE xoblr,
+          closed                        TYPE ebakz,
+          reserv_no                     TYPE rsnum,
+          fixed                         TYPE bafix,
+          po_unit                       TYPE bstme,
+          po_unit_iso                   TYPE bstme_iso,
+          rev_lev                       TYPE revlv,
+          pckg_no                       TYPE packno,
+          kanban_ind                    TYPE kbnkz,
+          po_price                      TYPE bpueb,
+          int_obj_no                    TYPE cuobj,
+          promotion                     TYPE waktion,
+          batch                         TYPE charg_d,
+          cmmt_item                     TYPE fipos,
+          funds_ctr                     TYPE fistl,
+          fund                          TYPE bp_geber,
+          matl_cat                      TYPE attyp,
+          address2                      TYPE adrnr_mm,
+          address                       TYPE adrn2,
+          customer                      TYPE ekunnr,
+          supp_vendor                   TYPE emlif,
+          sc_vendor                     TYPE lblkz,
+          valuation_spec_stock          TYPE kzbws,
+          currency                      TYPE waers,
+          currency_iso                  TYPE bapiisocd,
+          vend_mat                      TYPE idnlf,
+          manuf_prof                    TYPE mprof,
+          langu                         TYPE spras,
+          langu_iso                     TYPE spras_iso,
+          validity_object               TYPE techs,
+          fw_order                      TYPE sfordn,
+          fw_order_item                 TYPE fordp,
+          plnd_delry                    TYPE plifz,
+          deliv_time                    TYPE lzeit,
+          ref_req                       TYPE refbn,
+          ref_req_item                  TYPE rfbps,
+          grant_nbr                     TYPE gm_grant_nbr,
+          func_area                     TYPE fkber,
+          req_blocked                   TYPE blckd,
+          reason_blocking               TYPE blckt,
+          version                       TYPE revno,
+          procuring_plant               TYPE beswk,
+          ext_proc_prof                 TYPE meprofile,
+          ext_proc_ref_doc              TYPE eprefdoc,
+          ext_proc_ref_item             TYPE eprefitm,
+          funds_res                     TYPE kblnr_fi,
+          res_item                      TYPE kblpos,
+          suppl_stloc                   TYPE reslo,
+          prio_urgency                  TYPE prio_urg,
+          prio_requirement              TYPE prio_req,
+          new_bom_explosion             TYPE bom_expl,
+          minremlife                    TYPE mhdrz,
+          period_ind_expiration_date    TYPE dattp,
+          budget_period                 TYPE fm_budget_period,
+          bras_nbm                      TYPE j_1bnbmco1,
+          matl_usage                    TYPE j_1bmatuse,
+          mat_origin                    TYPE j_1bmatorg,
+          in_house                      TYPE j_1bownpro,
+          indus3                        TYPE j_1bindus3,
+          req_segment                   TYPE sgt_rcat16,
+          stk_segment                   TYPE sgt_scat16,
+          avail_date                    TYPE dat00,
+          material_long                 TYPE matnr40,
+          pur_mat_long                  TYPE ematn40,
+          req_seg_long                  TYPE sgt_rcat40,
+          stk_seg_long                  TYPE sgt_scat40,
+          expected_value                TYPE commitment,
+          limit_amount                  TYPE sumlimit,
+          producttype                   TYPE product_type,
+          serviceperformer              TYPE serviceperformer,
+          startdate                     TYPE mmpur_servproc_period_start,
+          enddate                       TYPE mmpur_servproc_period_end,
+          spe_crm_ref_so                TYPE /spe/ref_vbeln_crm,
+          spe_crm_ref_item              TYPE /spe/ref_posnr_crm,
+          expert_mode                   TYPE mmpur_pr_ssp_expert_mode,
+          txs_business_transaction      TYPE txs_business_transaction,
+          txs_usage_purpose             TYPE txs_usage_purpose,
+          tax_code                      TYPE mwskz,
+          delivery_address_type         TYPE purdeliveryaddrtype,
+          contract_for_limit            TYPE ctr_for_limit,
+          iscrreplicationbeforeapproval TYPE mmpur_pr_cen_reqn_repl_bfr_app,
+          mmpur_pr_cen_reqn_app_rpld_pr TYPE mmpur_pr_cen_reqn_app_rpld_pr,
+          ssp_author                    TYPE mmpur_req_d_author,
+          ssp_requestor                 TYPE mmpur_req_d_requestor,
+          ssp_catalogid                 TYPE bbp_ws_service_id,
+          contract_item_for_limit       TYPE ctr_item_for_limit,
+        END OF bapimereqitemimp.
+      TYPES:
+        _bapimereqitemimp               TYPE STANDARD TABLE OF bapimereqitemimp WITH DEFAULT KEY.
 
-   <img alt="Select optional parameters 1" src="images/rap640_parameter_010.png" width="70%">
+      TYPES:
+        BEGIN OF bapimereqitemx ,
+          preq_item                     TYPE bnfpo,
+          preq_itemx                    TYPE bapiupdate,
+          ctrl_ind                      TYPE bapiupdate,
+          delete_ind                    TYPE bapiupdate,
+          pur_group                     TYPE bapiupdate,
+          preq_name                     TYPE bapiupdate,
+          short_text                    TYPE bapiupdate,
+          material                      TYPE bapiupdate,
+          material_external             TYPE bapiupdate,
+          material_guid                 TYPE bapiupdate,
+          material_version              TYPE bapiupdate,
+          pur_mat                       TYPE bapiupdate,
+          pur_mat_external              TYPE bapiupdate,
+          pur_mat_guid                  TYPE bapiupdate,
+          pur_mat_version               TYPE bapiupdate,
+          plant                         TYPE bapiupdate,
+          store_loc                     TYPE bapiupdate,
+          trackingno                    TYPE bapiupdate,
+          matl_group                    TYPE bapiupdate,
+          suppl_plnt                    TYPE bapiupdate,
+          quantity                      TYPE bapiupdate,
+          unit                          TYPE bapiupdate,
+          preq_unit_iso                 TYPE bapiupdate,
+          preq_date                     TYPE bapiupdate,
+          del_datcat_ext                TYPE bapiupdate,
+          deliv_date                    TYPE bapiupdate,
+          rel_date                      TYPE bapiupdate,
+          gr_pr_time                    TYPE bapiupdate,
+          preq_price                    TYPE bapiupdate,
+          price_unit                    TYPE bapiupdate,
+          item_cat                      TYPE bapiupdate,
+          acctasscat                    TYPE bapiupdate,
+          distrib                       TYPE bapiupdate,
+          part_inv                      TYPE bapiupdate,
+          gr_ind                        TYPE bapiupdate,
+          gr_non_val                    TYPE bapiupdate,
+          ir_ind                        TYPE bapiupdate,
+          des_vendor                    TYPE bapiupdate,
+          fixed_vend                    TYPE bapiupdate,
+          purch_org                     TYPE bapiupdate,
+          agreement                     TYPE bapiupdate,
+          agmt_item                     TYPE bapiupdate,
+          info_rec                      TYPE bapiupdate,
+          mrp_ctrler                    TYPE bapiupdate,
+          bomexpl_no                    TYPE bapiupdate,
+          val_type                      TYPE bapiupdate,
+          commitment                    TYPE bapiupdate,
+          closed                        TYPE bapiupdate,
+          reserv_no                     TYPE bapiupdate,
+          fixed                         TYPE bapiupdate,
+          po_unit                       TYPE bapiupdate,
+          po_unit_iso                   TYPE bapiupdate,
+          rev_lev                       TYPE bapiupdate,
+          pckg_no                       TYPE bapiupdate,
+          kanban_ind                    TYPE bapiupdate,
+          po_price                      TYPE bapiupdate,
+          int_obj_no                    TYPE bapiupdate,
+          promotion                     TYPE bapiupdate,
+          batch                         TYPE bapiupdate,
+          cmmt_item                     TYPE bapiupdate,
+          funds_ctr                     TYPE bapiupdate,
+          fund                          TYPE bapiupdate,
+          matl_cat                      TYPE bapiupdate,
+          address2                      TYPE bapiupdate,
+          address                       TYPE bapiupdate,
+          customer                      TYPE bapiupdate,
+          supp_vendor                   TYPE bapiupdate,
+          sc_vendor                     TYPE bapiupdate,
+          valuation_spec_stock          TYPE bapiupdate,
+          currency                      TYPE bapiupdate,
+          currency_iso                  TYPE bapiupdate,
+          vend_mat                      TYPE bapiupdate,
+          manuf_prof                    TYPE bapiupdate,
+          langu                         TYPE bapiupdate,
+          langu_iso                     TYPE bapiupdate,
+          validity_object               TYPE bapiupdate,
+          fw_order                      TYPE bapiupdate,
+          fw_order_item                 TYPE bapiupdate,
+          plnd_delry                    TYPE bapiupdate,
+          deliv_time                    TYPE bapiupdate,
+          ref_req                       TYPE bapiupdate,
+          ref_req_item                  TYPE bapiupdate,
+          grant_nbr                     TYPE bapiupdate,
+          func_area                     TYPE bapiupdate,
+          req_blocked                   TYPE bapiupdate,
+          reason_blocking               TYPE bapiupdate,
+          version                       TYPE bapiupdate,
+          procuring_plant               TYPE bapiupdate,
+          ext_proc_prof                 TYPE bapiupdate,
+          ext_proc_ref_doc              TYPE bapiupdate,
+          ext_proc_ref_item             TYPE bapiupdate,
+          funds_res                     TYPE bapiupdate,
+          res_item                      TYPE bapiupdate,
+          suppl_stloc                   TYPE bapiupdate,
+          prio_urgency                  TYPE bapiupdate,
+          prio_requirement              TYPE bapiupdate,
+          new_bom_explosion             TYPE bapiupdate,
+          minremlife                    TYPE bapiupdate,
+          period_ind_expiration_date    TYPE bapiupdate,
+          budget_period                 TYPE bapiupdate,
+          bras_nbm                      TYPE bapiupdate,
+          matl_usage                    TYPE bapiupdate,
+          mat_origin                    TYPE bapiupdate,
+          in_house                      TYPE bapiupdate,
+          indus3                        TYPE bapiupdate,
+          req_segment                   TYPE bapiupdate,
+          stk_segment                   TYPE bapiupdate,
+          avail_date                    TYPE bapiupdate,
+          material_long                 TYPE bapiupdate,
+          pur_mat_long                  TYPE bapiupdate,
+          req_seg_long                  TYPE bapiupdate,
+          stk_seg_long                  TYPE bapiupdate,
+          expected_value                TYPE bapiupdate,
+          limit_amount                  TYPE bapiupdate,
+          producttype                   TYPE bapiupdate,
+          serviceperformer              TYPE bapiupdate,
+          startdate                     TYPE bapiupdate,
+          enddate                       TYPE bapiupdate,
+          spe_crm_ref_so                TYPE bapiupdate,
+          spe_crm_ref_item              TYPE bapiupdate,
+          expert_mode                   TYPE bapiupdate,
+          tax_code                      TYPE bapiupdate,
+          delivery_address_type         TYPE bapiupdate,
+          contract_for_limit            TYPE bapiupdate,
+          iscrreplicationbeforeapproval TYPE bapiupdate,
+          mmpur_pr_cen_reqn_app_rpld_pr TYPE bapiupdate,
+          ssp_author                    TYPE bapiupdate,
+          ssp_requestor                 TYPE bapiupdate,
+          ssp_catalogid                 TYPE bapiupdate,
+          contract_item_for_limit       TYPE bapiupdate,
+        END OF bapimereqitemx.
+      TYPES:
+        _bapimereqitemx TYPE STANDARD TABLE OF bapimereqitemx WITH DEFAULT KEY.
 
-   <img alt="Select optional parameters 2" src="images/rap640_parameter_020.png" width="70%">
+      TYPES:
+        _bapiret2       TYPE STANDARD TABLE OF bapiret2 WITH DEFAULT KEY.
 
-   <img alt="Select optional parameters 3" src="images/rap640_parameter_030.png" width="70%">
+      METHODS bapi_pr_create
+        IMPORTING
+          !prheader    TYPE bapimereqheader OPTIONAL
+          !prheaderx   TYPE bapimereqheaderx OPTIONAL
+          !testrun     TYPE char1 OPTIONAL
+        EXPORTING
+          !number      TYPE banfn
+          !prheaderexp TYPE bapimereqheader
+            CHANGING
+          !pritem      TYPE _bapimereqitemimp
+          !pritemx     TYPE _bapimereqitemx OPTIONAL
+          !return      TYPE _bapiret2 OPTIONAL.
+      ENDINTERFACE.
+```
+</details>
+
+**Create the wrapper factory class**
+
+Next, create the wrapper factory class. Right click on your package `ZTIER2_###` and select **New > ABAP Class** and input the Name `ZCL_F_WRAP_BAPI_PR_###`:
+
+Copy and paste the following code into your previously created factory class:
+
+<details>
+  <summary>🟡📄 Click to expand and view or copy the source code!</summary>
+
+```ABAP
+  CLASS ZCL_F_WRAP_BAPI_PR_### DEFINITION
+    PUBLIC
+    FINAL
+    CREATE PRIVATE.
+
+    PUBLIC SECTION.
+
+      CLASS-METHODS create_instance
+        IMPORTING
+          !destination  TYPE rfcdest OPTIONAL
+        RETURNING
+          VALUE(result) TYPE REF TO ZIF_WRAP_BAPI_PR_###.
+    PROTECTED SECTION.
+    PRIVATE SECTION.
+
+      METHODS constructor.
+  ENDCLASS.
+
+  CLASS ZCL_F_WRAP_BAPI_PR_### IMPLEMENTATION.
+
+    METHOD constructor.
+    ENDMETHOD.
+
+    METHOD create_instance.
+      result = NEW ZCL_WRAP_BAPI_PR_###( destination = destination  ).
+    ENDMETHOD.
+  ENDCLASS.  
+```
+</details>
+
+**Hint:** At this point, it is not yet possible to save and activate the class. To achieve this, the wrapper class described in the next section must first be created. Once the wrapper class is created, the factory class can also be saved and activated.
+
+**Create the BAPI wrapper class**
+
+Now create the BAPI wrapper class. Right click on your package `ZTIER2_###` and select **New > ABAP Class** and input the Name `ZCL_WRAP_BAPI_PR_###`:
+
+Copy and paste the following code into your previously created wrapper class:
+
+<details>
+  <summary>🟡📄 Click to expand and view or copy the source code!</summary>
+
+```ABAP
+ CLASS ZCL_WRAP_BAPI_PR_### DEFINITION
+    PUBLIC
+    CREATE PRIVATE
+
+    GLOBAL FRIENDS ZCL_F_WRAP_BAPI_PR_###.
+
+    PUBLIC SECTION.
 
 
-6. Check the generated artefacts.
+      INTERFACES ZIF_WRAP_BAPI_PR_###.
+    PROTECTED SECTION.
 
-   <img alt="generated artefacts" src="images/ex1_step3_generated_artefacts.png" width="70%">    
-   
+      DATA destination TYPE rfcdest .
+    PRIVATE SECTION.
 
- 
+      METHODS call_bapi_pr_create
+        IMPORTING
+          !prheader     TYPE ZIF_WRAP_BAPI_PR_###~bapimereqheader OPTIONAL
+          !prheaderx    TYPE ZIF_WRAP_BAPI_PR_###~bapimereqheaderx OPTIONAL
+          !testrun      TYPE ZIF_WRAP_BAPI_PR_###~char1 OPTIONAL
+        EXPORTING
+          !number       TYPE banfn
+          !prheaderexp  TYPE ZIF_WRAP_BAPI_PR_###~bapimereqheader
+        CHANGING
+          !extensionin  TYPE ZIF_WRAP_BAPI_PR_###~_bapiparex OPTIONAL
+          !extensionout TYPE ZIF_WRAP_BAPI_PR_###~_bapiparex OPTIONAL
+          !praccountx   TYPE ZIF_WRAP_BAPI_PR_###~_bapimereqaccountx OPTIONAL
+          !pritem       TYPE ZIF_WRAP_BAPI_PR_###~_bapimereqitemimp
+          !pritemx      TYPE ZIF_WRAP_BAPI_PR_###~_bapimereqitemx OPTIONAL
+          !return       TYPE ZIF_WRAP_BAPI_PR_###~_bapiret2 OPTIONAL
+
+        RAISING
+          cx_root.
+
+      METHODS constructor
+        IMPORTING
+          !destination TYPE rfcdest .
+  ENDCLASS.
+
+  CLASS ZCL_WRAP_BAPI_PR_### IMPLEMENTATION.
+
+
+    METHOD call_bapi_pr_create.
+      DATA: _rfc_message_ TYPE c LENGTH 255.
+      CALL FUNCTION 'BAPI_PR_CREATE' DESTINATION me->destination
+        EXPORTING
+          prheader              = prheader
+          prheaderx             = prheaderx
+          testrun               = testrun
+        IMPORTING
+          number                = number
+          prheaderexp           = prheaderexp
+        TABLES
+          extensionin           = extensionin
+          extensionout          = extensionout
+          praccountx            = praccountx
+          pritem                = pritem
+          pritemx               = pritemx
+          return                = return.
+    ENDMETHOD.
+
+    METHOD constructor.
+      me->destination = destination.
+    ENDMETHOD.
+
+    METHOD ZIF_WRAP_BAPI_PR_###~bapi_pr_create.
+      TRY.
+          me->call_bapi_pr_create(
+          EXPORTING
+            prheader = prheader
+            prheaderx = prheaderx
+            testrun = testrun
+          IMPORTING
+            number = number
+            prheaderexp = prheaderexp
+          CHANGING
+            return = return
+            pritemx = pritemx
+            pritem = pritem
+
+        ).
+        CATCH cx_root INTO DATA(lx_root_pr_create).
+
+      ENDTRY.
+    ENDMETHOD.
+  ENDCLASS.
+```
+</details>
+
+Now it should be possible to active both, the wrapper class and the factory class.
+
 </details>  
 
 ## Step 4: Create a package in a software component with language version ABAP for Cloud Development   
@@ -193,9 +672,35 @@ This approach has the advantage of a clear control of when and where an instance
       
 </details>
 
-## Step 5: Test the technical wrapper class with console application in ABAP for cloud development
+## Step 5: Release the wrapper interface and factory class
 
-The wrapper you just created is released for consumption in ABAP for cloud development. You can test this by creating a console application in ABAP for cloud development to call the wrapper. 
+Now you need to release the wrapper interface and wrapper factory class for consumption in ABAP Cloud Development. To do this, you need to add a Release Contract (C1) to both objects for use system-internally (Contract C1).
+
+In your Project Explorer open the ABAP Interface you created. In the **Properties** tab click on the **API State** tab and then click on the green plus icon next to the Use System-Internally (Contract C1).
+
+<img alt="C1 Release Interface" src="images/C1_Release_Interface.png" width="70%">
+
+Make sure the **Release State** is set to **Released** and check the option **Use in Cloud Development**:
+
+<img alt="Set release state" src="images/C1_Release_Interface_Set_Release_State.png" width="70%">
+
+Click on Next. The changes will be validated. No issues should arise.
+Click on Next and then click on Finish.
+
+The API State tab will now show the new Release State:
+
+<img alt="C1 Released Interface" src="images/C1_Released_Interface.png" width="70%">
+
+Repeat the same steps to release the factory class you created:
+
+<img alt="C1 Release Factory" src="images/C1_Released_Factory.png" width="70%">
+
+>You will not release the wrapper class.
+
+
+## Step 6: Test the technical wrapper class with console application in ABAP for cloud development
+
+The wrapper you just created is now released for consumption in ABAP for cloud development. You can test this by creating a console application in ABAP for cloud development to call the wrapper. 
 
 We will use this class that calls the wrapper also to add a conversion functionality and to simplify the signature of the method that is used to create a purchase requistion as well. 
 
@@ -241,17 +746,10 @@ CLASS zcl_wrap_purchase_req_bapi_### DEFINITION
       EXPORTING pr_return_msg       TYPE zif_wrap_bapi_pr_###=>_bapiret2
       RETURNING VALUE(result)       TYPE banfn.
 
-
-
   PROTECTED SECTION.
   PRIVATE SECTION.
 
-
-
-
 ENDCLASS.
-
-
 
 CLASS zcl_wrap_purchase_req_bapi_### IMPLEMENTATION.
   METHOD if_oo_adt_classrun~main.
@@ -309,7 +807,7 @@ CLASS zcl_wrap_purchase_req_bapi_### IMPLEMENTATION.
     IF test_run = abap_true.
       out->write( | test_run | ).
     ELSE.
-      out->write( |purchase requistion number: { number  } | ).
+      out->write( |purchase requisition number: { number  } | ).
 
       SELECT * FROM I_PurchaseRequisitionItemAPI01 WHERE PurchaseRequisition = @number
                                          INTO TABLE @DATA(purchase_requisitions).
@@ -325,7 +823,6 @@ CLASS zcl_wrap_purchase_req_bapi_### IMPLEMENTATION.
     ENDLOOP.
 
   ENDMETHOD.
-
 
   METHOD bapi_pr_create.
 
@@ -423,7 +920,7 @@ CLASS zcl_wrap_purchase_req_bapi_### IMPLEMENTATION.
 
         APPEND LINES OF conversion_messages TO pr_return_msg.
 
-      CATCH cx_aco_application_exception cx_aco_communication_failure cx_aco_system_failure.
+      CATCH cx_root INTO DATA(error).
         "does not happen since there is no rfc call
         ASSERT 1 = 2.
     ENDTRY.
@@ -432,9 +929,7 @@ CLASS zcl_wrap_purchase_req_bapi_### IMPLEMENTATION.
 
 ENDCLASS.
 
-
 ```
-
  </details>   
 
 5. Save and activate your changes.   
@@ -453,7 +948,7 @@ ENDCLASS.
 
 
 
-## Step 6: Understand conversion problems
+## Step 7: Understand conversion problems
 
 ### Introduction
 
@@ -501,7 +996,7 @@ As a result the value stored in the purchase requisition would be `1 JPY` instea
   
 </details>   
 
-## Step 7: Fix conversion problem using released conversion class
+## Step 8: Fix conversion problem using released conversion class
 
 Navigate to the method `bapi_pr_create()` in your wrapper class `zcl_wrap_purchase_req_bapi_###`.    
 
